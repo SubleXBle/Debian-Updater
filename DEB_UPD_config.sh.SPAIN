@@ -1,0 +1,30 @@
+### VARIABLES DEL USUARIO ###
+#
+## Manejo de Archivos de Registro
+UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE)
+#
+## Manejo de Archivos de Registro
+LOGFILE="/var/log/Updater.log"                  # Cambiar si es necesario: p. ej., /home/$USER/Updater.log (especificar ruta)
+UV_KEEP_LOG=false                               # Mantener siempre el archivo de registro (true / false). Si es verdadero, se produce la rotación del registro
+KILL_OLD_LOGS=false                             # Al eliminar el archivo de registro, ¿también eliminar archivos de registro antiguos (rotación del registro)? (Elimina TODOS los archivos de registro antiguos de este script)
+LOGFILE_MAX_AGE=30                              # Elimina archivos de registro antiguos después de 30 días
+#
+## Tipos de Notificación
+UV_PUSHOVER=false                               # Usar notificaciones de Pushover: ¡realizar ajustes en el archivo PO_config.sh!
+UV_TELEGRAM=false                               # Enviar mensaje de Telegram
+UV_GOTIFY=false                                 # Usar Gotify para notificaciones
+UV_DISCORD=false                                # Enviar mensaje de Discord
+UV_EMAIL=false                                  # Enviar notificación por correo electrónico
+UV_TEAMS=false                                  # Enviar notificación a MS Teams
+#
+## Opciones de Notificación
+UV_LOG2MSG=false                                # ¿Debería enviarse el archivo de registro mediante el método de notificación elegido?
+UV_NotifyOnlyOnError=false                      # Enviar notificación solo en caso de error
+#UV_NotifyOrLog=false                            # Si se utilizan más de un tipo de notificación, elegir para cada uno si enviar el archivo de registro
+#
+## Opciones de RK-Hunter
+UV_RKHUNTER=false                               # ¿Comprobar RKHunter para actualizar definiciones y realizar una actualización de propiedades?
+UV_RKH_CHECK=false                              # ¿Debería RK-Hunter comprobar inmediatamente si hay rootkits?
+#
+# Resolver Conflictos de Versiones
+UV_AutoStdConf=false                            # En caso de conflictos de versiones, ¿intentar enviar la opción predeterminada a través de dpkg? (Experimental)

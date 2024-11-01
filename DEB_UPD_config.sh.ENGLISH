@@ -1,0 +1,30 @@
+### USER VARIABLES ###
+#
+## Logfile Handling
+UV_LNG=EN                                       # Set language to English (EN) or German (DE) or Spain (SP)
+#
+## Logfile Handling
+LOGFILE="/var/log/Updater.log"                  # Change if needed: e.g., /home/$USER/Updater.log (specify path)
+UV_KEEP_LOG=false                               # Always keep logfile (true / false). If true, log rotation occurs
+KILL_OLD_LOGS=false                             # When deleting logfile, also delete old logs (log rotation)? (Deletes ALL old log files from this script)
+LOGFILE_MAX_AGE=30                              # Deletes old log files after 30 days
+#
+## Notification Types
+UV_PUSHOVER=false                               # Use Pushover notifications: make adjustments in PO_config.sh file!
+UV_TELEGRAM=false                               # Send Telegram message
+UV_GOTIFY=false                                 # Use Gotify for notifications
+UV_DISCORD=false                                # Send Discord message
+UV_EMAIL=false                                  # Send email notification
+UV_TEAMS=false                                  # Send MS Teams notification
+#
+## Notification Options
+UV_LOG2MSG=false                                # Should the logfile be sent via the chosen notification method?
+UV_NotifyOnlyOnError=false                      # Send notification only in case of error
+#UV_NotifyOrLog=false                            # If more than one notification type is used, choose for each whether to send the logfile
+#
+## RK-Hunter Options
+UV_RKHUNTER=false                               # Check for RKHunter to update definitions and perform a property update?
+UV_RKH_CHECK=false                              # Should RK-Hunter immediately check for rootkits?
+#
+# Resolve Version Conflicts
+UV_AutoStdConf=false                            # In case of version conflicts, attempt to send the default option via dpkg? (Experimental)
