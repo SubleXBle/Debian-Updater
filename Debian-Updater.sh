@@ -173,7 +173,7 @@ F_UPGRADE() {
 F_AUTOREMOVE() {
     if [ "$NOAUTOREMOVE" = false ]; then
         log_message -n "$NORMAL $LV_Autoremove \t \t "
-        if apt-get autoremove -y -qq >>$LOGFILE 2>&1; then
+        if apt-get autoremove --purge -y -qq >>$LOGFILE 2>&1; then
             LF_Positive_Output_Check
             echo "$LFA_Autoremove_Y">>$LOGFILE
         else
