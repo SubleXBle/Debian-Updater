@@ -1,79 +1,69 @@
-# Debian-Updater
-+ Version: 0.7
-+ Author: SubleXBle
-+ Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
+Debian-Updater
+Versión: 0.7
+Autor: SubleXBle
+Repositorio: GitHub: SubleXBle
+Descripción
+El script Debian-Updater automatiza la actualización de un sistema basado en Debian (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.). Verifica los privilegios de root, actualiza las fuentes de paquetes y los paquetes instalados, elimina paquetes innecesarios a petición y, opcionalmente, revisa el sistema en busca de rootkits. Además, ofrece la opción de enviar notificaciones o el archivo de registro mediante Pushover, Telegram o Gotify, o de conservar los archivos de registro a largo plazo mediante la rotación de logs.
 
-## Description
-The Debian-Updater script automates the updating of a Debian-based system (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.). It checks for root privileges, updates package sources and installed packages, removes unnecessary packages upon request, and optionally checks the system for rootkits. Additionally, it offers the option to send notifications or the log file via Pushover, Telegram, or Gotify, or to retain log files for the long term via log rotation.
+El script es adecuado para ejecutarse como una tarea cron gracias a su modo --silent, manejo de errores y robustez. La variedad de opciones de registro permite casi cualquier configuración de logs (rotación de logs, conservar solo en caso de errores, conservar solo por X días, sin registro, enviar logs, etc.).
 
-The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness. The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
+Funciones
+Actualización del sistema: Actualiza las fuentes de paquetes (apt-get update), instala actualizaciones disponibles (apt-get upgrade) y elimina paquetes innecesarios (apt-get autoremove).
+Registro: Todas las actividades se escriben en un archivo de registro que puede ser opcionalmente guardado, enviado o eliminado. Algunas funciones de archivo de registro se han implementado para cumplir con cada preferencia en el manejo de logs. Estas pueden ser controladas a través del archivo de configuración (DEB_UPD_config.sh).
+Rotación de logs: Si el archivo de registro se retiene, hay una rotación diaria de logs o eliminación automática después de X días.
+Notificaciones opcionales solo en caso de errores.
+Las notificaciones y el archivo de registro se pueden enviar a través de una variedad de servicios:
+Correo electrónico (SMTP) a través de Curl
+Pushover (https://pushover.net/) (API)-Llamada a través de CURL
+Telegram (https://web.telegram.org) (API)-Llamada a través de CURL
+Gotify (https://gotify.net/) (API)-Llamada a través de CURL
+Discord (https://discord.com/) (Webhook) a través de Curl
+MS-Teams (Webhook) a través de Curl
+Seguimiento de tiempo de ejecución: El script mide y registra el tiempo total de ejecución.
+Modo silencioso: Opción para suprimir la salida de la consola, permitiendo que el script se ejecute en tareas cron, por ejemplo.
+Actualización y/o verificación opcional de RKHunter: Realiza una verificación de rootkits y actualiza RKHunter si está instalado y activado.
+Uso
+./Debian-Updater.sh [-OPCIÓN1 -OPCIÓN2 etc.]
 
-## Features
-+ System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
-+ Logging: All activities are written to a log file that can be optionally saved, sent, or deleted. Some log file functions have been implemented to meet every preference in log file handling. These can be controlled via the configuration file (DEB_UPD_config.sh).
-+ Log rotation: If the log file is retained, there is a daily log file rotation or automatic deletion after X days.
-+ Optional notifications only in case of errors.
-+ Notifications and the log file can be sent via a variety of services:
-    + Email ([SMTP](https://de.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)) via Curl
-    + Pushover ([https://pushover.net/](https://pushover.net/)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Telegram ([https://web.telegram.org](https://web.telegram.org)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Gotify ([https://gotify.net/](https://gotify.net/)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Discord ([https://discord.com/](https://discord.com/)) ([Webhook](https://de.wikipedia.org/wiki/Webhooks)) via Curl
-    + MS-Teams ([Webhook](https://de.wikipedia.org/wiki/Webhooks)) via Curl
-+ Runtime tracking: The script measures and logs the total runtime.
-+ Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
-+ Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
+Opciones
+-h, --help : Muestra una página de ayuda con las opciones disponibles.
+-s, --silent : Suprime la salida de la consola; el archivo de registro aún se crea.
+-o, --onlyupdate : Solo actualiza las fuentes de paquetes (apt-get update) sin actualizar los paquetes.
+-n, --no-autoremove : No se realizará autoremove.
+-l, --license : Muestra la licencia.
+Salida clara
+La salida del script (cuando no está en modo --silent como tarea cron) está diseñada para ser clara. El archivo de registro es fácil de leer; para múltiples ejecuciones que terminan en un mismo registro, se inserta una línea separadora así como la fecha y la hora. Además, hay una rotación diaria de logs. Actualmente se está trabajando en una salida en inglés; ya se puede configurar a través del archivo de configuración (DEB_UPD_config.sh) y la variable $UV_LNG.
 
-## Usage
-./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
+Configuración
+Archivo de Configuración (DEB_UPD_config.sh)
+Todas las opciones se pueden configurar a través de un archivo de configuración en la carpeta principal. El archivo de configuración está disponible tanto en alemán como en inglés para facilitar a los usuarios realizar las configuraciones correctas.
 
-### Options
-+ -h, --help : Displays a help page with the available options.
-+ -s, --silent : Suppresses console output; the log file is still created.
-+ -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
-+ -n, --no-autoremove : No autoremove will be performed.
-+ -l, --license : Displays the license.
+Para usar el archivo de configuración en inglés, el archivo DEB_UPD_config.sh.ENGLISH debe renombrarse a DEB_UPD_config.sh (mv DEB_UPD_config.sh.ENGLISH DEB_UPD_config.sh).
 
-## Clear Output
-The output of the script (when not in --silent mode as a cron job) is clearly designed. The log file is easy to read; for multiple runs that end up in one log, a separator line as well as the date and time are inserted. Additionally, there is a daily log rotation. An English output is currently being worked on; it can already be set via the config file (DEB_UPD_config.sh) and the variable $UV_LNG.
+Archivos de Configuración para Notificaciones
+Cada método de envío de notificaciones tiene su propio archivo de configuración en la carpeta NotificationConfiguration para establecer la conexión con el servicio respectivo (usuario, contraseña, etc.).
 
-## Configuration
+Requisitos
+Un sistema basado en Debian. (Debian / Raspberry Pi OS / Ubuntu / Linux Mint / Kali Linux: Wikipedia lista de derivados de Debian)
+El script principal (Debian-Updater.sh) debe hacerse ejecutable (chmod +x Debian-Updater.sh).
+Privilegios de root.
+Opcional: RKHunter (https://rkhunter.sourceforge.net/)
+Si RKHunter está instalado en el sistema, puede actualizarse simultáneamente.
+Si RKHunter está instalado, también se puede ejecutar una verificación (--check) inmediatamente después de la actualización.
+Para notificaciones, debe estar instalado "curl" (https://curl.se/).
+Descripción de la Versión
+Todas las posibles mejoras, ajustes y sugerencias...
+Salidas mejoradas...
+Trabajo en las traducciones...
+Licencia
+Licencia Pública General de GNU v3.0
+Este script es de código abierto y puede ser libremente utilizado y modificado.
+Desarrollo Futuro
+Actualizaciones y mejoras continuas.
 
-### Config File (DEB_UPD_config.sh)
-All options can be set via a config file in the main folder. The config file is available in both German and English to make it easier for users to make the right settings.
-
-To use the English configuration file, the DEB_UPD_config.sh.ENGLISH must be renamed to DEB_UPD_config.sh (mv DEB_UPD_config.sh.ENGLISH DEB_UPD_config.sh).
-
-### Config Files for Notifications
-Each method of sending notifications has its own config file in the NotificationConfiguration folder to establish the connection with the respective service (user, password, etc.).
-
-## Prerequisites
-+ A [Debian](https://www.debian.org)-based system. ([Debian](https://www.debian.org) / [Raspberry Pi OS](https://www.raspberrypi.com/software/) / [Ubuntu](https://ubuntu.com/) / [Linux Mint](https://linuxmint.com/) / [Kali Linux](https://www.kali.org/): [Wikipedia list of Debian derivatives](https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Debian-Derivate))
-+ Main script (Debian-Updater.sh) must be made executable (chmod +x Debian-Updater.sh).
-+ Root privileges.
-+ Optional: RKHunter (https://rkhunter.sourceforge.net/)
-    + If RKHunter is installed on the system, it can be updated simultaneously.
-    + If RKHunter is installed, a --check can also be executed immediately after the update.
-+ For notifications, "curl" (https://curl.se/) must be installed.
-
-## Version Description
-+ All possible improvements, tweaks, and tips...
-+ Enhanced outputs...
-+ Worked on the translations...
-
-## License
-+ GNU General Public License v3.0
-+ This script is open source and can be freely used and modified.
----------------------------------------------------------------------------------------
-## Further Development
-Ongoing updates and improvements.
-
-+ Since I use the script for my own systems, there will certainly be expansions (such as RKHunter).
-+ Possibly make it a universal updater that supports many/all Linux distributions.
----------------------------------------------------------------------------------------
-
-## /fun
-### Chat-GPT says:
-#### This Bash script implements a complete system for managing system updates, notifications, and log files of Debian systems.
-
-This modular and flexible structure with configurable switches and detailed logic for executing updates and notifications makes the script particularly suitable for production environments. By automating system updates and receiving immediate notifications, administrators can ensure that their systems are always up to date and secure.
+Dado que uso el script para mis propios sistemas, ciertamente habrá expansiones (como RKHunter).
+Posiblemente convertirlo en un actualizador universal que admita muchas/todas las distribuciones de Linux.
+/fun
+Chat-GPT dice:
+Este script de Bash implementa un sistema completo para gestionar actualizaciones del sistema, notificaciones y archivos de registro de sistemas Debian.
+Esta estructura modular y flexible, con interruptores configurables y lógica detallada para ejecutar actualizaciones y notificaciones, hace que el script sea particularmente adecuado para entornos de producción. Al automatizar las actualizaciones del sistema y recibir notificaciones inmediatas, los administradores pueden asegurarse de que sus sistemas estén siempre actualizados y seguros.
