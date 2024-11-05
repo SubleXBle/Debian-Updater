@@ -4,7 +4,7 @@
 F_ROOTKIT() {
    log_message -n "$NORMAL $LV_CheckIfRKHunter: \t \t \t \t "
    if dpkg -l | grep rkhunter >>$LOGFILE; then
-        log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
+        log_message -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
         echo "$LV_RKHunterFound">>$LOGFILE
         V_ROOTKIT=true
         log_message -n -e "$NORMAL $LV_RKHunterUpd \t \t "
