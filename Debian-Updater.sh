@@ -16,7 +16,7 @@ F_Startzeit() {
     echo "$(date +"%d.%m.%Y %H:%M:%S")">>$LOGFILE
 }
 
-# Check if Path to Logfile exists
+# Check for Logfile
 source Files/LogFileCheck.sh
 
 # Change Directory to the Directory where the Script is placed
