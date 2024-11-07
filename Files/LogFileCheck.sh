@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Check where $LOGFILE is located
+LOGFILE_DIR=$(dirname "$LOGFILE")
+
 if [ ! -d "$LOGFILE_DIR" ]; then
     #logmessage "Creating Logfile Folder ..."
     mkdir -p "$LOGFILE_DIR"
