@@ -1,5 +1,5 @@
 # Debian-Updater
-+ Version: 0.7
++ Version: 0.8
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 
