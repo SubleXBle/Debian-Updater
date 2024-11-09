@@ -57,9 +57,8 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description
-+ All possible improvements, tweaks, and tips...
-+ Enhanced outputs...
-+ Worked on the translations... added spanish
++ Enhanced output (RK-Hunter)
++ Introduced log level (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
 
 ## License
 + GNU General Public License v3.0
