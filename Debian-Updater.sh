@@ -303,7 +303,7 @@ log_message -e $NORMAL
 if [ "$UV_KEEP_LOG" = false ]; then
     LF_Zeitausgabe | tee -a $LOGFILE
 else
-    LF_Zeitausgabe>>$LOGFILE
+    LF_Zeitausgabe | tee -a $LOGFILE
 fi
 }
 
