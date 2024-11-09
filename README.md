@@ -5,7 +5,9 @@
 + Available in English / German / Spain
 
 ## Description
-The Debian-Updater script automates the updating of a Debian-based system (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.). It checks for root privileges, updates package sources and installed packages, removes unnecessary packages upon request, and optionally checks the system for rootkits. Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
+The Debian-Updater script automates the updating of a Debian-based system (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.).<br>
+It checks for root privileges, updates package sources and installed packages, removes unnecessary packages upon request, and optionally checks the system for rootkits.<br>
+Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
 
 The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness. The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
