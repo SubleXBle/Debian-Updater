@@ -34,15 +34,6 @@ FEHLER=0
 SILENT=false
 ONLYUPDATE=false
 NOAUTOREMOVE=false
-STANDARD='-qq'
-AUTOCONF='-o Dpkg::Options::="--force-confdef'  #Experimental
-
-## Autoconfig (dpkg) descition
-if [ "$UV_AutoStdConf" = true ]; then
-    AutoSolve=$AUTOCONF
-else
-    Autosolve=$STANDARD
-fi
 
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
@@ -110,6 +101,17 @@ fi
 
 ### FUNCTIONS ###
 
+# Set Logging
+if [ $UV_LOG = quiet ]; then
+    $V_LOGGING = "-qq"
+fi
+if [ $UV_LOG = medium ]; then
+    $V_LOGGING = "-q"
+fi
+if [ $UV_LOG = full ]; then
+    $V_LOGGING = ""
+fi
+
 # Check for Root
 F_ISROOT() {
     log_message -n -e $NORMAL "$LV_RootCheck \t \t \t "
@@ -131,7 +133,7 @@ F_VERSION_ANZEIGEN() {
 # update Repositorys
 F_UPDATE() {
     log_message -n "$NORMAL $LV_Update_start" | tee -a $LOGFILE
-    if apt-get update -qq >>$LOGFILE 2>&1; then
+    if apt-get update $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LV_Update_done">>$LOGFILE
         if [ "$ONLYUPDATE" = true ]; then
@@ -162,7 +164,7 @@ F_ANZEIGE() {
 # Upgrade
 F_UPGRADE() {
     log_message -n "$LV_Install \t \t "
-    if apt-get upgrade -y $AutoSolve >>$LOGFILE 2>&1; then
+    if apt-get upgrade -y $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y">>$LOGFILE
     else
@@ -176,7 +178,7 @@ F_UPGRADE() {
 F_AUTOREMOVE() {
     if [ "$NOAUTOREMOVE" = false ]; then
         log_message -n "$NORMAL $LV_Autoremove \t \t "
-        if apt-get autoremove --purge -y -qq >>$LOGFILE 2>&1; then
+        if apt-get autoremove --purge -y $V_LOGGING >>$LOGFILE 2>&1; then
             LF_Positive_Output_Check
             echo "$LFA_Autoremove_Y">>$LOGFILE
         else
