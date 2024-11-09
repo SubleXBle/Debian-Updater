@@ -60,7 +60,7 @@ Each method of sending notifications has its own config file in the Notification
 ## Version Description
 + Enhanced output (RK-Hunter)
 + Introduced log level (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
-+ Added a Check for Variables that are ment to be set as true or false
++ Added a Sanity Check for UserVariables
 
 ## License
 + GNU General Public License v3.0
