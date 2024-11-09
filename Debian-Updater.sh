@@ -167,8 +167,14 @@ F_ANZEIGE() {
 
 # Upgrade
 F_UPGRADE() {
+    if [ "$UV_UpgradeMode" = true ]; then
+        V_UpgrMod="dist-upgrade -y"
+    else
+        V_UpgrMod="upgrade -y -a"
+    fi
+        
     log_message -n "$LV_Install \t \t "
-    if apt-get upgrade -y $V_LOGGING >>$LOGFILE 2>&1; then
+    if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y">>$LOGFILE
     else
