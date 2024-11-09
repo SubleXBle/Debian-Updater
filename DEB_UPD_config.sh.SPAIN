@@ -1,33 +1,34 @@
-### VARIABLES DEL USUARIO ###
+### VARIABLES DE USUARIO ###
 #
-## Manejo de Archivos de Registro
-UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE) o Spain (SP)
+## Selección de idioma
+UV_LNG=DE                                       # Establecer idioma a Inglés (EN), Alemán (DE) o Español (SP)
 #
-## Especificar nivel de registro
-UV_LOG=quiet                                    # Especificar nivel de registro (quiet / medium / all)
+## Modos de actualización
+UV_UpgradeMode=false                            # false ejecuta apt-get upgrade -y -a / true ejecuta apt-get dist-upgrade -y
+UV_AutoremoveMode=false                         # false ejecuta un --purge / true ejecuta "remove"
 #
-UV_LOG=quiet # Especificar nivel de registro (quiet / medium / all)
-## Manejo de Archivos de Registro
-LOGFILE="/var/log/Updater.log"                  # Cambiar si es necesario: p. ej., /home/$USER/Updater.log (especificar ruta)
-UV_KEEP_LOG=false                               # Mantener siempre el archivo de registro (true / false). Si es verdadero, se produce la rotación del registro
-KILL_OLD_LOGS=false                             # Al eliminar el archivo de registro, ¿también eliminar archivos de registro antiguos (rotación del registro)? (Elimina TODOS los archivos de registro antiguos de este script)
+## Nivel de registro
+UV_LOG=quiet                                    # Especificar el nivel de registro (quiet [-qq] / medium [-q] / all [sin opción de salida])
+#
+## Gestión del archivo de registro
+LOGFILE="/var/log/Updater.log"                  # Cambiar si es necesario: por ejemplo, /home/$USER/Updater.log (especificar ruta)
+UV_KEEP_LOG=false                               # Mantener siempre el archivo de registro (true / false). Si es true, se activa la rotación de registros
+KILL_OLD_LOGS=false                             # ¿Eliminar registros antiguos (rotación de registros) al eliminar archivos de registro? (Elimina TODOS los archivos de registro antiguos de este script)
 LOGFILE_MAX_AGE=30                              # Elimina archivos de registro antiguos después de 30 días
 #
-## Tipos de Notificación
-UV_PUSHOVER=false                               # Usar notificaciones de Pushover: ¡realizar ajustes en el archivo PO_config.sh!
+## Tipos de notificación
+UV_PUSHOVER=false                               # Usar notificaciones de Pushover: Ajustar configuraciones en el archivo PO_config.sh
 UV_TELEGRAM=false                               # Enviar mensaje de Telegram
 UV_GOTIFY=false                                 # Usar Gotify para notificaciones
 UV_DISCORD=false                                # Enviar mensaje de Discord
-UV_EMAIL=false                                  # Enviar notificación por correo electrónico
-UV_TEAMS=false                                  # Enviar notificación a MS Teams
+UV_EMAIL=false                                  # Enviar mensaje por correo electrónico
+UV_TEAMS=false                                  # Enviar mensaje de MS Teams
 #
-## Opciones de Notificación
-UV_LOG2MSG=false                                # ¿Debería enviarse el archivo de registro mediante el método de notificación elegido?
+## Opciones de notificación
+UV_LOG2MSG=false                                # ¿Se debe enviar el archivo de registro mediante el tipo de notificación seleccionado?
 UV_NotifyOnlyOnError=false                      # Enviar notificación solo en caso de error
-#UV_NotifyOrLog=false                            # Si se utilizan más de un tipo de notificación, elegir para cada uno si enviar el archivo de registro
+#UV_NotifyOrLog=false                            # Si hay más de un tipo de notificación, cada uno puede elegir si incluir el archivo de registro
 #
-## Opciones de RK-Hunter
-UV_RKHUNTER=false                               # ¿Comprobar RKHunter para actualizar definiciones y realizar una actualización de propiedades?
-UV_RKH_CHECK=false                              # ¿Debería RK-Hunter comprobar inmediatamente si hay rootkits?
-#
-
+## Opciones de RK Hunter
+UV_RKHUNTER=false                               # ¿Comprobar RK Hunter para actualizar definiciones y realizar una actualización de propiedades?
+UV_RKH_CHECK=false                              # ¿Debe RK Hunter comprobar inmediatamente en busca de rootkits?
