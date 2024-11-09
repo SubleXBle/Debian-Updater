@@ -5,7 +5,10 @@ config_file="DEB_UPD_config.sh"
 
 # Check for every Variable in the Config File
 while IFS='=' read -r var value; do
-    # remove spaces bevore and after the variable
+    # Ignore lines with comments
+    value=$(echo "$value" | sed 's/#.*//')  # Entfernt den Kommentar
+
+    # remove spaces before and after the variable
     value=$(echo "$value" | xargs)
 
     # Go only for Variables that are set to true or false
@@ -17,4 +20,4 @@ while IFS='=' read -r var value; do
         FEHLER="VARS NOT SET CORRECT"
         exit 1
     fi
-done < <(grep -E '^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*=[[:space:]]*(true|false)' "$config_file")
+done < "$config_file"
