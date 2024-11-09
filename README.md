@@ -11,6 +11,8 @@ The script is suitable for execution as a cron job due to its --silent mode, err
 
 ## Features
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
+    + You can set different modes for upgrade or autoremove in the config file (DEB_UPD_config.sh)
+    + The config file is available in different languages for your convenience.
 + Logging: All activities are written to a log file that can be optionally saved, sent, or deleted. Some log file functions have been implemented to meet every preference in log file handling. These can be controlled via the configuration file (DEB_UPD_config.sh).
 + Log rotation: If the log file is retained, there is a daily log file rotation or automatic deletion after X days.
 + LogLevel: Change Loglevel between full, medium or quiet
