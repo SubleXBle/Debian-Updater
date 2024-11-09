@@ -69,7 +69,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ Added Sanity Check for UserVariables from DEB_UPD_config.sh
 + ✔️ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y with the variabel UV_UpgradeMode in DEB_UPD_config.sh
 + ✔️ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
-+ ✔️ Upgradeable Packets are now written to the logfile
++ ✔️ Upgradeable Packets are now allways written to the logfile
 
 ## License 📄
 + GNU General Public License v3.0
