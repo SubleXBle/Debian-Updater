@@ -23,7 +23,7 @@ source Files/LogFileCheck.sh
 cd "$(dirname "$0")"
 
 ### SCRIPT VARS ###                              
-V_ScriptVersion="0.7"
+V_ScriptVersion="0.8"
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
 RED='\033[1;31m'
@@ -34,15 +34,6 @@ FEHLER=0
 SILENT=false
 ONLYUPDATE=false
 NOAUTOREMOVE=false
-STANDARD='-qq'
-AUTOCONF='-o Dpkg::Options::="--force-confdef'  #Experimental
-
-## Autoconfig (dpkg) descition
-if [ "$UV_AutoStdConf" = true ]; then
-    AutoSolve=$AUTOCONF
-else
-    Autosolve=$STANDARD
-fi
 
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
@@ -108,6 +99,21 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
     exit 0
 fi
 
+# Loglevel check
+if [ "$UV_LOG" = "quiet" ]; then
+    V_LOGGING="-qq"
+fi
+if [ "$UV_LOG" = "medium" ]; then
+    V_LOGGING="-q"
+fi
+if [ "$UV_LOG" = "full" ]; then
+    V_LOGGING=""
+fi
+
+### Checks ##
+source Files/varcheckone.sh
+source Files/varchecktwo.sh
+
 ### FUNCTIONS ###
 
 # Check for Root
@@ -131,7 +137,7 @@ F_VERSION_ANZEIGEN() {
 # update Repositorys
 F_UPDATE() {
     log_message -n "$NORMAL $LV_Update_start" | tee -a $LOGFILE
-    if apt-get update -qq >>$LOGFILE 2>&1; then
+    if apt-get update $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LV_Update_done">>$LOGFILE
         if [ "$ONLYUPDATE" = true ]; then
@@ -149,34 +155,64 @@ F_UPDATE() {
 F_ANZEIGE() {
     log_message "$NORMAL $LV_Show_upgradeable"
     if [ "$SILENT" = false ]; then
-        if apt list --upgradeable 2>&1; then
+        # Wenn Silent deaktiviert ist, wird die Ausgabe sowohl in die Konsole als auch ins Logfile geschrieben
+        if apt list --upgradeable 2>/dev/null | tee -a $LOGFILE; then
             echo "Pakete wurden angezeigt" >>$LOGFILE
         else
             FEHLER=ShowUpgradeableError
             LF_Negative_Output_Check
-            echo "Fehler bei apt list --upgradeable">>$LOGFILE
+            echo "Fehler bei apt list --upgradeable" >>$LOGFILE
+        fi
+    else
+        # Wenn Silent aktiviert ist, wird nur ins Logfile geschrieben, ohne Konsolenausgabe
+        if apt list --upgradeable >>$LOGFILE 2>/dev/null; then
+            echo "Pakete wurden angezeigt" >>$LOGFILE
+        else
+            FEHLER=ShowUpgradeableError
+            LF_Negative_Output_Check
+            echo "Fehler bei apt list --upgradeable" >>$LOGFILE
         fi
     fi
 }
 
 # Upgrade
 F_UPGRADE() {
-    log_message -n "$LV_Install \t \t "
-    if apt-get upgrade -y $AutoSolve >>$LOGFILE 2>&1; then
-        LF_Positive_Output_Check
-        echo "$LFA_Upgrade_Y">>$LOGFILE
+    # Wähle den Upgrade-Modus je nach Konfiguration
+    if [ "$UV_UpgradeMode" = true ]; then
+        V_UpgrMod="dist-upgrade -y"
     else
-        FEHLER=UpgradeError
+        V_UpgrMod="upgrade -y"  # Ohne -a, um nur die neuesten Versionen zu installieren
+    fi
+        
+    # Logge den Beginn des Upgrade-Vorgangs
+    log_message -n "$LV_Install \t \t "
+    
+    # Führe den Upgrade-Befehl aus
+    if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
+        LF_Positive_Output_Check
+        echo "$LFA_Upgrade_Y" >>$LOGFILE
+    else
+        # Setze den Fehlerstatus und logge den Fehler
+        FEHLER="UpgradeError"
         LF_Negative_Output_Check
-        echo "$LFA_Upgrade_N">>$LOGFILE
+        echo "$LFA_Upgrade_N" >>$LOGFILE
+        
+        # Zusätzliche Fehlerdetails für das Protokoll
+        echo -e "$NORMAL Fehlercode: $RED $? $NORMAL" >>$LOGFILE
+        # Weitere spezifische Fehlerbehandlung, falls gewünscht
     fi
 }
 
 # Autoremove
 F_AUTOREMOVE() {
+    if [ "$UV_AutoremoveMode" == true ]; then
+        V_Autorem_Mod=""
+    else
+        V_Autorem_Mod="--purge"
+    fi
     if [ "$NOAUTOREMOVE" = false ]; then
         log_message -n "$NORMAL $LV_Autoremove \t \t "
-        if apt-get autoremove --purge -y -qq >>$LOGFILE 2>&1; then
+        if apt-get autoremove $V_Autorem_Mod -y $V_LOGGING >>$LOGFILE 2>&1; then
             LF_Positive_Output_Check
             echo "$LFA_Autoremove_Y">>$LOGFILE
         else

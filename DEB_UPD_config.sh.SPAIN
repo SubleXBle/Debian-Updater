@@ -1,8 +1,12 @@
 ### VARIABLES DEL USUARIO ###
 #
 ## Manejo de Archivos de Registro
-UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE)
+UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE) o Spain (SP)
 #
+## Especificar nivel de registro
+UV_LOG=quiet                                    # Especificar nivel de registro (quiet / medium / all)
+#
+UV_LOG=quiet # Especificar nivel de registro (quiet / medium / all)
 ## Manejo de Archivos de Registro
 LOGFILE="/var/log/Updater.log"                  # Cambiar si es necesario: p. ej., /home/$USER/Updater.log (especificar ruta)
 UV_KEEP_LOG=false                               # Mantener siempre el archivo de registro (true / false). Si es verdadero, se produce la rotación del registro
@@ -26,5 +30,4 @@ UV_NotifyOnlyOnError=false                      # Enviar notificación solo en c
 UV_RKHUNTER=false                               # ¿Comprobar RKHunter para actualizar definiciones y realizar una actualización de propiedades?
 UV_RKH_CHECK=false                              # ¿Debería RK-Hunter comprobar inmediatamente si hay rootkits?
 #
-# Resolver Conflictos de Versiones
-UV_AutoStdConf=false                            # En caso de conflictos de versiones, ¿intentar enviar la opción predeterminada a través de dpkg? (Experimental)
+

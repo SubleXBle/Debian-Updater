@@ -1,7 +1,14 @@
 ### USERVARIABLEN ###
 #
-## Logfilebehandlung
+## Sprachwahl
 UV_LNG=DE                                       # Sprache auf Englisch (EN) oder Deutsch (DE) oder Spanisch (SP) umstellen
+#
+## Updater-Modes
+UV_UpgradeMode=false                            # false führt apt-get upgrade -y -a durch / true führt apt-get dist-upgrade -y durch
+UV_AutoremoveMode=false                         # false führt ein --purge durch / true führt ein "remove" durch
+#
+## LoggingLevel
+UV_LOG=quiet                                    # Loggingstärke angeben (quiet [-qq] / medium [-q] / all [keine output option])
 #
 ## Logfilebehandlung
 LOGFILE="/var/log/Updater.log"                  # bei Bedarf ändern : z.B: /home/$USER/Updater.log (Pfad angeben)
@@ -26,5 +33,4 @@ UV_NotifyOnlyOnError=false                      # Die Benachrichtigung soll nur 
 UV_RKHUNTER=false                               # Soll auf RKHunter geprüft werden um die Definitionen updaten zu können und ein Property Update auszuführen?
 UV_RKH_CHECK=false                              # Soll RK-Hunter gleich einen Check auf Rootkits durchführen?
 #
-# Versionskonflikte lösen
-UV_AutoStdConf=false                            # Soll bei Versions-Konflikten versucht werden, die Standardoption via dpkg zu senden? (Experimental)
+
