@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Pfad zum Config-File
+# Path to the config File
 config_file="DEB_UPD_config.sh"
 
-# Funktion zur Prüfung eines gültigen Dateipfads
+# Function to Check for a Valid Path
 is_valid_path() {
     local path="$1"
-    # Überprüft, ob der Pfad existiert oder ob das Verzeichnis erstellt werden könnte
+    # Checks if the path exists or can be created
     if [[ -e "$path" || ( -d "$(dirname "$path")" ) ]]; then
         return 0
     else
@@ -14,30 +14,31 @@ is_valid_path() {
     fi
 }
 
-# Laden und Überprüfung der Variablen
+# Load and Check Config File
 source "$config_file"
 
-# Überprüfen der Variablenwerte
+# Check for Variable Data
+# Language
 if [[ "$UV_LNG" != "DE" && "$UV_LNG" != "EN" && "$UV_LNG" != "SP" ]]; then
-    echo "Fehler: UV_LNG muss auf 'DE', 'EN' oder 'SP' gesetzt sein. Aktueller Wert: $UV_LNG"
+    echo "ERROR: UV_LNG has to be 'DE', 'EN' or 'SP' but it is: $UV_LNG"
 else
-    echo "Die Variable UV_LNG ist korrekt gesetzt auf $UV_LNG."
+    echo "Die Variable UV_LNG ist korrekt gesetzt auf $UV_LNG." >> /dev/null
 fi
-
+# LogLevel Check
 if [[ "$UV_LOG" != "quiet" && "$UV_LOG" != "medium" && "$UV_LOG" != "all" ]]; then
-    echo "Fehler: UV_LOG muss auf 'quiet', 'medium' oder 'all' gesetzt sein. Aktueller Wert: $UV_LOG"
+    echo "ERROR: UV_LOG has to be 'quiet', 'medium' or 'all' but it is set to: $UV_LOG"
 else
-    echo "Die Variable UV_LOG ist korrekt gesetzt auf $UV_LOG."
+    echo "Die Variable UV_LOG ist korrekt gesetzt auf $UV_LOG." >> /dev/null
 fi
-
+# Path Validation
 if ! is_valid_path "$LOGFILE"; then
-    echo "Fehler: LOGFILE ist kein gültiger Pfad. Aktueller Wert: $LOGFILE"
+    echo "ERROR: LOGFILE is not a valid Path: $LOGFILE"
 else
-    echo "Die Variable LOGFILE ist korrekt gesetzt auf einen gültigen Pfad: $LOGFILE."
+    echo "Die Variable LOGFILE ist korrekt gesetzt auf einen gültigen Pfad: $LOGFILE." >> /dev/null
 fi
-
+# Check if Logfile max age is a number
 if ! [[ "$LOGFILE_MAX_AGE" =~ ^[0-9]+$ ]]; then
-    echo "Fehler: LOGFILE_MAX_AGE muss eine Zahl sein. Aktueller Wert: $LOGFILE_MAX_AGE"
+    echo "ERROR: LOGFILE_MAX_AGE has to be a valid number but it is set to: $LOGFILE_MAX_AGE"
 else
-    echo "Die Variable LOGFILE_MAX_AGE ist korrekt gesetzt auf $LOGFILE_MAX_AGE."
+    echo "Die Variable LOGFILE_MAX_AGE ist korrekt gesetzt auf $LOGFILE_MAX_AGE." >> /dev/null
 fi
