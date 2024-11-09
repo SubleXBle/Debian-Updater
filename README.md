@@ -78,7 +78,3 @@ Ongoing updates and improvements.
 ## /fun
 I am sorry, that some code is written in German - never thougt my updater gets this "big" (in terms of code - not fame)
 
-### Chat-GPT says:
-#### This Bash script implements a complete system for managing system updates, notifications, and log files of Debian systems.
-
-This modular and flexible structure with configurable switches and detailed logic for executing updates and notifications makes the script particularly suitable for production environments. By automating system updates and receiving immediate notifications, administrators can ensure that their systems are always up to date and secure.
