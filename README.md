@@ -61,6 +61,7 @@ Each method of sending notifications has its own config file in the Notification
 + Nicer output (RK-Hunter)
 + Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
 + Added Sanity Check for UserVariables from DEB_UPD_config.sh
++ Autoremove does now --purge instead of "remove"
 
 ## License
 + GNU General Public License v3.0
