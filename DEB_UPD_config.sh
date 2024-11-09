@@ -1,7 +1,10 @@
 ### USERVARIABLEN ###
 #
-## Logfilebehandlung
+## Sprachwahl
 UV_LNG=DE                                       # Sprache auf Englisch (EN) oder Deutsch (DE) oder Spanisch (SP) umstellen
+#
+## Upgrade-Modes
+UV_UpgradeMode=false                            # false führt apt-get upgrade -y -a durch / true führt apt-get dist-upgrade -y durch
 #
 ## LoggingLevel
 UV_LOG=quiet                                    # Loggingstärke angeben (quiet [-qq] / medium [-q] / all [keine output option])
