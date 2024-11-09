@@ -23,7 +23,7 @@ source Files/LogFileCheck.sh
 cd "$(dirname "$0")"
 
 ### SCRIPT VARS ###                              
-V_ScriptVersion="0.7"
+V_ScriptVersion="0.8"
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
 RED='\033[1;31m'
