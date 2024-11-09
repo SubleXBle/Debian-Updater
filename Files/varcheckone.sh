@@ -1,26 +1,32 @@
 #!/bin/bash
 
-# Path to the config File
+# Pfad zur Konfigurationsdatei
 config_file="DEB_UPD_config.sh"
 
-# Check for every Variable in the Config File
+# Funktion zum Loggen von Nachrichten (falls noch nicht definiert)
+log_message() {
+    echo "$1"
+}
+
+# Überprüfen jeder Variablen in der Konfigurationsdatei
 while IFS='=' read -r var value; do
-    # Ignore lines with comments
+    # Zeilen mit Kommentaren ignorieren
     value=$(echo "$value" | sed 's/#.*//')  # Entfernt den Kommentar
 
-    # Remove spaces before and after the variable (including invisible characters)
+    # Entfernt Leerzeichen vor und nach der Variablen (einschließlich unsichtbarer Zeichen)
     value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-    # Debugging output to check the cleaned value
-    echo "DEBUG: After trimming, $var is set to: '$value'"  # Shows the value with quotes to detect spaces
+    # Debugging-Ausgabe, um den bereinigten Wert zu überprüfen
+    echo "DEBUG: Nach dem Trimmen ist $var gesetzt auf: '$value'"  # Zeigt den Wert mit Anführungszeichen an, um Leerzeichen zu erkennen
 
-    # Go only for Variables that are set to true or false
+    # Gehe nur auf Variablen ein, die auf true oder false gesetzt sind
     if [[ "$value" == "true" || "$value" == "false" ]]; then
         log_message "Variable $var ist richtig gesetzt auf $value." >> /dev/null
+    # Überprüft, ob die Variable nicht leer ist und nicht "true" oder "false" ist
     elif [[ -n "$value" ]]; then
-        log_message "ERROR: $var is not set correct - it is set to: $value"
-        log_message "ERROR: $var is not set correct - it is set to: $value Stopping Script" >> $LOGFILE
-        FEHLER="VARS NOT SET CORRECT"
+        log_message "ERROR: $var ist nicht korrekt gesetzt - es ist gesetzt auf: $value"
+        log_message "ERROR: $var ist nicht korrekt gesetzt - es ist gesetzt auf: $value. Skript wird gestoppt." >> $LOGFILE
+        FEHLER="VARS NICHT KORREKT SETZT"
         exit 1
     fi
 done < "$config_file"
