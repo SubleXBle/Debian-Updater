@@ -3,6 +3,10 @@
 ## Manejo de Archivos de Registro
 UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE)
 #
+## Especificar nivel de registro
+UV_LOG=quiet                                    # Especificar nivel de registro (quiet / medium / all)
+#
+UV_LOG=quiet # Especificar nivel de registro (quiet / medium / all)
 ## Manejo de Archivos de Registro
 LOGFILE="/var/log/Updater.log"                  # Cambiar si es necesario: p. ej., /home/$USER/Updater.log (especificar ruta)
 UV_KEEP_LOG=false                               # Mantener siempre el archivo de registro (true / false). Si es verdadero, se produce la rotación del registro
