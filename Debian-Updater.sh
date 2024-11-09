@@ -111,8 +111,8 @@ if [ $UV_LOG = full ]; then
 fi
 
 ### Checks ##
-source varcheckone.sh
-source varchecktwo.sh
+source Files/varcheckone.sh
+source Files/varchecktwo.sh
 
 ### FUNCTIONS ###
 
