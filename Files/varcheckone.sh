@@ -8,8 +8,11 @@ while IFS='=' read -r var value; do
     # Ignore lines with comments
     value=$(echo "$value" | sed 's/#.*//')  # Entfernt den Kommentar
 
-    # remove spaces before and after the variable
-    value=$(echo "$value" | xargs)
+    # Remove spaces before and after the variable (including invisible characters)
+    value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+    # Debugging output to check the cleaned value
+    echo "DEBUG: After trimming, $var is set to: '$value'"  # Shows the value with quotes to detect spaces
 
     # Go only for Variables that are set to true or false
     if [[ "$value" == "true" || "$value" == "false" ]]; then
