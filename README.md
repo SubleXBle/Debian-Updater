@@ -41,10 +41,10 @@
 + -n, --no-autoremove : No autoremove will be performed.
 + -l, --license : Displays the license.
 
-## Clear Output :list:
+## Clear Output 📋
 The output of the script (when not in --silent mode as a cron job) is clearly designed. The log file is easy to read; for multiple runs that end up in one log, a separator line as well as the date and time are inserted. Additionally, there is a daily log rotation. An English output is currently being worked on; it can already be set via the config file (DEB_UPD_config.sh) and the variable $UV_LNG.
 
-## Configuration
+## Configuration 🛠️
 
 ### Config File (DEB_UPD_config.sh)
 All options can be set via a config file in the main folder. The config file is available in both German and English to make it easier for users to make the right settings.
@@ -54,7 +54,7 @@ To use the English configuration file, the DEB_UPD_config.sh.ENGLISH must be ren
 ### Config Files for Notifications
 Each method of sending notifications has its own config file in the NotificationConfiguration folder to establish the connection with the respective service (user, password, etc.).
 
-## Prerequisites
+## Prerequisites ⚙️
 + A [Debian](https://www.debian.org)-based system. ([Debian](https://www.debian.org) / [Raspberry Pi OS](https://www.raspberrypi.com/software/) / [Ubuntu](https://ubuntu.com/) / [Linux Mint](https://linuxmint.com/) / [Kali Linux](https://www.kali.org/): [Wikipedia list of Debian derivatives](https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Debian-Derivate))
 + Main script (Debian-Updater.sh) must be made executable (chmod +x Debian-Updater.sh).
 + Root privileges.
@@ -63,7 +63,7 @@ Each method of sending notifications has its own config file in the Notification
     + If RKHunter is installed, a --check can also be executed immediately after the update.
 + For notifications, "curl" (https://curl.se/) must be installed.
 
-## Version Description
+## Version Description 🚀
 + ✅ Nicer output (RK-Hunter)
 + ✅ Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
 + ✅ Added Sanity Check for UserVariables from DEB_UPD_config.sh
@@ -71,16 +71,16 @@ Each method of sending notifications has its own config file in the Notification
 + ✅ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
 + ✅ Upgradeable Packets are now written to the logfile
 
-## License
+## License 📄
 + GNU General Public License v3.0
 + This script is open source and can be freely used and modified.
 ---------------------------------------------------------------------------------------
 
-## Further Development
+## Further Development 🛠️
 Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
 
 ---------------------------------------------------------------------------------------
 
-## /fun
+## /fun 🤪
 I am sorry, that some code is written in German - never thougt my updater gets this "big" (in terms of code - not fame)
 
