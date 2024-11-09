@@ -112,6 +112,7 @@ fi
 
 ### Checks ##
 source varcheckone.sh
+source varchecktwo.sh
 
 ### FUNCTIONS ###
 
