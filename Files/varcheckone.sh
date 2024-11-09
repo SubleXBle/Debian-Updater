@@ -13,7 +13,8 @@ while IFS='=' read -r var value; do
         log_message "Variable $var ist richtig gesetzt auf $value." >> /dev/null
     elif [[ -n "$value" ]]; then
         log_message "ERROR: $var is not set correct - it is set to: $value"
-        log_message "ERROR: $var is not set correct - it is set to: $value" >> $LOGFILE
+        log_message "ERROR: $var is not set correct - it is set to: $value Stopping Script" >> $LOGFILE
         FEHLER="VARS NOT SET CORRECT"
+        exit 1
     fi
 done < <(grep -E '^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*=[[:space:]]*(true|false)' "$config_file")
