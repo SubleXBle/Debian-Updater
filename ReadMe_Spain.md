@@ -1,5 +1,5 @@
 # Debian-Updater
-+ Versión: 0.7
++ Versión: 0.8
 + Autor: SubleXBle
 + Repositorio: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 
@@ -56,10 +56,10 @@ Cada método de envío de notificaciones tiene su propio archivo de configuraci�
     + Si RKHunter está instalado, también se puede ejecutar una verificación (--check) inmediatamente después de la actualización.
 + Para notificaciones, debe estar instalado "curl" (https://curl.se/).
 
-## Descripción de la Versión
-+ Todas las posibles mejoras, ajustes y sugerencias...
-+ Salidas mejoradas...
-+ Trabajo en las traducciones...
+## Version Description
++ Enhanced output (RK-Hunter)
++ Introduced log level (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
+
 
 ## Licencia
 + Licencia Pública General de GNU v3.0
