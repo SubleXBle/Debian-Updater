@@ -30,7 +30,7 @@ The script is suitable for execution as a cron job due to its --silent mode, err
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
 
 ### Options
-+ "-h", --help : Displays a help page with the available options.
++ ""-h"", --help : Displays a help page with the available options.
 + -s, --silent : Suppresses console output; the log file is still created.
 + -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
 + -n, --no-autoremove : No autoremove will be performed.
