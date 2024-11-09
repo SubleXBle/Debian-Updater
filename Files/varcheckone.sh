@@ -3,11 +3,6 @@
 # Pfad zur Konfigurationsdatei
 config_file="DEB_UPD_config.sh"
 
-# Funktion zum Loggen von Nachrichten (falls noch nicht definiert)
-log_message() {
-    echo "$1"
-}
-
 # Überprüfen jeder Variablen in der Konfigurationsdatei
 while IFS='=' read -r var value; do
     # Zeilen mit Kommentaren ignorieren
