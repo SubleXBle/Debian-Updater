@@ -100,15 +100,23 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
 fi
 
 # Loglevel check
-if [ "$UV_LOG" = "quiet" ]; then
-    V_LOGGING="-qq"
-fi
-if [ "$UV_LOG" = "medium" ]; then
-    V_LOGGING="-q"
-fi
-if [ "$UV_LOG" = "full" ]; then
-    V_LOGGING=""
-fi
+case "$UV_LOG" in
+    "quiet")
+        V_LOGGING="-qq"
+        ;;
+    "medium")
+        V_LOGGING="-q"
+        ;;
+    "full")
+        V_LOGGING=""
+        ;;
+    *)
+        # Optional: Definiere einen Standardwert oder eine Fehlermeldung, falls der Wert ungültig ist
+        echo "Ungültiger Loglevel: $UV_LOG" >&2
+        exit 1
+        ;;
+esac
+
 
 ### Checks ##
 source Files/varcheckone.sh
