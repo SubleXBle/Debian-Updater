@@ -195,9 +195,14 @@ F_UPGRADE() {
 
 # Autoremove
 F_AUTOREMOVE() {
+    if [ "$UV_AutoremoveMode" == true ]; then
+        V_Autorem_Mod=""
+    else
+        V_Autorem_Mod="--purge"
+    fi
     if [ "$NOAUTOREMOVE" = false ]; then
         log_message -n "$NORMAL $LV_Autoremove \t \t "
-        if apt-get autoremove --purge -y $V_LOGGING >>$LOGFILE 2>&1; then
+        if apt-get autoremove $V_Autorem_Mod -y $V_LOGGING >>$LOGFILE 2>&1; then
             LF_Positive_Output_Check
             echo "$LFA_Autoremove_Y">>$LOGFILE
         else
