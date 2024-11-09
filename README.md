@@ -16,12 +16,12 @@ The script is suitable for execution as a cron job due to its --silent mode, err
 + LogLevel: Change Loglevel between full, medium or quiet
 + Optional notifications only in case of errors.
 + Notifications and the log file can be sent via a variety of services:
-    + Email ([SMTP](https://de.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)) via Curl
-    + Pushover ([https://pushover.net/](https://pushover.net/)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Telegram ([https://web.telegram.org](https://web.telegram.org)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Gotify ([https://gotify.net/](https://gotify.net/)) ([API](https://de.wikipedia.org/wiki/Wikipedia:Technik/Datenbank/API))-Call via CURL
-    + Discord ([https://discord.com/](https://discord.com/)) ([Webhook](https://de.wikipedia.org/wiki/Webhooks)) via Curl
-    + MS-Teams ([Webhook](https://de.wikipedia.org/wiki/Webhooks)) via Curl
+    + Email SMTP via Curl
+    + Pushover API Call via CURL
+    + Telegram API Call via CURL
+    + Gotify API Call via CURL
+    + Discord Webhook via Curl
+    + MS-Teams Webhook via Curl
 + Runtime tracking: The script measures and logs the total runtime.
 + Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
 + Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
@@ -30,7 +30,7 @@ The script is suitable for execution as a cron job due to its --silent mode, err
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
 
 ### Options
-+ ""-h"", --help : Displays a help page with the available options.
++ -h, --help : Displays a help page with the available options.
 + -s, --silent : Suppresses console output; the log file is still created.
 + -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
 + -n, --no-autoremove : No autoremove will be performed.
