@@ -29,5 +29,4 @@ UV_NotifyOnlyOnError=false                      # Send notification only in case
 UV_RKHUNTER=false                               # Check for RKHunter to update definitions and perform a property update?
 UV_RKH_CHECK=false                              # Should RK-Hunter immediately check for rootkits?
 #
-# Resolve Version Conflicts
-UV_AutoStdConf=false                            # In case of version conflicts, attempt to send the default option via dpkg? (Experimental)
+
