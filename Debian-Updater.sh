@@ -188,7 +188,7 @@ F_UPGRADE() {
     log_message -n "$LV_Install \t \t "
     
     # Führe den Upgrade-Befehl aus
-    if apt-get $V_UpgrMod $V_LOGGING 2>>$LOGFILE; then
+    if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y" >>$LOGFILE
     else
