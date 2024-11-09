@@ -155,12 +155,12 @@ F_UPDATE() {
 F_ANZEIGE() {
     log_message "$NORMAL $LV_Show_upgradeable"
     if [ "$SILENT" = false ]; then
-        if apt list --upgradeable 2>&1; then
-            echo "Pakete wurden angezeigt" >>$LOGFILE
+        if apt list --upgradeable 2>&1 | tee -a $LOGFILE; then
+            echo "Pakets where shown" >>$LOGFILE
         else
             FEHLER=ShowUpgradeableError
             LF_Negative_Output_Check
-            echo "Fehler bei apt list --upgradeable">>$LOGFILE
+            echo "Error at apt list --upgradeable">>$LOGFILE
         fi
     fi
 }
