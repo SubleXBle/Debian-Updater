@@ -1,7 +1,7 @@
 ### VARIABLES DEL USUARIO ###
 #
 ## Manejo de Archivos de Registro
-UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE)
+UV_LNG=SP                                       # Establecer el idioma en inglés (EN) o alemán (DE) o Spain (SP)
 #
 ## Especificar nivel de registro
 UV_LOG=quiet                                    # Especificar nivel de registro (quiet / medium / all)
