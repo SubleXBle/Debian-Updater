@@ -59,12 +59,12 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description
-+ <span style="color:green;">Nicer output (RK-Hunter)</span>
-+ Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
-+ Added Sanity Check for UserVariables from DEB_UPD_config.sh
-+ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y with the variabel UV_UpgradeMode in DEB_UPD_config.sh
-+ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
-+ Upgradeable Packets are now written to the logfile
++ ✅ Nicer output (RK-Hunter)
++ ✅ Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
++ ✅ Added Sanity Check for UserVariables from DEB_UPD_config.sh
++ ✅ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y with the variabel UV_UpgradeMode in DEB_UPD_config.sh
++ ✅ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
++ ✅ Upgradeable Packets are now written to the logfile
 
 ## License
 + GNU General Public License v3.0
