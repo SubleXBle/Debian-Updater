@@ -1,10 +1,10 @@
-# Debian-Updater
+# Debian-Updater ⚙️
 + Version: 0.8
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
 
-## Description
+## Description 📝
 ⚙️The Debian-Updater script automates the updating of a Debian-based system (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.).<br>
 ⚙️It checks for root privileges, updates package sources and installed packages, removes unnecessary packages upon request, and optionally checks the system for rootkits.<br>
 ⚙️Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
@@ -31,17 +31,17 @@
 + Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
 + Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
 
-## Usage
+## Usage 🖥️
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
 
-### Options
+### Options 🛠️
 + -h, --help : Displays a help page with the available options.
 + -s, --silent : Suppresses console output; the log file is still created.
 + -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
 + -n, --no-autoremove : No autoremove will be performed.
 + -l, --license : Displays the license.
 
-## Clear Output
+## Clear Output :list:
 The output of the script (when not in --silent mode as a cron job) is clearly designed. The log file is easy to read; for multiple runs that end up in one log, a separator line as well as the date and time are inserted. Additionally, there is a daily log rotation. An English output is currently being worked on; it can already be set via the config file (DEB_UPD_config.sh) and the variable $UV_LNG.
 
 ## Configuration
