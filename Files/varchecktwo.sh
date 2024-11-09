@@ -17,6 +17,19 @@ is_valid_path() {
 # Load and Check Config File
 source "$config_file"
 
+# Trim leading and trailing spaces for each variable
+UV_LNG="${UV_LNG#"${UV_LNG%%[[:space:]]*}"}"  # Trim leading spaces
+UV_LNG="${UV_LNG%"${UV_LNG##*[[:space:]]}"}"  # Trim trailing spaces
+
+UV_LOG="${UV_LOG#"${UV_LOG%%[[:space:]]*}"}"  # Trim leading spaces
+UV_LOG="${UV_LOG%"${UV_LOG##*[[:space:]]}"}"  # Trim trailing spaces
+
+LOGFILE="${LOGFILE#"${LOGFILE%%[[:space:]]*}"}"  # Trim leading spaces
+LOGFILE="${LOGFILE%"${LOGFILE##*[[:space:]]}"}"  # Trim trailing spaces
+
+LOGFILE_MAX_AGE="${LOGFILE_MAX_AGE#"${LOGFILE_MAX_AGE%%[[:space:]]*}"}"  # Trim leading spaces
+LOGFILE_MAX_AGE="${LOGFILE_MAX_AGE%"${LOGFILE_MAX_AGE##*[[:space:]]}"}"  # Trim trailing spaces
+
 # Check for Variable Data
 # Language
 if [[ "$UV_LNG" != "DE" && "$UV_LNG" != "EN" && "$UV_LNG" != "SP" ]]; then
@@ -26,6 +39,7 @@ if [[ "$UV_LNG" != "DE" && "$UV_LNG" != "EN" && "$UV_LNG" != "SP" ]]; then
 else
     echo "Die Variable UV_LNG ist korrekt gesetzt auf $UV_LNG." >> /dev/null
 fi
+
 # LogLevel Check
 if [[ "$UV_LOG" != "quiet" && "$UV_LOG" != "medium" && "$UV_LOG" != "all" ]]; then
     log_message "ERROR: UV_LOG has to be 'quiet', 'medium' or 'all' but it is set to: $UV_LOG"
@@ -34,6 +48,7 @@ if [[ "$UV_LOG" != "quiet" && "$UV_LOG" != "medium" && "$UV_LOG" != "all" ]]; th
 else
     echo "Die Variable UV_LOG ist korrekt gesetzt auf $UV_LOG." >> /dev/null
 fi
+
 # Path Validation
 if ! is_valid_path "$LOGFILE"; then
     log_message "ERROR: LOGFILE is not a valid Path: $LOGFILE"
@@ -42,6 +57,7 @@ if ! is_valid_path "$LOGFILE"; then
 else
     echo "Die Variable LOGFILE ist korrekt gesetzt auf einen gültigen Pfad: $LOGFILE." >> /dev/null
 fi
+
 # Check if Logfile max age is a number
 if ! [[ "$LOGFILE_MAX_AGE" =~ ^[0-9]+$ ]]; then
     log_message "ERROR: LOGFILE_MAX_AGE has to be a valid number but it is set to: $LOGFILE_MAX_AGE"
