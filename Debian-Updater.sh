@@ -301,7 +301,7 @@ end=$(date +%s)    # Endzeit erfassen
 runtime=$((end - start)) # Laufzeit berechnen
 log_message -e $NORMAL
 if [ "$UV_KEEP_LOG" = false ]; then
-    LF_Zeitausgabe
+    LF_Zeitausgabe | tee -a $LOGFILE
 else
     LF_Zeitausgabe>>$LOGFILE
 fi
