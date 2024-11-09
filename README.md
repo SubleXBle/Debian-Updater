@@ -58,8 +58,8 @@ Each method of sending notifications has its own config file in the Notification
     + If RKHunter is installed, a --check can also be executed immediately after the update.
 + For notifications, "curl" (https://curl.se/) must be installed.
 
-## <span style="color:green;">Version Description</span>
-+ Nicer output (RK-Hunter)
+<span style="color:green;">## Version Description</span>
++ <span style="color:green;">Nicer output (RK-Hunter)</span>
 + Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
 + Added Sanity Check for UserVariables from DEB_UPD_config.sh
 + Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y with the variabel UV_UpgradeMode in DEB_UPD_config.sh
