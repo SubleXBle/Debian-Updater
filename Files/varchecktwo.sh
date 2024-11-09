@@ -17,11 +17,19 @@ is_valid_path() {
 # Load and Check Config File
 source "$config_file"
 
+# Debugging Ausgabe: Überprüfe, was nach dem Laden des Konfigurationsdatei passiert
+echo "DEBUG: Nach dem Laden des Konfigurationsdatei:"
+declare -p UV_LNG
+
 # Trim variables explicitly
 UV_LNG=$(echo "$UV_LNG" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 UV_LOG=$(echo "$UV_LOG" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 LOGFILE=$(echo "$LOGFILE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 LOGFILE_MAX_AGE=$(echo "$LOGFILE_MAX_AGE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+# Überprüfe erneut den Wert von UV_LNG
+echo "DEBUG: Nach dem Trimmen von UV_LNG:"
+declare -p UV_LNG
 
 # Check for Variable Data
 # Language
