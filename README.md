@@ -13,6 +13,7 @@ The script is suitable for execution as a cron job due to its --silent mode, err
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
 + Logging: All activities are written to a log file that can be optionally saved, sent, or deleted. Some log file functions have been implemented to meet every preference in log file handling. These can be controlled via the configuration file (DEB_UPD_config.sh).
 + Log rotation: If the log file is retained, there is a daily log file rotation or automatic deletion after X days.
++ LogLevel: Change Loglevel between full, medium or quiet
 + Optional notifications only in case of errors.
 + Notifications and the log file can be sent via a variety of services:
     + Email ([SMTP](https://de.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol)) via Curl
