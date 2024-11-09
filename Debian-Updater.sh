@@ -99,9 +99,7 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
     exit 0
 fi
 
-### FUNCTIONS ###
-
-# Set Logging
+# Loglevel check
 if [ $UV_LOG = quiet ]; then
     $V_LOGGING = "-qq"
 fi
@@ -111,6 +109,11 @@ fi
 if [ $UV_LOG = full ]; then
     $V_LOGGING = ""
 fi
+
+### Checks ##
+source varcheckone.sh
+
+### FUNCTIONS ###
 
 # Check for Root
 F_ISROOT() {
