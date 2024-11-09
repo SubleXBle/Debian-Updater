@@ -61,9 +61,8 @@ Für jede Versandart ist ein eigenes Config File im Ordner NotificationConfigura
 + Für Benachrichtigungen muss "curl" (https://curl.se/) installiert sein
 
 ## Versionsbeschreibung
-+ Alle möglichen Verbesserungen, Tweaks und Kniffe ..
-+ Ausgaben verschönert ..
-+ An den Übersetzungen gearbeitet ..
++ Ausgaben verschönert (RK-Hunter)
++ Loglevel eingeführt (quiet / medium / all) - Wird in DEB_UPD_config.sh gesetzt (bei Update Upgrade und Autoremove wirksam)
 
 ## Lizenz
 + GNU General Public License v3.0
