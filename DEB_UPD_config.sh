@@ -3,8 +3,8 @@
 ## Logfilebehandlung
 UV_LNG=DE                                       # Sprache auf Englisch (EN) oder Deutsch (DE) oder Spanisch (SP) umstellen
 #
-## Logging
-UV_LOG=quiet                                    # Loggingstärke angeben (quiet / medium / all)
+## LoggingLevel
+UV_LOG=quiet                                    # Loggingstärke angeben (quiet [-qq] / medium [-q] / all [keine output option])
 #
 ## Logfilebehandlung
 LOGFILE="/var/log/Updater.log"                  # bei Bedarf ändern : z.B: /home/$USER/Updater.log (Pfad angeben)
