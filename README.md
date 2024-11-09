@@ -2,7 +2,7 @@
 + Version: 0.8
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
-+ Available in English / German / Spanish
++ Available in English / German / Spain
 
 ## Description
 The Debian-Updater script automates the updating of a Debian-based system (Debian, Ubuntu, Kali, Mint, RaspberryOS, etc.). It checks for root privileges, updates package sources and installed packages, removes unnecessary packages upon request, and optionally checks the system for rootkits. Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
