@@ -100,14 +100,14 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
 fi
 
 # Loglevel check
-if [ $UV_LOG = quiet ]; then
-    $V_LOGGING == "-qq"
+if [ "$UV_LOG" = "quiet" ]; then
+    V_LOGGING="-qq"
 fi
-if [ $UV_LOG = medium ]; then
-    $V_LOGGING == "-q"
+if [ "$UV_LOG" = "medium" ]; then
+    V_LOGGING="-q"
 fi
-if [ $UV_LOG == full ]; then
-    $V_LOGGING = ""
+if [ "$UV_LOG" = "full" ]; then
+    V_LOGGING=""
 fi
 
 ### Checks ##
