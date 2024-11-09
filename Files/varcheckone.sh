@@ -10,8 +10,10 @@ while IFS='=' read -r var value; do
 
     # Go only for Variables that are set to true or false
     if [[ "$value" == "true" || "$value" == "false" ]]; then
-        log_message "Die Variable $var ist korrekt gesetzt auf $value." >> /dev/null
+        log_message "Variable $var ist richtig gesetzt auf $value." >> /dev/null
     elif [[ -n "$value" ]]; then
-        log_message "Fehler: Die Variable $var ist nicht korrekt gesetzt. Aktueller Wert: $value"
+        log_message "ERROR: $var is not set correct - it is set to: $value"
+        log_message "ERROR: $var is not set correct - it is set to: $value" >> $LOGFILE
+        FEHLER="VARS NOT SET CORRECT"
     fi
 done < <(grep -E '^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*=[[:space:]]*(true|false)' "$config_file")
