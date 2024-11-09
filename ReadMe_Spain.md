@@ -56,9 +56,9 @@ Cada método de envío de notificaciones tiene su propio archivo de configuraci�
     + Si RKHunter está instalado, también se puede ejecutar una verificación (--check) inmediatamente después de la actualización.
 + Para notificaciones, debe estar instalado "curl" (https://curl.se/).
 
-## Version Description
-+ Enhanced output (RK-Hunter)
-+ Introduced log level (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
+## Descripción de la Versión
++ Salida mejorada (RK-Hunter)
++ Nivel de registro introducido (quiet / medium / all) - Se configura en DEB_UPD_config.sh (se aplica a Update, Upgrade y Autoremove)
 
 
 ## Licencia
