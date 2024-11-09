@@ -101,12 +101,12 @@ fi
 
 # Loglevel check
 if [ $UV_LOG = quiet ]; then
-    $V_LOGGING = "-qq"
+    $V_LOGGING == "-qq"
 fi
 if [ $UV_LOG = medium ]; then
-    $V_LOGGING = "-q"
+    $V_LOGGING == "-q"
 fi
-if [ $UV_LOG = full ]; then
+if [ $UV_LOG == full ]; then
     $V_LOGGING = ""
 fi
 
