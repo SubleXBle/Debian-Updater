@@ -156,7 +156,7 @@ F_ANZEIGE() {
     log_message "$NORMAL $LV_Show_upgradeable"
     if [ "$SILENT" = false ]; then
         # Wenn Silent deaktiviert ist, wird die Ausgabe sowohl in die Konsole als auch ins Logfile geschrieben
-        if apt list --upgradeable 2>&1 | tee -a $LOGFILE; then
+        if apt list --upgradeable 2>/dev/null | tee -a $LOGFILE; then
             echo "Pakete wurden angezeigt" >>$LOGFILE
         else
             FEHLER=ShowUpgradeableError
@@ -165,7 +165,7 @@ F_ANZEIGE() {
         fi
     else
         # Wenn Silent aktiviert ist, wird nur ins Logfile geschrieben, ohne Konsolenausgabe
-        if apt list --upgradeable >>$LOGFILE 2>&1; then
+        if apt list --upgradeable >>$LOGFILE 2>/dev/null; then
             echo "Pakete wurden angezeigt" >>$LOGFILE
         else
             FEHLER=ShowUpgradeableError
