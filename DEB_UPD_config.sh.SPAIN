@@ -1,7 +1,7 @@
 ### VARIABLES DE USUARIO ###
 #
 ## Selección de idioma
-UV_LNG=DE                                       # Establecer idioma a Inglés (EN), Alemán (DE) o Español (SP)
+UV_LNG=SP                                       # Establecer idioma a Inglés (EN), Alemán (DE) o Español (SP)
 #
 ## Modos de actualización
 UV_UpgradeMode=false                            # false ejecuta apt-get upgrade -y -a / true ejecuta apt-get dist-upgrade -y
