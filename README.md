@@ -69,13 +69,10 @@ Each method of sending notifications has its own config file in the Notification
 + GNU General Public License v3.0
 + This script is open source and can be freely used and modified.
 ---------------------------------------------------------------------------------------
-## Further Development
-Ongoing updates and improvements.
 
-+ Since I use the script for my own systems, there will certainly be expansions (such as RKHunter).
-+ Possibly make it a universal updater that supports many/all Linux distributions.
-+ Will mess around with Notifications so that you can decide Message or Logfile for every Notification Option.
-    + should be helpful for multiple notifications : eg: email on every run and Pushover for Only on Error
+## Further Development
+Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
+
 ---------------------------------------------------------------------------------------
 
 ## /fun
