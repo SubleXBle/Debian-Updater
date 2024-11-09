@@ -167,20 +167,29 @@ F_ANZEIGE() {
 
 # Upgrade
 F_UPGRADE() {
+    # Wähle den Upgrade-Modus je nach Konfiguration
     if [ "$UV_UpgradeMode" = true ]; then
         V_UpgrMod="dist-upgrade -y"
     else
-        V_UpgrMod="upgrade -y -a"
+        V_UpgrMod="upgrade -y"  # Ohne -a, um nur die neuesten Versionen zu installieren
     fi
         
+    # Logge den Beginn des Upgrade-Vorgangs
     log_message -n "$LV_Install \t \t "
+    
+    # Führe den Upgrade-Befehl aus
     if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
-        echo "$LFA_Upgrade_Y">>$LOGFILE
+        echo "$LFA_Upgrade_Y" >>$LOGFILE
     else
-        FEHLER=UpgradeError
+        # Setze den Fehlerstatus und logge den Fehler
+        FEHLER="UpgradeError"
         LF_Negative_Output_Check
-        echo "$LFA_Upgrade_N">>$LOGFILE
+        echo "$LFA_Upgrade_N" >>$LOGFILE
+        
+        # Zusätzliche Fehlerdetails für das Protokoll
+        echo -e "$NORMAL Fehlercode: $RED $? $NORMAL" >>$LOGFILE
+        # Weitere spezifische Fehlerbehandlung, falls gewünscht
     fi
 }
 
