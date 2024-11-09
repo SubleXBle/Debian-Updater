@@ -17,18 +17,11 @@ is_valid_path() {
 # Load and Check Config File
 source "$config_file"
 
-# Trim leading and trailing spaces for each variable
-UV_LNG="${UV_LNG#"${UV_LNG%%[[:space:]]*}"}"  # Trim leading spaces
-UV_LNG="${UV_LNG%"${UV_LNG##*[[:space:]]}"}"  # Trim trailing spaces
-
-UV_LOG="${UV_LOG#"${UV_LOG%%[[:space:]]*}"}"  # Trim leading spaces
-UV_LOG="${UV_LOG%"${UV_LOG##*[[:space:]]}"}"  # Trim trailing spaces
-
-LOGFILE="${LOGFILE#"${LOGFILE%%[[:space:]]*}"}"  # Trim leading spaces
-LOGFILE="${LOGFILE%"${LOGFILE##*[[:space:]]}"}"  # Trim trailing spaces
-
-LOGFILE_MAX_AGE="${LOGFILE_MAX_AGE#"${LOGFILE_MAX_AGE%%[[:space:]]*}"}"  # Trim leading spaces
-LOGFILE_MAX_AGE="${LOGFILE_MAX_AGE%"${LOGFILE_MAX_AGE##*[[:space:]]}"}"  # Trim trailing spaces
+# Trim variables explicitly
+UV_LNG=$(echo "$UV_LNG" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+UV_LOG=$(echo "$UV_LOG" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+LOGFILE=$(echo "$LOGFILE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+LOGFILE_MAX_AGE=$(echo "$LOGFILE_MAX_AGE" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 # Check for Variable Data
 # Language
