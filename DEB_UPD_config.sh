@@ -3,6 +3,9 @@
 ## Logfilebehandlung
 UV_LNG=DE                                       # Sprache auf Englisch (EN) oder Deutsch (DE) oder Spanisch (SP) umstellen
 #
+## Logging
+UV_LOG=quiet                                    # Loggingstärke angeben (quiet / medium / all)
+#
 ## Logfilebehandlung
 LOGFILE="/var/log/Updater.log"                  # bei Bedarf ändern : z.B: /home/$USER/Updater.log (Pfad angeben)
 UV_KEEP_LOG=false                               # Logfile immer behalten (true / false) Wenn true findet Logrotation statt
