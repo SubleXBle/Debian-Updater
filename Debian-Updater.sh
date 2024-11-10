@@ -127,11 +127,11 @@ check_scripts() {
 
   while kill -0 $pid1 2>/dev/null || kill -0 $pid2 2>/dev/null; do
     log_message -n $YELLOW "Check Sanity"
-    sleep 1
+    sleep .5
     log_message -ne "\r"
   done
   log_message -n $GREEN "Checks done "
-  sleep 1
+  sleep .5
   log_message -ne "\r"
   log_message -n $NORMAL "Script starts"
   log_message $NORMAL
