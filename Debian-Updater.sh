@@ -128,14 +128,15 @@ check2="Files/varchecktwo.sh" # Sanity Check for UserVars that are something els
 check_scripts() {
 
   while kill -0 $pid1 2>/dev/null || kill -0 $pid2 2>/dev/null; do
-    log_message -n $YELLOW "Check Sanity"
-    sleep .5
+    log_message $NORMAL
+    log_message -n $NORMAL "Check Sanity [$YELLOW!$NORMAL]"
+    sleep 1
     log_message -ne "\r"
   done
-  log_message -n $GREEN "Checks done "
-  sleep .5
+  log_message -n $NORMAL "Checks done $NORMAL[$GREEN✓$NORMAL]"
+  sleep 1
   log_message -ne "\r"
-  log_message -n $NORMAL "Script starts"
+  log_message -n $NORMAL "Script starts $GREEN $NORMAL[$GREEN✓$NORMAL]"
   log_message $NORMAL
 }
 
