@@ -16,14 +16,8 @@ F_Startzeit() {
     echo "$(date +"%d.%m.%Y %H:%M:%S")">>$LOGFILE
 }
 
-# Check for Logfile
-log_message -n $YELLOW "Logfile"
+# Check for Logfile - else you get some Errors
 source Files/LogFileCheck.sh
-sleep .5
-log_message -ne "\r"
-log_message -n $GREEN "OK"
-sleep .5
-log_message -ne "\r"
 
 # Change Directory to the Directory where the Script is placed
 cd "$(dirname "$0")"
