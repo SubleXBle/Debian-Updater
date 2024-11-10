@@ -12,6 +12,14 @@
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
+## Important Files in this Repository
++ Debian-Updater.sh (Main Script)
++ DEB_UPD_config.sh (Updater-Settings)
++ Folder Files (scriptparts)
++ Folder NotificationConfiguration (read the name)
+
+other Stuff is for the Community Standards : I am the New Guy, I don't want to break the rules :)
+
 ## Features 🚀
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
     + You can set different modes for upgrade or autoremove in the config file (DEB_UPD_config.sh)
