@@ -12,7 +12,7 @@
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
-## Important Files in this Repository
+## Important Files in this Repository ⚠️
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
 + Folder Files (scriptparts)
