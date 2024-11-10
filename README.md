@@ -71,6 +71,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y in DEB_UPD_config.sh
 + ✔️ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
 + ✔️ Upgradeable Packets are now allways written to the logfile
++ ✔️ Runtime should now show up on every setting exept --silent
 
 ## License 📄
 + GNU General Public License v3.0
