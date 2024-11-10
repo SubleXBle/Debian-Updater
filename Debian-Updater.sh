@@ -113,7 +113,7 @@ case "$UV_LOG" in
         V_LOGGING=""
         ;;
     *)
-        # Optional: Definiere einen Standardwert oder eine Fehlermeldung, falls der Wert ungültig ist
+        V_LOGGING="-qq" # set LoggingLevel to quiet when no other option is set (Standard)
         echo "Ungültiger Loglevel: $UV_LOG" >&2
         exit 1
         ;;
