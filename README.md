@@ -86,3 +86,6 @@ Ongoing updates and improvements : since I use the script for my own systems, th
 ## /fun 🤪
 I am sorry, that some code is written in German - never thougt my updater gets this "big" (in terms of code - not fame)
 
+### TL/TR
+does the update thing for ya
+
