@@ -99,6 +99,8 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
     exit 0
 fi
 
+### CHECKS ###
+
 # Loglevel check
 case "$UV_LOG" in
     "quiet")
@@ -120,8 +122,8 @@ esac
 
 ### Sanity Checks ##
 
-check1="Files/varcheckone.sh"
-check2="Files/varchecktwo.sh"
+check1="Files/varcheckone.sh" # Sanity Check for UserVars that are true or false
+check2="Files/varchecktwo.sh" # Sanity Check for UserVars that are something else
 
 check_scripts() {
 
