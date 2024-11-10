@@ -118,9 +118,30 @@ case "$UV_LOG" in
 esac
 
 
-### Checks ##
-source Files/varcheckone.sh
-source Files/varchecktwo.sh
+### Sanity Checks ##
+
+script1="Files/varcheckone.sh"
+script2="Files/varchecktwo.sh"
+
+check_scripts() {
+
+  while kill -0 $pid1 2>/dev/null || kill -0 $pid2 2>/dev/null; do
+    log_message -n $YELLOW "Check Sanity"
+    sleep 1
+    log_message -ne "\r"
+  done
+  log_message -n $GREEN "Checks done "
+  sleep 1
+  log_message -ne "\r"
+  log_message -n $NORMAL "Script starts"
+  log_message $NORMAL
+}
+
+source "$script1" & pid1=$!
+source "$script2" & pid2=$!
+
+check_scripts
+
 
 ### FUNCTIONS ###
 
