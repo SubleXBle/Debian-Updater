@@ -120,8 +120,8 @@ esac
 
 ### Sanity Checks ##
 
-script1="Files/varcheckone.sh"
-script2="Files/varchecktwo.sh"
+check1="Files/varcheckone.sh"
+check2="Files/varchecktwo.sh"
 
 check_scripts() {
 
@@ -137,8 +137,8 @@ check_scripts() {
   log_message $NORMAL
 }
 
-source "$script1" & pid1=$!
-source "$script2" & pid2=$!
+source "$check1" & pid1=$!
+source "$check2" & pid2=$!
 
 check_scripts
 
