@@ -44,7 +44,7 @@ F_TELEGRAM() {
             if [ $? -eq 0 ]; then
                 log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
                 log_message ""
-                echo "Telegram Nachricht erfolgreich versendet" >> "$LOGFILE"
+                echo "Telegram Nachricht erfolgreich versendet">>$LOGFILE
                 return 0
             else
                 ((RETRY_COUNT++))
@@ -73,7 +73,7 @@ send_gotify_message() {
             if [ $? -eq 0 ]; then
                 log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
                 log_message ""
-                echo "GOTIFY Nachricht erfolgreich versendet" >> "$LOGFILE"
+                echo "GOTIFY Nachricht erfolgreich versendet">>$LOGFILE
             else
                 log_message -n -e "$NORMAL[$RED✗$NORMAL]"
                 log_message "Fehler"
@@ -98,7 +98,7 @@ F_EMAIL() {
             if [ $? -eq 0 ]; then
                 log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
                 log_message ""
-                echo "E-Mail erfolgreich versendet" >> $LOGFILE
+                echo "E-Mail erfolgreich versendet">>$LOGFILE
                 return 0
             else
                 ((RETRY_COUNT++))
