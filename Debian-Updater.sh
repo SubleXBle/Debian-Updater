@@ -340,7 +340,7 @@ LF_Zeitausgabe_Logfile
 ### LOGROTATION ###
 # Logrotation - controlled by Variables (DEB_UPD_config.sh)
 F_LOG_ROTATE() {
-    log_message -n -e $NORMAL "Logfile-Rotation \t \t \t \t \t "
+    log_message -n -e $NORMAL "Logfile-Rotation \t \t \t \t "
     local max_log_age=$LOGFILE_MAX_AGE  # Maximale Anzahl von Tagen, nach denen alte Logfiles gelöscht werden
     
     # Check if Logfile exists
