@@ -15,6 +15,8 @@
 ## Important Files in this Repository ⚠️
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
+    + DEFAULT = GERMAN
+    + Other Versions (English Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
 
