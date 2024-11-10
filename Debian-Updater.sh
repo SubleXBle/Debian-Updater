@@ -17,7 +17,13 @@ F_Startzeit() {
 }
 
 # Check for Logfile
+log_message -n $YELLOW "Logfile"
 source Files/LogFileCheck.sh
+sleep .5
+log_message -ne "\r"
+log_message -n $GREEN "OK"
+sleep .5
+log_message -ne "\r"
 
 # Change Directory to the Directory where the Script is placed
 cd "$(dirname "$0")"
