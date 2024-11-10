@@ -18,8 +18,8 @@ F_PUSHOVER() {
                 if [ $? -eq 0 ]; then
                     log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
                     log_message ""
-                    return 0
                     echo "Pushover Nachricht erfolgreich versendet">>$LOGFILE
+                    return 0
                 else
                     ((RETRY_COUNT++))
                     FEHLER=5
@@ -98,7 +98,7 @@ F_EMAIL() {
             if [ $? -eq 0 ]; then
                 log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
                 log_message ""
-                echo "E-Mail erfolgreich versendet" >> "$LOGFILE"
+                echo "E-Mail erfolgreich versendet" >> $LOGFILE
                 return 0
             else
                 ((RETRY_COUNT++))
