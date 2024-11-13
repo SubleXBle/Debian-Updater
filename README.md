@@ -20,7 +20,6 @@
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
 
-other Stuff is for the Community Standards : I am the New Guy, I don't want to break the rules :)
 
 ## Features 🚀
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
