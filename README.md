@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 0.8
++ Version: 0.9
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
@@ -73,14 +73,8 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description 🚀
-+ ✔️ Nicer output (RK-Hunter)
-+ ✔️ Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
-+ ✔️ Added Sanity Check for Logfile
-+ ✔️ Added Sanity Check for UserVariables from DEB_UPD_config.sh
-+ ✔️ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y in DEB_UPD_config.sh
-+ ✔️ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
-+ ✔️ Upgradeable Packets are now allways written to the logfile
-+ ✔️ Runtime should now show up on every setting exept --silent
++ ✔️
++ dist-upgrade (just once) - Switch
 
 ## License 📄
 + GNU General Public License v3.0
