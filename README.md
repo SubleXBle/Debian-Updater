@@ -74,8 +74,8 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description 🚀
-+ ✔️
-+ dist-upgrade (just once) - Switch
++ ✔️ dist-upgrade (just once) - Switch added (-d / --dist-upgrade)
++ 
 
 ## License 📄
 + GNU General Public License v3.0
