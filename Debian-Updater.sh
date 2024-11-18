@@ -100,8 +100,8 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
 fi
 
 # Dist-Upgrade Once Switch
-if [[ $1 == "-o" || $1 == "--onlyupdate" ]]; then
-    ONLYUPDATE=true
+if [[ $1 == "-d" || $1 == "--dist-upgrade" ]]; then
+    DistUpgradeOnce=true
 fi
 
 ### CHECKS ###
@@ -219,6 +219,10 @@ F_UPGRADE() {
         V_UpgrMod="dist-upgrade -y"
     else
         V_UpgrMod="upgrade -y"  # Ohne -a, um nur die neuesten Versionen zu installieren
+    fi
+
+    if [ "$DistUpgradeOnce" = true ]; then
+        V_UpgrMod="dist-upgrade -y"
     fi
         
     # Logge den Beginn des Upgrade-Vorgangs
