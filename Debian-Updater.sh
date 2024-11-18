@@ -99,6 +99,11 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
     exit 0
 fi
 
+# Dist-Upgrade Once Switch
+if [[ $1 == "-o" || $1 == "--onlyupdate" ]]; then
+    ONLYUPDATE=true
+fi
+
 ### CHECKS ###
 
 # Loglevel check
