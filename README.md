@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 0.8
++ Version: 0.9
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
@@ -19,6 +19,7 @@
     + Other Versions (English Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
++ Updater-Update.sh (Use this to pull and update this script)
 
 
 ## Features 🚀
@@ -39,6 +40,10 @@
 + Runtime tracking: The script measures and logs the total runtime.
 + Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
 + Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
++ Has it's own pullscript - define the folder where it should be pulled to - then use this script to update the script when repo has changed)
++ Optional Nextcloud App update
++ Optional MediaWiki Installation update
+
 
 ## Usage 🖥️
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
@@ -49,6 +54,7 @@
 + -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
 + -n, --no-autoremove : No autoremove will be performed.
 + -l, --license : Displays the license.
++ -d, --dist-upgrade : Runs apt-get dist-upgrade only on this run (even if set to no in config)
 
 ## Clear Output 📋
 The output of the script (when not in --silent mode as a cron job) is clearly designed. The log file is easy to read; for multiple runs that end up in one log, a separator line as well as the date and time are inserted. Additionally, there is a daily log rotation. An English output is currently being worked on; it can already be set via the config file (DEB_UPD_config.sh) and the variable $UV_LNG.
@@ -73,14 +79,11 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description 🚀
-+ ✔️ Nicer output (RK-Hunter)
-+ ✔️ Added LogLevel (quiet / medium / all) - Set in DEB_UPD_config.sh (applies to Update, Upgrade, and Autoremove)
-+ ✔️ Added Sanity Check for Logfile
-+ ✔️ Added Sanity Check for UserVariables from DEB_UPD_config.sh
-+ ✔️ Added a Mode-Switch for Upgrades - you can now choose between apt upgrade -y -a or apt dist-upgrade -y in DEB_UPD_config.sh
-+ ✔️ Added A Mode-Switch for Autoremove - you can now choose between apt autoremove -y and apt autoremove --purge -y in DEB_UPD_config.sh
-+ ✔️ Upgradeable Packets are now allways written to the logfile
-+ ✔️ Runtime should now show up on every setting exept --silent
++ ✔️ dist-upgrade (just once) - Switch added (-d / --dist-upgrade)
++ ✔️ added an Update Script (Updater-Update.sh) - so Files will not get overwritten (eg Notification Settings) when not changed in Repo
+    + If you did not clone the updater, your directory will get removed and the updater will download as a new directory - so safe your notification settings first.
++ ✔️ Added Update Option for Nextcloud Apps. (You can set up the option in DEB_UPD_config.php)
++ ✔️ Added Update Option for MediaWiki Installation (You can set up the option in DEB_UPD_config.sh)
 
 ## License 📄
 + GNU General Public License v3.0
@@ -89,6 +92,7 @@ Each method of sending notifications has its own config file in the Notification
 
 ## Further Development 🛠️
 Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
+Languagewise : Version 1.0 should have all Language Failures resolved - until then some features are not translated
 
 ---------------------------------------------------------------------------------------
 

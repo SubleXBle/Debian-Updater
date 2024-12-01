@@ -99,6 +99,11 @@ if [[ $1 == "-l" || $1 == "--license" ]]; then
     exit 0
 fi
 
+# Dist-Upgrade Once Switch
+if [[ $1 == "-d" || $1 == "--dist-upgrade" ]]; then
+    DistUpgradeOnce=true
+fi
+
 ### CHECKS ###
 
 # Loglevel check
@@ -214,6 +219,10 @@ F_UPGRADE() {
         V_UpgrMod="dist-upgrade -y"
     else
         V_UpgrMod="upgrade -y"  # Ohne -a, um nur die neuesten Versionen zu installieren
+    fi
+
+    if [ "$DistUpgradeOnce" = true ]; then
+        V_UpgrMod="dist-upgrade -y"
     fi
         
     # Logge den Beginn des Upgrade-Vorgangs
@@ -388,6 +397,14 @@ F_UPDATE
 F_ANZEIGE
 F_UPGRADE
 F_AUTOREMOVE
+if [ $UV_NC_APP_Update = true ]; then
+    source Files/Nextcloud.sh
+    NC_APP_UPDATE
+fi
+if [ $UV_MW_Update = true ]; then
+    source Files/MediaWiki.sh
+    MEDIAWIKI_UPDATE
+fi
 [ "$UV_RKHUNTER" = true ] && F_ROOTKIT
 F_ZEIT_IN_LOG
 if [[ "$V_NOTIFY" = true && "$UV_NotifyOnlyOnError" = false ]]; then

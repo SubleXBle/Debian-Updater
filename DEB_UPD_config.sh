@@ -33,4 +33,10 @@ UV_NotifyOnlyOnError=false                      # Die Benachrichtigung soll nur 
 UV_RKHUNTER=false                               # Soll auf RKHunter geprüft werden um die Definitionen updaten zu können und ein Property Update auszuführen?
 UV_RKH_CHECK=false                              # Soll RK-Hunter gleich einen Check auf Rootkits durchführen?
 #
-
+# Nextcloud Updates
+UV_NC_APP_Update=false                          # Wenn auf true gesetzt, wird das Script ebenfalls App-Updates für Nextcloud ausführen
+UV_NC_OCC_PATH="/path/to/your/Nextcloud"        # Path to Nextcloud Installation
+#
+# MediaWiki Update
+UV_MW_Update=false
+UV_MW_PATH="/path/to/Mediawiki"

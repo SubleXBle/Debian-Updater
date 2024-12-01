@@ -14,6 +14,7 @@ F_HELP() {
     echo "  -h, --help                  Zeigt diese Hilfe an."
     echo "  -o, --onlyupdate            Aktualisiert nur die Repositorys und zeigt verfügbare Updates an, ohne die Pakete zu aktualisieren."
     echo "  -n, --no-autoremove         Verhindert die automatische Entfernung nicht mehr benötigter Pakete nach dem Upgrade."
+    echo "  -d, --dist-upgrade          führt das Upgrade einmalig als Dist-Upgrade aus."
     echo
     echo -e $BLUE "========================================"
     echo -e $YELLOW $TXTBOLD "Benutzer-Variablen (in DEB_UPD_config.sh):" $NORMAL
