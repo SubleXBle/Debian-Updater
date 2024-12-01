@@ -7,92 +7,81 @@ RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
 
-# Der TARGET_DIR Pfad wird auf das aktuelle Verzeichnis gesetzt
-TARGET_DIR="$(pwd)"  # Aktueller Pfad des Skripts
-REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
-
-# Logfile
-LOGFILE="$TARGET_DIR/update.log"
-
-log_message() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOGFILE"
-}
+# Zielverzeichnis setzen
+TARGET_DIR="$(pwd)"  # Aktuelles Verzeichnis des Skripts
 
 # Überprüfen, ob Git installiert ist
 if ! command -v git &> /dev/null; then
-    log_message "${RED}Error: Git is not installed. Please install Git and try again.${NORMAL}"
+    echo -e "${RED}Error: Git is not installed. Please install Git and try again.${NORMAL}"
     exit 1
 fi
 
-log_message "Updater repository is being updated..."
+# Funktion zum Loggen
+log_message() {
+    echo -e "$1"
+}
 
-# Flag für Änderungen
-UPDATED=false
+# Prüfen, ob Zielverzeichnis ein Git-Repository ist
+if [ -d "$TARGET_DIR/.git" ]; then
+    cd "$TARGET_DIR" || exit
 
-# Überprüfen, ob das Zielverzeichnis existiert und ein Git-Repository ist
-if [ -d "$TARGET_DIR" ]; then
-    if [ -d "$TARGET_DIR/.git" ]; then
-        log_message "The directory $TARGET_DIR is a Git repository."
-        cd "$TARGET_DIR" || exit
+    # Lokale Änderungen prüfen
+    if ! git diff-index --quiet HEAD --; then
+        echo -e "${YELLOW}Local changes detected in $TARGET_DIR.${NORMAL}"
+        echo "How would you like to proceed?"
+        echo "1. Overwrite (discard changes)"
+        echo "2. Backup (stash changes)"
+        echo "3. Cancel update"
+        read -rp "Enter your choice (1-3): " choice
 
-        # Ermittelt den Standard-Branch des Repositories
-        BRANCH_NAME=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
-        if [ -z "$BRANCH_NAME" ]; then
-            log_message "${RED}Error: Unable to determine the default branch.${NORMAL}"
-            exit 1
-        fi
-
-        log_message "Pulling branch: $BRANCH_NAME"
-        
-        # Repository aktualisieren und überprüfen, ob Änderungen vorliegen
-        if git fetch origin "$BRANCH_NAME" && [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
-            log_message "Changes detected. Pulling updates..."
-            if git pull origin "$BRANCH_NAME"; then
-                log_message "${GREEN}Repository successfully updated.${NORMAL}"
-                UPDATED=true
-            else
-                log_message "${RED}Error updating the repository.${NORMAL}"
+        case $choice in
+            1) 
+                log_message "${YELLOW}Discarding local changes...${NORMAL}"
+                git reset --hard
+                ;;
+            2) 
+                log_message "${YELLOW}Backing up local changes...${NORMAL}"
+                git stash
+                ;;
+            3) 
+                log_message "${RED}Update canceled by user.${NORMAL}"
+                exit 0
+                ;;
+            *) 
+                log_message "${RED}Invalid choice. Update canceled.${NORMAL}"
                 exit 1
-            fi
-        else
-            log_message "${YELLOW}No changes detected. The repository is up-to-date.${NORMAL}"
-        fi
-    else
-        log_message "${YELLOW}The directory $TARGET_DIR exists but is not a Git repository.${NORMAL}"
-        log_message "Deleting the directory and cloning the repository..."
-        rm -rf "$TARGET_DIR"
-        if git clone "$REPO_URL" "$TARGET_DIR"; then
-            log_message "${GREEN}Repository successfully cloned.${NORMAL}"
-            UPDATED=true
-        else
-            log_message "${RED}Error cloning the repository.${NORMAL}"
-            exit 1
-        fi
+                ;;
+        esac
     fi
+
+    # Aktualisieren des Repositories
+    BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+    log_message "${BLUE}Pulling updates from branch: $BRANCH_NAME...${NORMAL}"
+    if git pull origin "$BRANCH_NAME"; then
+        log_message "${GREEN}Repository successfully updated.${NORMAL}"
+    else
+        log_message "${RED}Error updating the repository.${NORMAL}"
+        exit 1
+    fi
+
 else
-    log_message "The directory $TARGET_DIR does not exist."
-    log_message "Cloning the repository from $REPO_URL to $TARGET_DIR..."
-    if git clone "$REPO_URL" "$TARGET_DIR"; then
+    log_message "${YELLOW}$TARGET_DIR is not a Git repository. Cloning repository...${NORMAL}"
+    if git clone "https://github.com/SubleXBle/Debian-Updater.git" "$TARGET_DIR"; then
         log_message "${GREEN}Repository successfully cloned.${NORMAL}"
-        UPDATED=true
     else
         log_message "${RED}Error cloning the repository.${NORMAL}"
         exit 1
     fi
 fi
 
-# Dateien ausführbar machen, wenn ein Update stattgefunden hat
-if [ "$UPDATED" = true ]; then
-    log_message "Making 'Updater-Update.sh' and 'Debian-Updater.sh' executable..."
+# Dateien nur ausführbar machen, wenn ein Update oder ein Clone erfolgte
+if [ $? -eq 0 ]; then
+    log_message "Making files 'Updater-Update.sh' and 'Debian-Updater.sh' executable..."
     chmod +x "$TARGET_DIR/Updater-Update.sh" "$TARGET_DIR/Debian-Updater.sh"
     if [ $? -eq 0 ]; then
-        log_message "${GREEN}Files have been successfully made executable.${NORMAL}"
+        log_message "${GREEN}Files successfully made executable.${NORMAL}"
     else
-        log_message "${RED}Error setting executable permissions on the files.${NORMAL}"
+        log_message "${RED}Error setting executable permissions.${NORMAL}"
         exit 1
     fi
-else
-    log_message "${YELLOW}No updates were made. Skipping making files executable.${NORMAL}"
 fi
-
-log_message "${GREEN}Script completed successfully.${NORMAL}"
