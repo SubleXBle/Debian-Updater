@@ -41,6 +41,9 @@
 + Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
 + Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
 + Has it's own pullscript - define the folder where it should be pulled to - then use this script to update the script when repo has changed)
++ Optional Nextcloud App update
++ Optional MediaWiki Installation update
+
 
 ## Usage 🖥️
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
