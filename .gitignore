@@ -1,2 +1,4 @@
-# Ignore Installer
+# .gitignore
+
+# Ignoriere das Installer-Skript
 Installer.sh
