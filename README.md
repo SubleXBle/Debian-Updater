@@ -75,7 +75,7 @@ Each method of sending notifications has its own config file in the Notification
 
 ## Version Description 🚀
 + ✔️ dist-upgrade (just once) - Switch added (-d / --dist-upgrade)
-+ 
++ ✔️ added an Update Script (Updater-Update.sh) - so Files will not get overwritten (eg Notification Settings) when not changed in Repo
 
 ## License 📄
 + GNU General Public License v3.0
