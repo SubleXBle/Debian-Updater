@@ -87,5 +87,7 @@ LV_RKHunterCheckInfo="Rootkit Check kann einige Zeit dauern"
 LV_RKHunterCheck="RKHunter Check auf Rootkits"
 
 ##### Nextcloud ####
-LV_NC_APPS="Nextcloud Apps aktualisieren"
+LV_NC_APPS="Alle Nextcloud Apps aktualisieren"
 
+##### MediaWiki ####
+LV_MW="MediaWiki Updaten"
