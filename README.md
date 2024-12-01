@@ -79,6 +79,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ dist-upgrade (just once) - Switch added (-d / --dist-upgrade)
 + ✔️ added an Update Script (Updater-Update.sh) - so Files will not get overwritten (eg Notification Settings) when not changed in Repo
     + If you did not clone the updater, your directory will get removed and the updater will download as a new directory - so safe your notification settings first.
++ ✔️ Added Update Option for Nextcloud Apps. (You can set the option and Path to your Nextcloud Installation in DEB_UPD_config.php)
 
 ## License 📄
 + GNU General Public License v3.0
