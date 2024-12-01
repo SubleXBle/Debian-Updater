@@ -54,8 +54,19 @@ if [ -d "$TARGET_DIR/.git" ]; then
         esac
     fi
 
-    # Aktualisieren des Repositories
-    BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+    # Branch ermitteln und prüfen
+    BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null || echo "main")
+    if ! git show-ref --verify --quiet "refs/remotes/origin/$BRANCH_NAME"; then
+        log_message "${RED}Error: Branch '$BRANCH_NAME' does not exist in the remote repository.${NORMAL}"
+        echo -e "${YELLOW}Attempting to fetch the default branch...${NORMAL}"
+        BRANCH_NAME=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
+        if [ -z "$BRANCH_NAME" ]; then
+            log_message "${RED}Error: Could not determine the default branch.${NORMAL}"
+            exit 1
+        fi
+    fi
+
+    # Repository aktualisieren
     log_message "${BLUE}Pulling updates from branch: $BRANCH_NAME...${NORMAL}"
     if git pull origin "$BRANCH_NAME"; then
         log_message "${GREEN}Repository successfully updated.${NORMAL}"
