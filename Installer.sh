@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This File just downloads the Repo via Git
+
 # Farben für Output
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
