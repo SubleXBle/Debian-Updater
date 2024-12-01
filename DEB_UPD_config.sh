@@ -36,3 +36,7 @@ UV_RKH_CHECK=false                              # Soll RK-Hunter gleich einen Ch
 # Nextcloud Updates
 UV_NC_APP_Update=false                          # Wenn auf true gesetzt, wird das Script ebenfalls App-Updates für Nextcloud ausführen
 UV_NC_OCC_PATH="/path/to/your/Nextcloud"        # Path to Nextcloud Installation
+#
+# MediaWiki Update
+UV_MW_Update=false
+UV_MW_PATH="/path/to/Mediawiki"
