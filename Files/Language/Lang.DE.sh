@@ -86,3 +86,6 @@ LV_RKHunterUpd_log="RK-Hunter update und propupd ausgeführt"
 LV_RKHunterCheckInfo="Rootkit Check kann einige Zeit dauern"
 LV_RKHunterCheck="RKHunter Check auf Rootkits"
 
+##### Nextcloud ####
+LV_NC_APPS="Nextcloud Apps aktualisieren"
+
