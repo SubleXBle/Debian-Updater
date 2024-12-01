@@ -6,6 +6,7 @@ GREEN='\033[1;32m'
 RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
+
 # Die lokale Zielvariable für den Pfad des Repositories
 TARGET_DIR="/opt/Debian-Updater"  # Hier kannst du den Pfad anpassen
 
@@ -18,35 +19,8 @@ fi
 echo -e "$NORMAL"
 echo "Updater Repository wird aktualisiert..."
 
-# Definiere ein Array mit Versionen und den zugehörigen Tags (Branch-Namen)
-declare -A VERSIONS
-VERSIONS=(
-    [1]="aktuelle Version (V-0.9):V-0.9"
-    [2]="Test Version (testing):testing"
-#    [3]="Standard Branch (main):main"
-#    [4]="Standard Branch (master):master"
-)
-
-# Benutzer fragen, welche Version er verwenden möchte
-echo "Wählen Sie eine Version aus:"
-for key in "${!VERSIONS[@]}"; do
-    echo "$key) ${VERSIONS[$key]%%:*}"  # Zeigt nur den Namen der Version
-done
-
-read -p "Bitte wählen Sie eine Option (1/2/3/4): " version_choice
-
-# Standardmäßig 'latest' falls keine gültige Wahl getroffen wird
-BRANCH_NAME="latest"
-
-# Überprüfen, ob die Auswahl gültig ist
-if [[ -n "${VERSIONS[$version_choice]}" ]]; then
-    # Den Branch-Namen aus dem Array extrahieren
-    BRANCH_NAME="${VERSIONS[$version_choice]#*:}"
-    echo "Sie haben die Version '${VERSIONS[$version_choice]%%:*}' gewählt. Der Branch '$BRANCH_NAME' wird verwendet."
-else
-    echo -e "${RED}Ungültige Auswahl. Standardmäßig wird die Stable Version (latest) verwendet.${NORMAL}"
-    BRANCH_NAME="latest"
-fi
+# Standard-Branch definieren
+BRANCH_NAME="main"  # Hier kannst du den Standard-Branch anpassen (z.B. "main" oder "master")
 
 # Überprüfen, ob das Zielverzeichnis existiert und ein Git-Repository ist
 if [ -d "$TARGET_DIR" ]; then
@@ -64,8 +38,8 @@ if [ -d "$TARGET_DIR" ]; then
                 echo "Wählen Sie aus, wie vorgegangen werden soll:"
                 echo "1) Lokale Änderungen überschreiben"
                 echo "2) Backup der lokalen Datei erstellen und überschreiben"
-                echo "3) Update abbrechen"
-                echo "4) Diese Datei nicht pullen"
+                echo "3) Diese Datei nicht pullen"
+                echo "4) Update abbrechen"
                 read -p "Option (1/2/3/4) für '$CONFLICT_FILE': " user_choice
 
                 case $user_choice in
@@ -80,13 +54,13 @@ if [ -d "$TARGET_DIR" ]; then
                         git checkout -- "$CONFLICT_FILE"
                         ;;
                     3)
-                        echo "Update abgebrochen."
-                        exit 0
-                        ;;
-                    4)
                         echo "Die Datei '$CONFLICT_FILE' wird bei diesem Pull nicht berücksichtigt."
                         # Die Datei von Git ignorieren
                         git update-index --assume-unchanged "$CONFLICT_FILE"
+                        ;;
+                    4)
+                        echo "Update abgebrochen."
+                        exit 0
                         ;;
                     *)
                         echo -e "${RED}Ungültige Auswahl. Abbruch.${NORMAL}"
@@ -96,8 +70,11 @@ if [ -d "$TARGET_DIR" ]; then
             done
         fi
 
+        # Zeigt den Branch an, der gepullt wird
+        echo -e "${BLUE}Pulle Branch: $BRANCH_NAME${NORMAL}"
+
         # Repository aktualisieren
-        echo "Aktualisiere Repository mit 'git pull $BRANCH_NAME'..."
+        echo "Aktualisiere Repository mit 'git pull origin $BRANCH_NAME'..."
         if git pull origin "$BRANCH_NAME"; then
             echo -e "${GREEN}Repository erfolgreich aktualisiert.${NORMAL}"
         else
