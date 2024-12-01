@@ -7,8 +7,8 @@ RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
 
-# Die lokale Zielvariable für den Pfad des Repositories
-TARGET_DIR="/opt/Debian-Updater"  # Hier kannst du den Pfad anpassen
+# Der TARGET_DIR Pfad wird auf das aktuelle Verzeichnis gesetzt
+TARGET_DIR="$(pwd)"  # Aktueller Pfad des Skripts
 
 # Überprüfen, ob Git installiert ist
 if ! command -v git &> /dev/null; then
