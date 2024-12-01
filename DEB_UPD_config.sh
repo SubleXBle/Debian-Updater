@@ -34,5 +34,5 @@ UV_RKHUNTER=false                               # Soll auf RKHunter geprüft wer
 UV_RKH_CHECK=false                              # Soll RK-Hunter gleich einen Check auf Rootkits durchführen?
 #
 # Nextcloud Updates
-UV_NC-APP-Update=false                          # Wenn auf true gesetzt, wird das Script ebenfalls App-Updates für Nextcloud ausführen
-UV_NC-OCC-PATH="/path/to/your/Nextcloud"        # Path to Nextcloud Installation
+UV_NC_APP_Update=false                          # Wenn auf true gesetzt, wird das Script ebenfalls App-Updates für Nextcloud ausführen
+UV_NC_OCC_PATH="/path/to/your/Nextcloud"        # Path to Nextcloud Installation
