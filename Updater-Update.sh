@@ -7,100 +7,70 @@ RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
 
-# Zielverzeichnis setzen
-TARGET_DIR="$(pwd)"  # Aktuelles Verzeichnis des Skripts
+# Der TARGET_DIR Pfad wird auf das aktuelle Verzeichnis gesetzt
+TARGET_DIR="$(pwd)"  # Aktueller Pfad des Skripts
 
 # Überprüfen, ob Git installiert ist
 if ! command -v git &> /dev/null; then
-    echo -e "${RED}Error: Git is not installed. Please install Git and try again.${NORMAL}"
+    echo -e "${RED}Fehler: Git ist nicht installiert. Bitte installiere Git und versuche es erneut.${NORMAL}"
     exit 1
 fi
 
-# Funktion zum Loggen
-log_message() {
-    echo -e "$1"
-}
+echo -e "$NORMAL"
+echo "Updater Repository wird aktualisiert..."
 
-# Prüfen, ob Zielverzeichnis ein Git-Repository ist
-if [ -d "$TARGET_DIR/.git" ]; then
-    cd "$TARGET_DIR" || exit
-
-    # Lokale Änderungen prüfen
-    CHANGED_FILES=$(git diff --name-only)
-    
-    if [ -n "$CHANGED_FILES" ]; then
-        echo -e "${YELLOW}Local changes detected in $TARGET_DIR.${NORMAL}"
+# Überprüfen, ob das Zielverzeichnis existiert und ein Git-Repository ist
+if [ -d "$TARGET_DIR" ]; then
+    if [ -d "$TARGET_DIR/.git" ]; then
+        echo "Das Verzeichnis $TARGET_DIR ist ein Git-Repository."
+        cd "$TARGET_DIR" || exit
         
-        # Jede geänderte Datei einzeln abfragen
-        for file in $CHANGED_FILES; do
-            echo -e "${YELLOW}File changed: $file${NORMAL}"
-            echo "How would you like to proceed with this file?"
-            echo "1. Overwrite (discard changes)"
-            echo "2. Backup (stash changes)"
-            echo "3. Keep changes"
-            read -rp "Enter your choice (1-3): " choice
-
-            case $choice in
-                1)
-                    log_message "${YELLOW}Discarding changes for $file...${NORMAL}"
-                    git checkout -- "$file"
-                    ;;
-                2)
-                    log_message "${YELLOW}Backing up changes for $file...${NORMAL}"
-                    git stash push -m "Backup $file"
-                    ;;
-                3)
-                    log_message "${GREEN}Keeping changes for $file.${NORMAL}"
-                    ;;
-                *)
-                    log_message "${RED}Invalid choice for file $file. Update canceled.${NORMAL}"
-                    exit 1
-                    ;;
-            esac
-        done
-    else
-        log_message "${GREEN}No local changes detected. Proceeding with update.${NORMAL}"
-    fi
-
-    # Branch ermitteln und prüfen
-    BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null || echo "main")
-    if ! git show-ref --verify --quiet "refs/remotes/origin/$BRANCH_NAME"; then
-        log_message "${RED}Error: Branch '$BRANCH_NAME' does not exist in the remote repository.${NORMAL}"
-        echo -e "${YELLOW}Attempting to fetch the default branch...${NORMAL}"
+        # Ermittelt den Standard-Branch des Repositories
         BRANCH_NAME=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         if [ -z "$BRANCH_NAME" ]; then
-            log_message "${RED}Error: Could not determine the default branch.${NORMAL}"
+            echo -e "${RED}Fehler: Der Standard-Branch konnte nicht ermittelt werden.${NORMAL}"
+            exit 1
+        fi
+
+        # Zeigt den Branch an, der gepullt wird
+        echo -e "${BLUE}Pulle Branch: $BRANCH_NAME${NORMAL}"
+
+        # Repository aktualisieren
+        echo "Aktualisiere Repository mit 'git pull origin $BRANCH_NAME'..."
+        if git pull origin "$BRANCH_NAME"; then
+            echo -e "${GREEN}Repository erfolgreich aktualisiert.${NORMAL}"
+        else
+            echo -e "${RED}Fehler beim Aktualisieren des Repositories.${NORMAL}"
+            exit 1
+        fi
+    else
+        echo -e "${YELLOW}Das Verzeichnis $TARGET_DIR existiert, ist aber kein Git-Repository.${NORMAL}"
+        echo "Lösche das Verzeichnis und klone das Repository neu."
+        rm -rf "$TARGET_DIR"
+        if git clone "https://github.com/SubleXBle/Debian-Updater.git" "$TARGET_DIR"; then
+            echo -e "${GREEN}Repository erfolgreich geklont.${NORMAL}"
+        else
+            echo -e "${RED}Fehler beim Klonen des Repositories.${NORMAL}"
             exit 1
         fi
     fi
-
-    # Repository aktualisieren
-    log_message "${BLUE}Pulling updates from branch: $BRANCH_NAME...${NORMAL}"
-    if git pull origin "$BRANCH_NAME"; then
-        log_message "${GREEN}Repository successfully updated.${NORMAL}"
-    else
-        log_message "${RED}Error updating the repository.${NORMAL}"
-        exit 1
-    fi
-
 else
-    log_message "${YELLOW}$TARGET_DIR is not a Git repository. Cloning repository...${NORMAL}"
+    echo "Das Verzeichnis $TARGET_DIR existiert nicht."
+    echo "Klonen des Repositorys von https://github.com/SubleXBle/Debian-Updater.git nach $TARGET_DIR..."
     if git clone "https://github.com/SubleXBle/Debian-Updater.git" "$TARGET_DIR"; then
-        log_message "${GREEN}Repository successfully cloned.${NORMAL}"
+        echo -e "${GREEN}Repository erfolgreich geklont.${NORMAL}"
     else
-        log_message "${RED}Error cloning the repository.${NORMAL}"
+        echo -e "${RED}Fehler beim Klonen des Repositories.${NORMAL}"
         exit 1
     fi
 fi
 
-# Dateien nur ausführbar machen, wenn ein Update oder ein Clone erfolgte
+# Dateien ausführbar machen
+echo "Mache die Dateien 'Updater-Update.sh' und 'Debian-Updater.sh' ausführbar..."
+chmod +x "$TARGET_DIR/Updater-Update.sh" "$TARGET_DIR/Debian-Updater.sh"
 if [ $? -eq 0 ]; then
-    log_message "Making files 'Updater-Update.sh' and 'Debian-Updater.sh' executable..."
-    chmod +x "$TARGET_DIR/Updater-Update.sh" "$TARGET_DIR/Debian-Updater.sh"
-    if [ $? -eq 0 ]; then
-        log_message "${GREEN}Files successfully made executable.${NORMAL}"
-    else
-        log_message "${RED}Error setting executable permissions.${NORMAL}"
-        exit 1
-    fi
+    echo -e "${GREEN}Dateien wurden erfolgreich ausführbar gemacht.${NORMAL}"
+else
+    echo -e "${RED}Fehler beim Setzen der Ausführungsrechte auf die Dateien.${NORMAL}"
+    exit 1
 fi
