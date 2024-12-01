@@ -18,7 +18,7 @@ while IFS='=' read -r var value; do
     #echo "DEBUG: Nach dem Trimmen ist $var gesetzt auf: '$value'"  # Zeigt den Wert mit Anführungszeichen an, um Leerzeichen zu erkennen
 
     # Überspringe Variablen, die auf DE, EN oder SP gesetzt sind (wie UV_LNG) oder Logging-bezogene Variablen wie UV_LOG und LOGFILE
-    if [[ "$var" == "UV_LNG" ]] || [[ "$var" == "UV_LOG" ]] || [[ "$var" == "LOGFILE" ]]; then
+    if [[ "$var" == "UV_LNG" ]] || [[ "$var" == "UV_LOG" ]] || [[ "$var" == "LOGFILE" ]] || [[ "$var" == "UV_NC_OCC_PATH" ]] || [[ "$var" == "UV_MW_PATH" ]]; then
         continue
     fi
 
