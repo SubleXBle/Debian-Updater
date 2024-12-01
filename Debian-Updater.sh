@@ -397,6 +397,10 @@ F_UPDATE
 F_ANZEIGE
 F_UPGRADE
 F_AUTOREMOVE
+if [ $UV_NC_APP_Update = true ]; then
+    source Files/Nextcloud.sh
+    NC_APP_UPDATE
+fi
 [ "$UV_RKHUNTER" = true ] && F_ROOTKIT
 F_ZEIT_IN_LOG
 if [[ "$V_NOTIFY" = true && "$UV_NotifyOnlyOnError" = false ]]; then
