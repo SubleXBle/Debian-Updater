@@ -14,6 +14,7 @@
 
 ## Updatescript for Updater ⚠️
 Pull this Repository with git if you want to use the Updater, so you do not loose your configuration with updates via Updater-Update.sh
+' git pull https://github.com/SubleXBle/Debian-Updater.git
 
 ## Important Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
