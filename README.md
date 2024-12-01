@@ -17,6 +17,7 @@ Use the Installer for Initial Clone
 ```bash
 wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
 ```
+You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater"
 then use the Updater for Updates of the Script
 ```bash
 ./Updater-Update.sh
