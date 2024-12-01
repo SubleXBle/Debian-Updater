@@ -403,7 +403,7 @@ if [ $UV_NC_APP_Update = true ]; then
 fi
 if [ $UV_MW_Update = true ]; then
     source Files/MediaWiki.sh
-    MW_UPDATE
+    MEDIAWIKI_UPDATE
 fi
 [ "$UV_RKHUNTER" = true ] && F_ROOTKIT
 F_ZEIT_IN_LOG
