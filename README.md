@@ -12,10 +12,14 @@
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
-## Updatescript for Updater ⚠️
-Pull this Repository with git if you want to use the Updater, so you do not loose your configuration (for example: notifications) with updates via Updater-Update.sh
+## Updatescript and Installer ⚠️
+Use the Installer for Initial Clone
 ```bash
-git pull https://github.com/SubleXBle/Debian-Updater.git
+wget https://github.com/SubleXBle/Debian-Updater/blob/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
+```
+then use the Updater for Updates of the Script
+```bash
+./Updater-Update.sh
 ```
 
 ## Important Files in this Repository ℹ️
