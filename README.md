@@ -15,7 +15,7 @@
 ## Updatescript and Installer ⚠️
 Use the Installer for Initial Clone
 ```bash
-wget https://github.com/SubleXBle/Debian-Updater/blob/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
+wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
 ```
 then use the Updater for Updates of the Script
 ```bash
