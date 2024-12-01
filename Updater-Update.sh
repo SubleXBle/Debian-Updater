@@ -9,14 +9,43 @@ BLUE='\033[34m'
 # Die lokale Zielvariable für den Pfad des Repositories
 TARGET_DIR="/opt/Debian-Updater"  # Hier kannst du den Pfad anpassen
 
-
-echo -e "$NORMAL"
-echo "Updater Repository wird aktualisiert..."
-
 # Überprüfen, ob Git installiert ist
 if ! command -v git &> /dev/null; then
     echo -e "${RED}Fehler: Git ist nicht installiert. Bitte installiere Git und versuche es erneut.${NORMAL}"
     exit 1
+fi
+
+echo -e "$NORMAL"
+echo "Updater Repository wird aktualisiert..."
+
+# Definiere ein Array mit Versionen und den zugehörigen Tags (Branch-Namen)
+declare -A VERSIONS
+VERSIONS=(
+    [1]="aktuelle Version (V-0.9):V-0.9"
+    [2]="Test Version (testing):testing"
+#    [3]="Standard Branch (main):main"
+#    [4]="Standard Branch (master):master"
+)
+
+# Benutzer fragen, welche Version er verwenden möchte
+echo "Wählen Sie eine Version aus:"
+for key in "${!VERSIONS[@]}"; do
+    echo "$key) ${VERSIONS[$key]%%:*}"  # Zeigt nur den Namen der Version
+done
+
+read -p "Bitte wählen Sie eine Option (1/2/3/4): " version_choice
+
+# Standardmäßig 'latest' falls keine gültige Wahl getroffen wird
+BRANCH_NAME="latest"
+
+# Überprüfen, ob die Auswahl gültig ist
+if [[ -n "${VERSIONS[$version_choice]}" ]]; then
+    # Den Branch-Namen aus dem Array extrahieren
+    BRANCH_NAME="${VERSIONS[$version_choice]#*:}"
+    echo "Sie haben die Version '${VERSIONS[$version_choice]%%:*}' gewählt. Der Branch '$BRANCH_NAME' wird verwendet."
+else
+    echo -e "${RED}Ungültige Auswahl. Standardmäßig wird die Stable Version (latest) verwendet.${NORMAL}"
+    BRANCH_NAME="latest"
 fi
 
 # Überprüfen, ob das Zielverzeichnis existiert und ein Git-Repository ist
@@ -36,7 +65,8 @@ if [ -d "$TARGET_DIR" ]; then
                 echo "1) Lokale Änderungen überschreiben"
                 echo "2) Backup der lokalen Datei erstellen und überschreiben"
                 echo "3) Update abbrechen"
-                read -p "Option (1/2/3) für '$CONFLICT_FILE': " user_choice
+                echo "4) Diese Datei nicht pullen"
+                read -p "Option (1/2/3/4) für '$CONFLICT_FILE': " user_choice
 
                 case $user_choice in
                     1)
@@ -53,6 +83,11 @@ if [ -d "$TARGET_DIR" ]; then
                         echo "Update abgebrochen."
                         exit 0
                         ;;
+                    4)
+                        echo "Die Datei '$CONFLICT_FILE' wird bei diesem Pull nicht berücksichtigt."
+                        # Die Datei von Git ignorieren
+                        git update-index --assume-unchanged "$CONFLICT_FILE"
+                        ;;
                     *)
                         echo -e "${RED}Ungültige Auswahl. Abbruch.${NORMAL}"
                         exit 1
@@ -62,8 +97,8 @@ if [ -d "$TARGET_DIR" ]; then
         fi
 
         # Repository aktualisieren
-        echo "Aktualisiere Repository mit 'git pull'..."
-        if git pull; then
+        echo "Aktualisiere Repository mit 'git pull $BRANCH_NAME'..."
+        if git pull origin "$BRANCH_NAME"; then
             echo -e "${GREEN}Repository erfolgreich aktualisiert.${NORMAL}"
         else
             echo -e "${RED}Fehler beim Aktualisieren des Repositories.${NORMAL}"
@@ -89,4 +124,14 @@ else
         echo -e "${RED}Fehler beim Klonen des Repositories.${NORMAL}"
         exit 1
     fi
+fi
+
+# Dateien ausführbar machen
+echo "Mache die Dateien 'Updater-Update.sh' und 'Debian-Updater.sh' ausführbar..."
+chmod +x "$TARGET_DIR/Updater-Update.sh" "$TARGET_DIR/Debian-Updater.sh"
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Dateien wurden erfolgreich ausführbar gemacht.${NORMAL}"
+else
+    echo -e "${RED}Fehler beim Setzen der Ausführungsrechte auf die Dateien.${NORMAL}"
+    exit 1
 fi
