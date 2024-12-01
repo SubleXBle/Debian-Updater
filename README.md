@@ -19,6 +19,7 @@
     + Other Versions (English Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
++ Updater-Update.sh (Use this to pull and update this script)
 
 
 ## Features 🚀
@@ -39,6 +40,7 @@
 + Runtime tracking: The script measures and logs the total runtime.
 + Silent mode: Option to suppress console output, allowing the script to be run in cron jobs, for example.
 + Optional RKHunter update and/or check: Performs a rootkit check and updates RKHunter if it is installed and activated.
++ Has it's own pullscript - define the folder where it should be pulled to - then use this script to update the script when repo has changed)
 
 ## Usage 🖥️
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
