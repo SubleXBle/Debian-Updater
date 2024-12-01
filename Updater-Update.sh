@@ -26,32 +26,40 @@ if [ -d "$TARGET_DIR/.git" ]; then
     cd "$TARGET_DIR" || exit
 
     # Lokale Änderungen prüfen
-    if ! git diff-index --quiet HEAD --; then
+    CHANGED_FILES=$(git diff --name-only)
+    
+    if [ -n "$CHANGED_FILES" ]; then
         echo -e "${YELLOW}Local changes detected in $TARGET_DIR.${NORMAL}"
-        echo "How would you like to proceed?"
-        echo "1. Overwrite (discard changes)"
-        echo "2. Backup (stash changes)"
-        echo "3. Cancel update"
-        read -rp "Enter your choice (1-3): " choice
+        
+        # Jede geänderte Datei einzeln abfragen
+        for file in $CHANGED_FILES; do
+            echo -e "${YELLOW}File changed: $file${NORMAL}"
+            echo "How would you like to proceed with this file?"
+            echo "1. Overwrite (discard changes)"
+            echo "2. Backup (stash changes)"
+            echo "3. Keep changes"
+            read -rp "Enter your choice (1-3): " choice
 
-        case $choice in
-            1) 
-                log_message "${YELLOW}Discarding local changes...${NORMAL}"
-                git reset --hard
-                ;;
-            2) 
-                log_message "${YELLOW}Backing up local changes...${NORMAL}"
-                git stash
-                ;;
-            3) 
-                log_message "${RED}Update canceled by user.${NORMAL}"
-                exit 0
-                ;;
-            *) 
-                log_message "${RED}Invalid choice. Update canceled.${NORMAL}"
-                exit 1
-                ;;
-        esac
+            case $choice in
+                1)
+                    log_message "${YELLOW}Discarding changes for $file...${NORMAL}"
+                    git checkout -- "$file"
+                    ;;
+                2)
+                    log_message "${YELLOW}Backing up changes for $file...${NORMAL}"
+                    git stash push -m "Backup $file"
+                    ;;
+                3)
+                    log_message "${GREEN}Keeping changes for $file.${NORMAL}"
+                    ;;
+                *)
+                    log_message "${RED}Invalid choice for file $file. Update canceled.${NORMAL}"
+                    exit 1
+                    ;;
+            esac
+        done
+    else
+        log_message "${GREEN}No local changes detected. Proceeding with update.${NORMAL}"
     fi
 
     # Branch ermitteln und prüfen
