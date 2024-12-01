@@ -13,7 +13,7 @@
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
 ## Updatescript for Updater ⚠️
-Pull this Repository with git if you want to use the Updater, so you do not loose your configuration with updates via Updater-Update.sh
+Pull this Repository with git if you want to use the Updater, so you do not loose your configuration eg: notifications with updates via Updater-Update.sh
 ```bash
 git pull https://github.com/SubleXBle/Debian-Updater.git
 ```
