@@ -8,7 +8,7 @@ YELLOW='\033[33m'
 BLUE='\033[34m'
 
 # Define the target directory
-TARGET_DIR="/home/USER/Debian-Updater"  # Change this as needed
+TARGET_DIR="/opt/Debian-Updater"  # Change this as needed
 
 # Repository URL for the Debian-Updater
 REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
