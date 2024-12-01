@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 # Farben für Output
 NORMAL='\033[0;39m'
@@ -8,7 +8,7 @@ YELLOW='\033[33m'
 BLUE='\033[34m'
 
 # Der TARGET_DIR Pfad wird auf das aktuelle Verzeichnis gesetzt
-TARGET_DIR="$(pwd)"  # Aktueller Pfad des Skripts
+TARGET_DIR="$(pwd)"  # Aktueller Pfad des Skripts bei Bedarf entsprechend anpassen
 
 # Überprüfen, ob Git installiert ist
 if ! command -v git &> /dev/null; then
