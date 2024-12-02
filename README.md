@@ -96,6 +96,11 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
 + ✔️ All non-translated Stuff set to english - so less german babble :)
 
+## Addins (Optional) ⬇️
++ RK-Hunter Checks
++ Updates for Nextcloud Apps
++ Updates for MediaWiki Installation
+
 ## License 📄
 + GNU General Public License v3.0
 + This script is open source and can be freely used and modified.
