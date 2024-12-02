@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 0.9
++ Version: 1.0
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
@@ -17,7 +17,7 @@ Use the Installer for Initial Clone
 ```bash
 wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
 ```
-You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater"
+You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater" (standard-path)
 
 then use the Updater for Updates of the Script
 ```bash
@@ -31,7 +31,6 @@ then use the Updater for Updates of the Script
     + Other Versions (English Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
-+ Updater-Update.sh (Use this to pull and update this script)
 
 
 ## Features 🚀
