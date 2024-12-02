@@ -54,3 +54,6 @@ else
         exit 1
     fi
 fi
+
+chmod +x $TARGET_DIR/Debian-Updater.sh
+chmod +x $TARGET_DIR/Updater-Update.sh
