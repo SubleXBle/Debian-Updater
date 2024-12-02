@@ -13,7 +13,7 @@
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
 
 ## Updatescript and Installer ⚠️
-Use the Installer for Initial Clone
+Use the "Installer" for Initial Clone
 ```bash
 wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
 ```
