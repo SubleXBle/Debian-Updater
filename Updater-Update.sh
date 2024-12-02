@@ -113,7 +113,9 @@ else
     fi
 fi
 
+# Installer löschen, wenn vorhanden
 # Pfad zur Installer.sh-Datei
+
 INSTALLER_FILE="$TARGET_DIR/Installer.sh"
 
 # Überprüfen, ob die Datei Installer.sh existiert
