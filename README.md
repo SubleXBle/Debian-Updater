@@ -97,7 +97,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ All non-translated Stuff set to english - so less german babble :)
 
 ## Addins (Optional) ⬇️
-+ RK-Hunter Checks
++ RK-Hunter Property Updates & Checks
 + Updates for Nextcloud Apps
 + Updates for MediaWiki Installation
 
