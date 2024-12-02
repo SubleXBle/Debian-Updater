@@ -112,3 +112,18 @@ else
         exit 1
     fi
 fi
+
+# Pfad zur Installer.sh-Datei
+INSTALLER_FILE="$TARGET_DIR/Installer.sh"
+
+# Überprüfen, ob die Datei Installer.sh existiert
+if [ -f "$INSTALLER_FILE" ]; then
+    echo -e "${YELLOW}Die Datei 'Installer.sh' wird nun gelöscht.${NORMAL}"
+    rm -f "$INSTALLER_FILE"
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Die Datei wurde erfolgreich gelöscht.${NORMAL}"
+    else
+        echo -e "${RED}Fehler beim Löschen der Datei.${NORMAL}"
+        exit 1
+    fi
+fi
