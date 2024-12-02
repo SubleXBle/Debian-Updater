@@ -103,7 +103,6 @@ Each method of sending notifications has its own config file in the Notification
 
 ## Further Development 🛠️
 Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
-Languagewise : Version 1.0 should have all Language Failures resolved - until then some features are not translated
 
 ---------------------------------------------------------------------------------------
 
