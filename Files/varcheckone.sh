@@ -35,6 +35,16 @@ check_language_variable() {
     fi
 }
 
+# Funktion zur Überprüfung, ob der Wert eine Zahl ist (für LOGFILE_MAX_AGE)
+check_number_variable() {
+    local var_name=$1
+    local var_value=$2
+
+    if ! [[ "$var_value" =~ ^[0-9]+$ ]]; then
+        echo "Fehler: Die Variable $var_name muss eine Zahl enthalten (aktuell: $var_value)."
+    fi
+}
+
 # Variablen aus der Konfigurationsdatei laden (Beispiel: UV_LNG, LOGFILE usw.)
 UV_LNG="DE"
 UV_UpgradeMode=false
@@ -43,7 +53,7 @@ UV_LOG="quiet"
 LOGFILE="/var/log/Updater.log"
 UV_KEEP_LOG=true
 KILL_OLD_LOGS=false
-LOGFILE_MAX_AGE=30
+LOGFILE_MAX_AGE="30"  # Beispielwert
 UV_PUSHOVER=false
 UV_TELEGRAM=true
 UV_GOTIFY=false
@@ -80,5 +90,8 @@ check_language_variable "UV_LNG" "$UV_LNG"
 check_path_variable "UV_NC_OCC_PATH" "$UV_NC_OCC_PATH" "$DEFAULT_NC_PATH"
 check_path_variable "UV_MW_PATH" "$UV_MW_PATH" "$DEFAULT_MW_PATH"
 check_path_variable "LOGFILE" "$LOGFILE" ""
+
+# Überprüfung der Zahl-Variable LOGFILE_MAX_AGE
+check_number_variable "LOGFILE_MAX_AGE" "$LOGFILE_MAX_AGE"
 
 # Optional: Weitere Pfadüberprüfungen können hier hinzugefügt werden
