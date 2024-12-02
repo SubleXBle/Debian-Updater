@@ -18,8 +18,8 @@ DEFAULT_PATH="/opt/Debian-Updater"
 # Funktion zum Abrufen des Zielpfades vom Benutzer
 get_target_path() {
     # Vorschlag für den Pfad
-    echo -e "${BLUE}Möchtest du das Repository in den Pfad '$DEFAULT_PATH' herunterladen? (j/n): ${NORMAL}"
-    read -p "(Drücke Enter für den vorgeschlagenen Pfad oder 'n' für einen anderen Pfad): " RESPONSE
+    echo -e "${BLUE}Möchtest du das Repository in den Pfad ${YELLOW} '$DEFAULT_PATH' ${NORMAL} herunterladen? ${YELLOW} (j/n): ${NORMAL}"
+    read -p "(Drücke 'j' für den vorgeschlagenen Pfad oder 'n' für einen anderen Pfad): " RESPONSE
 
     if [[ "$RESPONSE" =~ ^[Jj]$ ]]; then
         TARGET_DIR="$DEFAULT_PATH"
