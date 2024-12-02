@@ -24,7 +24,7 @@ if [ -d "$TARGET_DIR" ]; then
     if [ -d "$TARGET_DIR/.git" ]; then
         echo "Das Verzeichnis $TARGET_DIR ist ein Git-Repository."
         cd "$TARGET_DIR" || exit
-        
+
         # Ermittelt den Standard-Branch des Repositories
         BRANCH_NAME=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}')
         if [ -z "$BRANCH_NAME" ]; then
@@ -32,51 +32,29 @@ if [ -d "$TARGET_DIR" ]; then
             exit 1
         fi
 
-        # Zeigt den Branch an, der gepullt wird
-        echo -e "${BLUE}Pulle Branch: $BRANCH_NAME${NORMAL}"
+        # Repository aktualisieren (Fetch ohne Pull)
+        git fetch origin "$BRANCH_NAME"
 
-        # Repository aktualisieren
-        echo "Aktualisiere Repository mit 'git pull origin $BRANCH_NAME'..."
-        git pull origin "$BRANCH_NAME"
+        # Liste der geänderten Dateien erstellen
+        CHANGED_FILES=$(git diff --name-only HEAD..origin/"$BRANCH_NAME")
+        
+        if [ -n "$CHANGED_FILES" ]; then
+            echo -e "${GREEN}Die folgenden Dateien wurden im Repository geändert:${NORMAL}"
+            echo "$CHANGED_FILES"
 
-        # Überprüfen, ob Änderungen vorgenommen wurden
-        if [ $? -eq 0 ] && [ "$(git status --porcelain)" != "" ]; then
-            echo -e "${GREEN}Repository erfolgreich aktualisiert. Es wurden Änderungen vorgenommen.${NORMAL}"
-
-            # Liste der lokal geänderten Dateien
-            CHANGED_FILES=$(git status --porcelain | grep '^[M]' | awk '{print $2}')
-
-            # Für jede geänderte Datei nachfragen, wie weiter verfahren werden soll
+            # Änderungen anwenden (geänderte Dateien direkt herunterladen)
             for FILE in $CHANGED_FILES; do
-                echo -e "${YELLOW}Die Datei '$FILE' wurde lokal geändert.${NORMAL}"
-                echo "Wie soll mit dieser Datei verfahren werden?"
-                echo "1) Datei mit Neuerungen aus Repository überschreiben"
-                echo "2) Backup von betroffener Datei erstellen (.BAK) und Datei danach überschreiben"
-                echo "3) Diese Datei überspringen"
-                echo "4) Das Backup abbrechen"
-                read -p "Wähle eine Option (1-4): " option
+                echo -e "${YELLOW}Aktualisiere Datei: $FILE${NORMAL}"
                 
-                case $option in
-                    1)
-                        echo "Die Datei '$FILE' wird mit den Neuerungen aus dem Repository überschrieben."
-                        git checkout -- "$FILE"
-                        ;;
-                    2)
-                        echo "Erstelle Backup der Datei '$FILE' als '$FILE.BAK'."
-                        cp "$FILE" "$FILE.BAK"
-                        git checkout -- "$FILE"
-                        ;;
-                    3)
-                        echo "Die Datei '$FILE' wird übersprungen."
-                        ;;
-                    4)
-                        echo "Backup und Änderungen werden abgebrochen. Kein weiteres Vorgehen."
-                        exit 1
-                        ;;
-                    *)
-                        echo -e "${RED}Ungültige Option. Die Datei '$FILE' wird übersprungen.${NORMAL}"
-                        ;;
-                esac
+                # Datei direkt aus dem Remote-Repository herunterladen
+                curl -s -o "$FILE" \
+                    "https://raw.githubusercontent.com/SubleXBle/Debian-Updater/$BRANCH_NAME/$FILE"
+
+                if [ $? -eq 0 ]; then
+                    echo -e "${GREEN}Datei '$FILE' erfolgreich heruntergeladen.${NORMAL}"
+                else
+                    echo -e "${RED}Fehler beim Herunterladen der Datei '$FILE'.${NORMAL}"
+                fi
             done
 
             # Dateien ausführbar machen
@@ -89,7 +67,7 @@ if [ -d "$TARGET_DIR" ]; then
                 exit 1
             fi
         else
-            echo -e "${YELLOW}Es wurden keine Änderungen im Repository vorgenommen.${NORMAL}"
+            echo -e "${YELLOW}Keine Änderungen im Repository gefunden.${NORMAL}"
         fi
     else
         echo -e "${YELLOW}Das Verzeichnis $TARGET_DIR existiert, ist aber kein Git-Repository.${NORMAL}"
@@ -114,8 +92,6 @@ else
 fi
 
 # Installer löschen, wenn vorhanden
-# Pfad zur Installer.sh-Datei
-
 INSTALLER_FILE="$TARGET_DIR/Installer.sh"
 
 # Überprüfen, ob die Datei Installer.sh existiert
