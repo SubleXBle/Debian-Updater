@@ -27,8 +27,8 @@ then use the Updater for Updates of the Script
 ## Important Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
-    + DEFAULT = GERMAN
-    + Other Versions (English Spain) are in the Repo (just rename them)
+    + Default = English
+    + Other Versions (German & Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
 + Updater-Update.sh (yes, finally the updater for the updater)
@@ -95,6 +95,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ Language Bugs fixed
 + ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
 + ✔️ All non-translated Stuff set to english - so less german babble :)
++ ✔️ Set default-language to english
 
 ## Addins (Optional) ⬇️
 + RK-Hunter Property Updates & Checks
