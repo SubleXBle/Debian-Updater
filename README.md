@@ -31,6 +31,7 @@ then use the Updater for Updates of the Script
     + Other Versions (English Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
++ Updater-Update.sh (yes, finally the updater for the updater)
 
 
 ## Features 🚀
