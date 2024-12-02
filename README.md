@@ -93,7 +93,7 @@ Each method of sending notifications has its own config file in the Notification
 ## Version Description 🚀
 + ✔️ Generel Bugfixes
 + ✔️ Language Bugs fixed
-+ ✔️ Reworked Updater-Update.sh aka "the Updater for the Updater"
++ ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
 + ✔️ All non-translated Stuff set to english - so less german babble :)
 
 ## License 📄
