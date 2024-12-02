@@ -12,13 +12,24 @@ BLUE='\033[34m'
 # Repository-URL
 REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
 
+# Standard-Zielpfad
+DEFAULT_PATH="/opt/Debian-Updater"
+
 # Funktion zum Abrufen des Zielpfades vom Benutzer
 get_target_path() {
-    read -p "Gib den Zielpfad ein, in den das Repository heruntergeladen werden soll: " TARGET_DIR
-    # Überprüfen, ob der Pfad gültig ist
-    if [ -z "$TARGET_DIR" ]; then
-        echo -e "${RED}Fehler: Kein Pfad angegeben. Das Skript wird beendet.${NORMAL}"
-        exit 1
+    # Vorschlag für den Pfad
+    echo -e "${BLUE}Möchtest du das Repository in den Pfad '$DEFAULT_PATH' herunterladen? (j/n): ${NORMAL}"
+    read -p "(Drücke Enter für den vorgeschlagenen Pfad oder 'n' für einen anderen Pfad): " RESPONSE
+
+    if [[ "$RESPONSE" =~ ^[Jj]$ ]]; then
+        TARGET_DIR="$DEFAULT_PATH"
+    else
+        read -p "Gib den Zielpfad ein, in den das Repository heruntergeladen werden soll: " TARGET_DIR
+        # Überprüfen, ob der Pfad gültig ist
+        if [ -z "$TARGET_DIR" ]; then
+            echo -e "${RED}Fehler: Kein Pfad angegeben. Das Skript wird beendet.${NORMAL}"
+            exit 1
+        fi
     fi
 
     # Überprüfen, ob der Pfad existiert
@@ -55,5 +66,6 @@ else
     fi
 fi
 
-chmod +x $TARGET_DIR/Debian-Updater.sh
-chmod +x $TARGET_DIR/Updater-Update.sh
+# Berechtigungen für die Dateien setzen
+chmod +x "$TARGET_DIR/Debian-Updater.sh"
+chmod +x "$TARGET_DIR/Updater-Update.sh"
