@@ -23,6 +23,13 @@ then use the Updater for Updates of the Script
 ```bash
 ./Updater-Update.sh
 ```
+set The Variables in DEB_UPD_config.sh
+
+then run the Updater.
+```bash
+./Debian-Updater.sh
+```
+Or you set it up as a cronjob to run in silentmode and inform you when it has updated the system or when something went wrong doing updates.
 
 ## Important Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
