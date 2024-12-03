@@ -117,6 +117,7 @@ Each method of sending notifications has its own config file in the Notification
 
 ## Further Development 🛠️
 Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
+Next "Version" will be more about Errorhandling and Logging ..
 
 ---------------------------------------------------------------------------------------
 
