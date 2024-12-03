@@ -10,7 +10,7 @@
 ⚙️Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
 
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
-⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
+⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep for X days, no logging, send logs, etc.).
 
 ## Installer and Update-Script ⚠️
 Use the "Installer" for Initial Clone
