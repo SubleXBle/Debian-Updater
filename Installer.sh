@@ -25,7 +25,7 @@ get_target_path() {
     if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
         TARGET_DIR="$DEFAULT_PATH"
     else
-        echo -e "${BLUE}Please use the full Path e.g.: /opt/Debian-Updater or /home/user/Debian-Updater"
+        echo -e "${BLUE}Please use the full Path e.g.: /opt/Debian-Updater or /home/user/Debian-Updater ${NORMAL}"
         read -p "Enter the target path where the repository should be downloaded: " TARGET_DIR
         # Check if the path is valid
         if [ -z "$TARGET_DIR" ]; then
