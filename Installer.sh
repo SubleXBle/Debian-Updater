@@ -18,12 +18,14 @@ DEFAULT_PATH="/opt/Debian-Updater"
 # Function to get the target path from the user
 get_target_path() {
     # Suggest the default path
-    echo -e "${BLUE}Would you like to download the repository to the path ${YELLOW} '$DEFAULT_PATH' ${NORMAL}? ${YELLOW} (y/n): ${NORMAL}"
+    echo -e "${BLUE}This will download the Debian-Updater Repository."
+    echo -e "${NORMAL}Would you like to download the repository to the path ${YELLOW} '$DEFAULT_PATH' ${NORMAL}? ${YELLOW} (y/n): ${NORMAL}"
     read -p "(Press 'y' for the suggested path or 'n' for another path): " RESPONSE
 
     if [[ "$RESPONSE" =~ ^[Yy]$ ]]; then
         TARGET_DIR="$DEFAULT_PATH"
     else
+        echo -e "${BLUE}Please use the full Path e.g.: /opt/Debian-Updater or /home/user/Debian-Updater"
         read -p "Enter the target path where the repository should be downloaded: " TARGET_DIR
         # Check if the path is valid
         if [ -z "$TARGET_DIR" ]; then
