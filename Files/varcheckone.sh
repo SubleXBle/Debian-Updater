@@ -45,28 +45,6 @@ check_number_variable() {
     fi
 }
 
-# Prüfen, ob die Variablen bereits gesetzt wurden, bevor sie festgelegt werden
-UV_LNG="${UV_LNG:-DE}"
-UV_UpgradeMode="${UV_UpgradeMode:-false}"
-UV_AutoremoveMode="${UV_AutoremoveMode:-true}"
-UV_LOG="${UV_LOG:-quiet}"
-LOGFILE="${LOGFILE:-/var/log/Updater.log}"
-UV_KEEP_LOG="${UV_KEEP_LOG:-true}"
-KILL_OLD_LOGS="${KILL_OLD_LOGS:-false}"
-LOGFILE_MAX_AGE="${LOGFILE_MAX_AGE:-30}"  # Beispielwert
-UV_PUSHOVER="${UV_PUSHOVER:-false}"
-UV_TELEGRAM="${UV_TELEGRAM:-true}"
-UV_GOTIFY="${UV_GOTIFY:-false}"
-UV_DISCORD="${UV_DISCORD:-true}"
-UV_EMAIL="${UV_EMAIL:-false}"
-UV_TEAMS="${UV_TEAMS:-true}"
-UV_RKHUNTER="${UV_RKHUNTER:-true}"
-UV_RKH_CHECK="${UV_RKH_CHECK:-false}"
-UV_NC_APP_Update="${UV_NC_APP_Update:-false}"
-UV_NC_OCC_PATH="${UV_NC_OCC_PATH:-/path/to/your/Nextcloud}"
-UV_MW_Update="${UV_MW_Update:-false}"
-UV_MW_PATH="${UV_MW_PATH:-/path/to/Mediawiki}"
-
 # Überprüfung der 'true/false'-Variablen
 check_bool_variable "UV_UpgradeMode" "$UV_UpgradeMode"
 check_bool_variable "UV_AutoremoveMode" "$UV_AutoremoveMode"
