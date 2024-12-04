@@ -7,45 +7,53 @@ RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
 
-# Repository URL
-REPO_URL="https://github.com/SubleXBle/Debian-Updater"
+# Repository URL und Branch-Name
+REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
+BRANCH_NAME="V0.9"  # Beispiel: Branch "V0.9"
 
-# Ziel-Branch
-BRANCH_NAME="V-1.0"
-
-# Zielpfad
+# Zielpfad für das Repository
 TARGET_DIR="/opt/Debian-Updater"
 
-# Überprüfen, ob der Zielpfad existiert, und ggf. erstellen
-if [ ! -d "$TARGET_DIR" ]; then
-    echo -e "${YELLOW}The path does not exist. It will now be created.${NORMAL}"
-    mkdir -p "$TARGET_DIR"
-fi
+# Funktion zur Überprüfung, ob Git installiert ist
+check_git_installed() {
+    if ! command -v git &> /dev/null; then
+        echo -e "${RED}Error: Git is not installed. Please install Git and try again.${NORMAL}"
+        exit 1
+    fi
+}
 
-# URL für den Download der ZIP-Datei des Repositories vom spezifischen Branch
-ZIP_URL="${REPO_URL}/archive/refs/heads/$BRANCH_NAME.zip"
+# Funktion zur Überprüfung, ob der Zielordner existiert und ggf. das Repository klonen
+clone_or_pull_repo() {
+    if [ ! -d "$TARGET_DIR" ]; then
+        echo -e "${YELLOW}The target directory does not exist. Cloning the repository...${NORMAL}"
+        git clone -b "$BRANCH_NAME" "$REPO_URL" "$TARGET_DIR"
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Repository successfully cloned.${NORMAL}"
+        else
+            echo -e "${RED}Error cloning the repository.${NORMAL}"
+            exit 1
+        fi
+    else
+        echo -e "${BLUE}Repository already exists. Pulling the latest changes from branch '$BRANCH_NAME'...${NORMAL}"
+        cd "$TARGET_DIR" || exit
+        git pull origin "$BRANCH_NAME"
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Repository successfully updated.${NORMAL}"
+        else
+            echo -e "${RED}Error pulling the repository updates.${NORMAL}"
+            exit 1
+        fi
+    fi
+}
 
-# Herunterladen der ZIP-Datei
-echo -e "${BLUE}Downloading repository from branch $BRANCH_NAME...${NORMAL}"
-wget -O "$TARGET_DIR/Debian-Updater-$BRANCH_NAME.zip" "$ZIP_URL"
+# Überprüfen, ob Git installiert ist
+check_git_installed
 
-# Überprüfen, ob der Download erfolgreich war
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Repository successfully downloaded as ZIP.${NORMAL}"
-else
-    echo -e "${RED}Error downloading the repository.${NORMAL}"
-    exit 1
-fi
+# Klonen oder Pullen des Repositories
+clone_or_pull_repo
 
-# Entpacken der ZIP-Datei
-echo -e "${BLUE}Extracting ZIP file...${NORMAL}"
-unzip "$TARGET_DIR/Debian-Updater-$BRANCH_NAME.zip" -d "$TARGET_DIR"
+# Setzen der Ausführungsberechtigungen für die Skripte
+chmod +x "$TARGET_DIR/Debian-Updater.sh"
+chmod +x "$TARGET_DIR/Updater-Update.sh"
 
-# Berechtigungen für die Dateien setzen
-chmod +x "$TARGET_DIR/Debian-Updater-$BRANCH_NAME/Debian-Updater.sh"
-chmod +x "$TARGET_DIR/Debian-Updater-$BRANCH_NAME/Updater-Update.sh"
-
-# Optional: ZIP-Datei löschen, um Speicherplatz freizugeben
-rm "$TARGET_DIR/Debian-Updater-$BRANCH_NAME.zip"
-
-echo -e "${GREEN}Repository files successfully extracted and ready to use.${NORMAL}"
+echo -e "${GREEN}Repository is ready to use.${NORMAL}"
