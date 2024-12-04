@@ -172,7 +172,7 @@ check_scripts() {
 [[ -f "$check2" ]] && source "$check2" & pid_varchecktwo=$!
 
 # Rufe die Überprüfung auf
-check_scripts
+#check_scripts
 
 
 
