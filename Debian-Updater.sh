@@ -39,7 +39,6 @@ NOAUTOREMOVE=false
 source DEB_UPD_config.sh
 
 ### load Notification-Config if needed ###
-# Pushover
 [ "$UV_PUSHOVER" = true ] && source NotificationConfiguration/PUSHOVER_config.sh
 [ "$UV_TELEGRAM" = true ] && source NotificationConfiguration/TELEGRAM_config.sh
 [ "$UV_GOTIFY" = true ] && source NotificationConfiguration/GOTIFY_config.sh
