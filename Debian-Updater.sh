@@ -2,6 +2,9 @@
 
 # Debian-Updater.sh by SubleXBle (https://github.com/SubleXBle/Debian-Updater) !Update with ease and how YOU like it!
 
+# Change Directory to the Directory where the Script is placed
+cd "$(dirname "$0")"
+
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
 
@@ -18,9 +21,6 @@ F_Startzeit() {
 
 # Check for Logfile - else you get some Errors
 source Files/LogFileCheck.sh
-
-# Change Directory to the Directory where the Script is placed
-cd "$(dirname "$0")"
 
 ### SCRIPT VARS ###                              
 V_ScriptVersion="0.8"
