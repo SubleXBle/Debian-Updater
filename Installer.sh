@@ -10,7 +10,7 @@ YELLOW='\033[33m'
 BLUE='\033[34m'
 
 # Repository URL
-REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
+REPO_URL="https://github.com/SubleXBle/tree/V0.9/Debian-Updater.git"
 
 # Default target path
 DEFAULT_PATH="/opt/Debian-Updater"
