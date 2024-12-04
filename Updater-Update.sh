@@ -96,8 +96,8 @@ if [ -d "$TARGET_DIR" ] && [ -d "$TARGET_DIR/.git" ]; then
     fi
 else
     echo "The directory $TARGET_DIR is not a Git repository or does not exist."
-    echo "Cloning the repository from https://github.com/SubleXBle/Debian-Updater.git to $TARGET_DIR..."
-    if git clone "https://github.com/SubleXBle/Debian-Updater.git" "$TARGET_DIR"; then
+    echo "Cloning the repository from https://github.com/SubleXBle/tree/V-1.0/Debian-Updater.git to $TARGET_DIR..."
+    if git clone "https://github.com/SubleXBle/Debian-Updater/tree/V-1.0.git" "$TARGET_DIR"; then
         echo -e "${GREEN}Repository cloned successfully.${NORMAL}"
     else
         echo -e "${RED}Error cloning the repository.${NORMAL}"
