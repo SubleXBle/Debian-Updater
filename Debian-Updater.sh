@@ -23,7 +23,7 @@ F_Startzeit() {
 source Files/LogFileCheck.sh
 
 ### SCRIPT VARS ###                              
-V_ScriptVersion="0.9"
+V_ScriptVersion="1.0"
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
 RED='\033[1;31m'
