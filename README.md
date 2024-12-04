@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 0.9
++ Version: 1.0
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
@@ -10,28 +10,35 @@
 ⚙️Additionally, it offers the option to send notifications or the log file via Pushover, Gotify, e-Mail, Telegram, Discord or MS-Teams or to retain log files for the long term via log rotation.
 
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
-⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep only for X days, no logging, send logs, etc.).
+⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep for X days, no logging, send logs, etc.).
 
-## Updatescript and Installer ⚠️
-Use the Installer for Initial Clone
+## Installer and Update-Script ⚠️
+Use the "Installer" for Initial Clone
 ```bash
-wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-0.9/Installer.sh && chmod +x Installer.sh && ./Installer.sh
+wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-1.0/Installer.sh && chmod +x Installer.sh && ./Installer.sh && rm Installer.sh
 ```
-You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater"
+You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater" (standard-path)
 
 then use the Updater for Updates of the Script
 ```bash
 ./Updater-Update.sh
 ```
+set The Variables in DEB_UPD_config.sh
+
+then run the Updater.
+```bash
+./Debian-Updater.sh
+```
+Or you set it up as a cronjob to run in silentmode and inform you when it has updated the system or when something went wrong doing updates.
 
 ## Important Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
-    + DEFAULT = GERMAN
-    + Other Versions (English Spain) are in the Repo (just rename them)
+    + Default = English
+    + Other Versions (German & Spain) are in the Repo (just rename them)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
-+ Updater-Update.sh (Use this to pull and update this script)
++ Updater-Update.sh (yes, finally the updater for the updater)
 
 
 ## Features 🚀
@@ -91,11 +98,17 @@ Each method of sending notifications has its own config file in the Notification
 + For notifications, "curl" (https://curl.se/) must be installed.
 
 ## Version Description 🚀
-+ ✔️ dist-upgrade (just once) - Switch added (-d / --dist-upgrade)
-+ ✔️ added an Update Script (Updater-Update.sh) - so Files will not get overwritten (eg Notification Settings) when not changed in Repo
-    + If you did not clone the updater, your directory will get removed and the updater will download as a new directory - so safe your notification settings first.
-+ ✔️ Added Update Option for Nextcloud Apps. (You can set up the option in DEB_UPD_config.php)
-+ ✔️ Added Update Option for MediaWiki Installation (You can set up the option in DEB_UPD_config.sh)
++ ✔️ Generel Bugfixes
++ ✔️ Language Bugs fixed
++ ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
++ ✔️ All non-translated Stuff set to english - so less german babble :)
++ ✔️ Set default-language to english
++ ✔️ Reworked Sanity Check
+
+## Addins (Optional) ⬇️
++ RK-Hunter Property Updates & Checks
++ Updates for Nextcloud Apps
++ Updates for MediaWiki Installation
 
 ## License 📄
 + GNU General Public License v3.0
@@ -104,7 +117,7 @@ Each method of sending notifications has its own config file in the Notification
 
 ## Further Development 🛠️
 Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
-Languagewise : Version 1.0 should have all Language Failures resolved - until then some features are not translated
+Next "Version" will be more about Errorhandling and Logging ..
 
 ---------------------------------------------------------------------------------------
 

@@ -20,6 +20,7 @@ F_ROOTKIT() {
         fi
    else
         FEHLER=RKHunter-NotFound
+        echo FAILURE RK-Hunter was not found >> $LOGFILE
         LF_Negative_Output_Check
    fi
 }

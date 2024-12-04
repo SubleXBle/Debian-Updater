@@ -11,10 +11,10 @@ F_HELP() {
     echo
     echo -e $YELLOW $TXTBOLD "Available options:" $NORMAL
     echo "  -s, --silent                Run the script in silent mode without displaying output on the console."
-    echo "  -h, --help                  Displays this help information."
+    echo "  -h, --help                  Shows this help message."
     echo "  -o, --onlyupdate            Updates only the repositories and shows available updates without upgrading the packages."
-    echo "  -n, --no-autoremove         Prevents the automatic removal of no longer needed packages after the upgrade."
-    echo "  -d, --dist-upgrade          Run the scripz with --dist-upgrade instead of upgrade"
+    echo "  -n, --no-autoremove         Prevents the automatic removal of unnecessary packages after upgrade."
+    echo "  -d, --dist-upgrade          Performs a one-time dist-upgrade."
     echo
     echo -e $BLUE "========================================"
     echo -e $YELLOW $TXTBOLD "User Variables (in DEB_UPD_config.sh):" $NORMAL
@@ -26,22 +26,22 @@ F_HELP() {
     echo -e "RK-Hunter"
     echo
     echo -e $BLUE "========================================" $NORMAL
-    echo -e $YELLOW $TXTBOLD "Functionality:" $NORMAL
+    echo -e $YELLOW $TXTBOLD "How it works:" $NORMAL
     echo -e $TXTBOLD "The script performs the following steps:" $NORMAL
-    echo "1. Checks for root privileges."
-    echo "2. Updates the repositories."
-    echo "3. Shows available updates."
-    echo "4. Upgrades the packages."
-    echo "5. Automatically removes packages that are no longer needed (if not disabled)."
-    echo "6. Optionally performs rootkit checks."
-    echo "7. Logfile management: rotation and deletion of old log files."
-    echo "8. Sends notifications in case of errors or successful completion (depending on configuration)."
+    echo "1. Check for root privileges."
+    echo "2. Update the repositories."
+    echo "3. Display available updates."
+    echo "4. Upgrade the packages."
+    echo "5. Automatically remove unnecessary packages (if not disabled)."
+    echo "6. Optionally perform rootkit checks."
+    echo "7. Logfile management: rotation and deletion of old logfiles."
+    echo "8. Send notifications for errors or successful completion (depending on configuration)."
     echo
     echo -e $BLUE "========================================" $NORMAL
     echo -e $YELLOW $TXTBOLD "Usage:" $NORMAL
-    echo "To run the script, use the following commands:"
-    echo "./Debian-Updater.sh [options]"
+    echo "To run the script, use the following command:"
+    echo "./Debian-Updater.sh [Options]"
     echo
-    echo "e.g.: ./Debian-Updater -n -s (Runs without autoremove and in silent mode)"
+    echo "Example: ./Debian-Updater -n -s (Does not perform autoremove and runs in silent mode)"
     echo -e $BLUE "========================================" $NORMAL
 }

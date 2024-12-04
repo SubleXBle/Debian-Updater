@@ -1,40 +1,40 @@
-### USERVARIABLEN ###
+### USER VARIABLES ###
 #
-## Sprachwahl
-UV_LNG=DE                                       # Sprache auf Englisch (EN) oder Deutsch (DE) oder Spanisch (SP) umstellen
+## Language selection
+UV_LNG=EN                                       # Set language to English (EN), German (DE), or Spanish (SP)
 #
-## Updater-Modes
-UV_UpgradeMode=false                            # false führt apt-get upgrade -y -a durch / true führt apt-get dist-upgrade -y durch
-UV_AutoremoveMode=false                         # false führt ein --purge durch / true führt ein "remove" durch
+## Updater Modes
+UV_UpgradeMode=false                            # false runs apt-get upgrade -y -a / true runs apt-get dist-upgrade -y
+UV_AutoremoveMode=false                         # false performs a --purge / true performs a "remove"
 #
-## LoggingLevel
-UV_LOG=quiet                                    # Loggingstärke angeben (quiet [-qq] / medium [-q] / all [keine output option])
+## Logging Level
+UV_LOG=quiet                                    # Set logging level (quiet [-qq] / medium [-q] / all [no output option])
 #
-## Logfilebehandlung
-LOGFILE="/var/log/Updater.log"                  # bei Bedarf ändern : z.B: /home/$USER/Updater.log (Pfad angeben)
-UV_KEEP_LOG=false                               # Logfile immer behalten (true / false) Wenn true findet Logrotation statt
-KILL_OLD_LOGS=false                             # Bei Logfile löschung auch alte Logs (Logrotation) löschen? (Löscht ALLE alten Logfiles von diesem Script)
-LOGFILE_MAX_AGE=30                              # Löscht alte Logfiles nach 30 Tagen
+## Logfile handling
+LOGFILE="/var/log/Updater.log"                  # Change if needed: e.g., /home/$USER/Updater.log (provide path)
+UV_KEEP_LOG=false                               # Keep the logfile always (true / false). If true, log rotation happens
+KILL_OLD_LOGS=false                             # Should old logs also be deleted when logfile is deleted (Log rotation)? (Deletes ALL old logs from this script)
+LOGFILE_MAX_AGE=30                              # Delete old logfiles after 30 days
 #
-## Benachrichtigungs Arten
-UV_PUSHOVER=false                               # Pushover Benachrichtigungen verwenden : Anpassungen im File PO_config.sh vornehmen!
-UV_TELEGRAM=false                               # Telegram Nachricht versenden
-UV_GOTIFY=false                                 # Gotify für Benachrichtigungen verwenden
-UV_DISCORD=false                                # Discord Nachricht versenden
-UV_EMAIL=false                                  # Email Nachricht versenden
-UV_TEAMS=false                                  # MS-Teams Nachricht versenden
+## Notification Types
+UV_PUSHOVER=false                               # Use Pushover notifications: Make adjustments in PO_config.sh!
+UV_TELEGRAM=false                               # Send Telegram messages
+UV_GOTIFY=false                                 # Use Gotify for notifications
+UV_DISCORD=false                                # Send Discord messages
+UV_EMAIL=false                                  # Send Email notifications
+UV_TEAMS=false                                  # Send MS-Teams messages
 #
-## Benachrichtigungs Optionen
-UV_LOG2MSG=false                                # Soll das Logfile über die gewünschte Benachrichtigungsart versendet werden?
-UV_NotifyOnlyOnError=false                      # Die Benachrichtigung soll nur im Fehlerfall versendet werden
-#UV_NotifyOrLog=false                            # Wenn mehr als eine Benachrichtigungsart, kann für jede Benachrichtigungsart gewählt werden, ob das Logfile mitgesendet werden soll
+## Notification Options
+UV_LOG2MSG=false                                # Should the logfile be sent via the selected notification method?
+UV_NotifyOnlyOnError=false                      # Send notification only in case of an error
+#UV_NotifyOrLog=false                            # If more than one notification method, choose whether the logfile should be sent with each notification
 #
-## RK-Hunter Optionen
-UV_RKHUNTER=false                               # Soll auf RKHunter geprüft werden um die Definitionen updaten zu können und ein Property Update auszuführen?
-UV_RKH_CHECK=false                              # Soll RK-Hunter gleich einen Check auf Rootkits durchführen?
+## RK-Hunter Options
+UV_RKHUNTER=false                               # Should RKHunter be checked to update definitions and perform a property update?
+UV_RKH_CHECK=false                              # Should RKHunter immediately perform a rootkit check?
 #
 # Nextcloud Updates
-UV_NC_APP_Update=false                          # Wenn auf true gesetzt, wird das Script ebenfalls App-Updates für Nextcloud ausführen
+UV_NC_APP_Update=false                          # If true, the script will also run app updates for Nextcloud
 UV_NC_OCC_PATH="/path/to/your/Nextcloud"        # Path to Nextcloud Installation
 #
 # MediaWiki Update

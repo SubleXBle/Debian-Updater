@@ -39,7 +39,6 @@ NOAUTOREMOVE=false
 source DEB_UPD_config.sh
 
 ### load Notification-Config if needed ###
-# Pushover
 [ "$UV_PUSHOVER" = true ] && source NotificationConfiguration/PUSHOVER_config.sh
 [ "$UV_TELEGRAM" = true ] && source NotificationConfiguration/TELEGRAM_config.sh
 [ "$UV_GOTIFY" = true ] && source NotificationConfiguration/GOTIFY_config.sh
@@ -127,26 +126,49 @@ esac
 
 ### Sanity Checks ##
 
-check1="Files/varcheckone.sh" # Sanity Check for UserVars that are true or false
-check2="Files/varchecktwo.sh" # Sanity Check for UserVars that are something else
+# Set Variables for Sanity Checks
+check1="Files/varcheckone.sh" 
+check2=""                     # Can stay empty if not needed
 
+# mainfunction for sanity check
 check_scripts() {
-
-  while kill -0 $pid1 2>/dev/null || kill -0 $pid2 2>/dev/null; do
+  # wait for active Processes
+  while { [[ -n "$pid_varcheckone" ]] && kill -0 "$pid_varcheckone" 2>/dev/null; } || \
+        { [[ -n "$pid_varchecktwo" ]] && kill -0 "$pid_varchecktwo" 2>/dev/null; }; do
     log_message $NORMAL
     log_message -n $NORMAL "Check Sanity [$YELLOW!$NORMAL]"
     sleep 1
     log_message -ne "\r"
   done
-  log_message -n $NORMAL "Checks done $NORMAL[$GREEN✓$NORMAL]"
-  sleep 1
-  log_message -ne "\r"
-  log_message -n $NORMAL "Script starts $GREEN $NORMAL[$GREEN✓$NORMAL]"
-  log_message $NORMAL
+
+  # Check Exit-States
+  exit_status1=0
+  exit_status2=0
+  if [[ -n "$pid_varcheckone" ]]; then
+    wait "$pid_varcheckone"
+    exit_status1=$?
+  fi
+  if [[ -n "$pid_varchecktwo" ]]; then
+    wait "$pid_varchecktwo"
+    exit_status2=$?
+  fi
+
+  # Output Sanity Check Results
+  if [[ $exit_status1 -ne 0 || $exit_status2 -ne 0 ]]; then
+    log_message $NORMAL "Sanity Checks failed $NORMAL[$RED✗$NORMAL]"
+    exit 1
+  else
+    log_message -n $NORMAL "Checks done $NORMAL[$GREEN✓$NORMAL]"
+    sleep 1
+    log_message -ne "\r"
+    log_message -n $NORMAL "Script starts $GREEN $NORMAL[$GREEN✓$NORMAL]"
+    log_message $NORMAL
+  fi
 }
 
-source "$check1" & pid1=$!
-source "$check2" & pid2=$!
+# Start Checks and save PIDS if there are any
+[[ -f "$check1" ]] && source "$check1" & pid_varcheckone=$!
+[[ -f "$check2" ]] && source "$check2" & pid_varchecktwo=$!
 
 check_scripts
 
@@ -214,7 +236,7 @@ F_ANZEIGE() {
 
 # Upgrade
 F_UPGRADE() {
-    # Wähle den Upgrade-Modus je nach Konfiguration
+    # Choose Upgrade-Mode
     if [ "$UV_UpgradeMode" = true ]; then
         V_UpgrMod="dist-upgrade -y"
     else
@@ -225,22 +247,19 @@ F_UPGRADE() {
         V_UpgrMod="dist-upgrade -y"
     fi
         
-    # Logge den Beginn des Upgrade-Vorgangs
+    # Log Start of Upgrade
     log_message -n "$LV_Install \t \t "
     
-    # Führe den Upgrade-Befehl aus
+    # do the Upgrades
     if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y" >>$LOGFILE
     else
-        # Setze den Fehlerstatus und logge den Fehler
+        # Set and Log Failure-state
         FEHLER="UpgradeError"
         LF_Negative_Output_Check
         echo "$LFA_Upgrade_N" >>$LOGFILE
-        
-        # Zusätzliche Fehlerdetails für das Protokoll
         echo -e "$NORMAL Fehlercode: $RED $? $NORMAL" >>$LOGFILE
-        # Weitere spezifische Fehlerbehandlung, falls gewünscht
     fi
 }
 
