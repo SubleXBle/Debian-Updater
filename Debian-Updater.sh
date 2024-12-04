@@ -130,9 +130,9 @@ esac
 check1="Files/varcheckone.sh" 
 check2=""                     # Can stay empty if not needed
 
-# Funktion zur Durchführung der Checks
+# mainfunction for sanity check
 check_scripts() {
-  # Warte auf aktive Prozesse (dynamisch prüfen)
+  # wait for active Processes
   while { [[ -n "$pid_varcheckone" ]] && kill -0 "$pid_varcheckone" 2>/dev/null; } || \
         { [[ -n "$pid_varchecktwo" ]] && kill -0 "$pid_varchecktwo" 2>/dev/null; }; do
     log_message $NORMAL
@@ -141,7 +141,7 @@ check_scripts() {
     log_message -ne "\r"
   done
 
-  # Check Exit States
+  # Check Exit-States
   exit_status1=0
   exit_status2=0
   if [[ -n "$pid_varcheckone" ]]; then
@@ -236,7 +236,7 @@ F_ANZEIGE() {
 
 # Upgrade
 F_UPGRADE() {
-    # Wähle den Upgrade-Modus je nach Konfiguration
+    # Choose Upgrade-Mode
     if [ "$UV_UpgradeMode" = true ]; then
         V_UpgrMod="dist-upgrade -y"
     else
@@ -247,22 +247,19 @@ F_UPGRADE() {
         V_UpgrMod="dist-upgrade -y"
     fi
         
-    # Logge den Beginn des Upgrade-Vorgangs
+    # Log Start of Upgrade
     log_message -n "$LV_Install \t \t "
     
-    # Führe den Upgrade-Befehl aus
+    # do the Upgrades
     if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y" >>$LOGFILE
     else
-        # Setze den Fehlerstatus und logge den Fehler
+        # Set and Log Failure-state
         FEHLER="UpgradeError"
         LF_Negative_Output_Check
         echo "$LFA_Upgrade_N" >>$LOGFILE
-        
-        # Zusätzliche Fehlerdetails für das Protokoll
         echo -e "$NORMAL Fehlercode: $RED $? $NORMAL" >>$LOGFILE
-        # Weitere spezifische Fehlerbehandlung, falls gewünscht
     fi
 }
 
