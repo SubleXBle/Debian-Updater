@@ -11,7 +11,7 @@ BLUE='\033[34m'
 REPO_URL="https://github.com/SubleXBle/Debian-Updater"
 
 # Ziel-Branch
-BRANCH_NAME="V0.9"
+BRANCH_NAME="V-1.0"
 
 # Zielpfad
 TARGET_DIR="/opt/Debian-Updater"
