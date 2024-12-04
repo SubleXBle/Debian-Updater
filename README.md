@@ -17,7 +17,7 @@ Use the "Installer" for Initial Clone
 ```bash
 wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-1.0/Installer.sh && chmod +x Installer.sh && ./Installer.sh && rm Installer.sh
 ```
-You will get asked for the Path : Use the full Path : eg "/opt/Debian-Updater" (standard-path)
+Will Download the Repo to /opt/Debian-Updater (leave it there or move it to a place of your choice)
 
 then use the Updater for Updates of the Script
 ```bash
