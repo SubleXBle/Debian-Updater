@@ -20,7 +20,7 @@ F_Startzeit() {
 }
 
 # Check for Logfile - else you get some Errors
-source Files/LogFileCheck.sh
+#source Files/LogFileCheck.sh
 
 ### SCRIPT VARS ###                              
 V_ScriptVersion="1.0"
