@@ -327,7 +327,7 @@ F_Fehlerbehandlung() {
 # Logline - shows a new Script-Run in the Logfile
 F_LOGLINE() {
     echo -e $NORMAL" ">>$LOGFILE
-    echo "=== NEUER SCRIPTLAUF ===">>$LOGFILE
+    echo "=== NEW SCRIPT-RUN ===">>$LOGFILE
     echo -e $NORMAL" ">>$LOGFILE
     if [ "$SILENT" = true ]; then
         echo "SILENT-Mode=$SILENT">>$LOGFILE
