@@ -129,7 +129,7 @@ esac
 
 # Setze die Variablen für Sanity-Check-Skripte (eins oder mehrere)
 check1="Files/varcheckone.sh" # Sanity Check für Variablen
-check2=""                     # Kann leer sein, wenn nicht benötigt
+check2="Files/varchecktwo.sh" # Kann leer sein, wenn nicht benötigt
 
 # Funktion zur Durchführung der Checks
 check_scripts() {
