@@ -127,11 +127,11 @@ esac
 
 ### Sanity Checks ##
 
-# Setze die Variablen für Sanity-Check-Skripte (eins oder mehrere)
-check1="Files/varcheckone.sh" # Sanity Check für Variablen
-check2="Files/varchecktwo.sh" # Kann leer sein, wenn nicht benötigt
+# Used Sanity Check Scripts
+check1="Files/varcheckone.sh"
+check2="Files/varchecktwo.sh"
 
-# Funktion zur Durchführung der Checks
+# check the vars
 check_scripts() {
   # Warte auf aktive Prozesse (dynamisch prüfen)
   while { [[ -n "$pid_varcheckone" ]] && kill -0 "$pid_varcheckone" 2>/dev/null; } || \
@@ -142,7 +142,7 @@ check_scripts() {
     log_message -ne "\r"
   done
 
-  # Überprüfe die Exit-Status (nur, wenn Prozess existiert)
+  # Check for Exit State
   exit_status1=0
   exit_status2=0
   if [[ -n "$pid_varcheckone" ]]; then
@@ -154,7 +154,7 @@ check_scripts() {
     exit_status2=$?
   fi
 
-  # Log-Ausgaben für Ergebnisse
+  # output
   if [[ $exit_status1 -ne 0 || $exit_status2 -ne 0 ]]; then
     log_message $NORMAL "Sanity Checks failed $NORMAL[$RED✗$NORMAL]"
     exit 1
@@ -167,13 +167,12 @@ check_scripts() {
   fi
 }
 
-# Starte die Checks und speichere die PIDs, falls sie definiert sind
+# Start Checks and save PITs if possible
 [[ -f "$check1" ]] && source "$check1" & pid_varcheckone=$!
 [[ -f "$check2" ]] && source "$check2" & pid_varchecktwo=$!
 
-# Rufe die Überprüfung auf
-#check_scripts
-
+# Call Function
+check_scripts
 
 
 ### FUNCTIONS ###
@@ -239,33 +238,32 @@ F_ANZEIGE() {
 
 # Upgrade
 F_UPGRADE() {
-    # Wähle den Upgrade-Modus je nach Konfiguration
+    # Check for Upgrade-Mode
     if [ "$UV_UpgradeMode" = true ]; then
         V_UpgrMod="dist-upgrade -y"
     else
-        V_UpgrMod="upgrade -y"  # Ohne -a, um nur die neuesten Versionen zu installieren
+        V_UpgrMod="upgrade -y"
     fi
 
     if [ "$DistUpgradeOnce" = true ]; then
         V_UpgrMod="dist-upgrade -y"
     fi
         
-    # Logge den Beginn des Upgrade-Vorgangs
+    # Log Beginning of Upgrade
     log_message -n "$LV_Install \t \t "
     
-    # Führe den Upgrade-Befehl aus
+    # Upgrade
     if apt-get $V_UpgrMod $V_LOGGING >>$LOGFILE 2>&1; then
         LF_Positive_Output_Check
         echo "$LFA_Upgrade_Y" >>$LOGFILE
     else
-        # Setze den Fehlerstatus und logge den Fehler
+        # Check for Error state
         FEHLER="UpgradeError"
         LF_Negative_Output_Check
         echo "$LFA_Upgrade_N" >>$LOGFILE
         
-        # Zusätzliche Fehlerdetails für das Protokoll
+        # Write to Logfile
         echo -e "$NORMAL Fehlercode: $RED $? $NORMAL" >>$LOGFILE
-        # Weitere spezifische Fehlerbehandlung, falls gewünscht
     fi
 }
 
@@ -297,7 +295,7 @@ F_LOG_TO_VAR() {
     if [[ "$UV_PUSHOVER" == true || "$UV_TELEGRAM" == true || "$UV_GOTIFY" == true || "$UV_DISCORD" == true || "$UV_EMAIL" == true || "$UV_TEAMS" == true ]] && [ "$UV_LOG2MSG" = true ]; then
         BENACHRICHTIGUNG=$(cat "$LOGFILE")
         #if [ "$UV_NotifyOrLog" = true ];
-            # Überlege gerade wie ich das am blödesten mache
+            # Still thinking about how to make it in a nice way
         #fi
     fi
 }
@@ -355,8 +353,8 @@ fi
 
 # to show the Script-Runtime
 F_ZEITAUSGABE() {
-end=$(date +%s)    # Endzeit erfassen
-runtime=$((end - start)) # Laufzeit berechnen
+end=$(date +%s)    # Check End Time
+runtime=$((end - start)) # Calc Runtime
 log_message -e $NORMAL
 if [ "$UV_KEEP_LOG" = false ]; then
     LF_Zeitausgabe | tee -a $LOGFILE
@@ -376,7 +374,7 @@ LF_Zeitausgabe_Logfile
 # Logrotation - controlled by Variables (DEB_UPD_config.sh)
 F_LOG_ROTATE() {
     log_message -n -e $NORMAL "Logfile-Rotation \t \t \t \t "
-    local max_log_age=$LOGFILE_MAX_AGE  # Maximale Anzahl von Tagen, nach denen alte Logfiles gelöscht werden
+    local max_log_age=$LOGFILE_MAX_AGE
     
     # Check if Logfile exists
     if [ -f "$LOGFILE" ]; then
@@ -409,7 +407,7 @@ T_LEERZEILE() {
     log_message -e $NORMAL
 }
 
-### SCRIPTAUFRUF ###
+### SCRIPTRUN ###
 
 F_LOGLINE
 F_Startzeit
