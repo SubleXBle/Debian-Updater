@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Standardwerte aus der Konfigurationsdatei
+# Standards from Files
 DEFAULT_LOGFILE="/var/log/Updater.log"
 DEFAULT_UV_NC_OCC_PATH="/path/to/your/Nextcloud"
 DEFAULT_UV_MW_PATH="/path/to/Mediawiki"
 
-# Funktion zur Überprüfung von Boolean-Variablen (true/false)
+# Check Boolean-Variables (true/false)
 check_bool_variable() {
     local var_name=$1
     local var_value=$2
@@ -14,7 +14,7 @@ check_bool_variable() {
     fi
 }
 
-# Funktion zur Überprüfung der Sprachvariable
+# Check txt Vars
 check_language_variable() {
     local var_name=$1
     local var_value=$2
@@ -23,7 +23,7 @@ check_language_variable() {
     fi
 }
 
-# Funktion zur Überprüfung von Zahlenwerten
+# Check Number-Vars
 check_number_variable() {
     local var_name=$1
     local var_value=$2
@@ -32,7 +32,7 @@ check_number_variable() {
     fi
 }
 
-# Funktion zur Überprüfung der Pfade
+# Check Paths
 check_path_variable() {
     local var_name=$1
     local var_value=$2
@@ -42,11 +42,11 @@ check_path_variable() {
     fi
 }
 
-# Überprüfungen
-# Sprachwahl
+# Checks
+# Language Check
 check_language_variable "UV_LNG" "$UV_LNG"
 
-# Updater-Modi
+# Updater-Mode
 check_bool_variable "UV_UpgradeMode" "$UV_UpgradeMode"
 check_bool_variable "UV_AutoremoveMode" "$UV_AutoremoveMode"
 
@@ -61,7 +61,7 @@ check_bool_variable "UV_KEEP_LOG" "$UV_KEEP_LOG"
 check_bool_variable "KILL_OLD_LOGS" "$KILL_OLD_LOGS"
 check_number_variable "LOGFILE_MAX_AGE" "$LOGFILE_MAX_AGE"
 
-# Benachrichtigungstypen
+# Notification Types
 check_bool_variable "UV_PUSHOVER" "$UV_PUSHOVER"
 check_bool_variable "UV_TELEGRAM" "$UV_TELEGRAM"
 check_bool_variable "UV_GOTIFY" "$UV_GOTIFY"
@@ -69,19 +69,19 @@ check_bool_variable "UV_DISCORD" "$UV_DISCORD"
 check_bool_variable "UV_EMAIL" "$UV_EMAIL"
 check_bool_variable "UV_TEAMS" "$UV_TEAMS"
 
-# Benachrichtigungsoptionen
+# Notification Options
 check_bool_variable "UV_LOG2MSG" "$UV_LOG2MSG"
 check_bool_variable "UV_NotifyOnlyOnError" "$UV_NotifyOnlyOnError"
 
-# RKHunter-Optionen
+# RKHunter-Options
 check_bool_variable "UV_RKHUNTER" "$UV_RKHUNTER"
 check_bool_variable "UV_RKH_CHECK" "$UV_RKH_CHECK"
 
-# Nextcloud-Optionen
+# Nextcloud-Options
 check_bool_variable "UV_NC_APP_Update" "$UV_NC_APP_Update"
 check_path_variable "UV_NC_OCC_PATH" "$UV_NC_OCC_PATH" "$DEFAULT_UV_NC_OCC_PATH"
 
-# MediaWiki-Optionen
+# MediaWiki-Options
 check_bool_variable "UV_MW_Update" "$UV_MW_Update"
 check_path_variable "UV_MW_PATH" "$UV_MW_PATH" "$DEFAULT_UV_MW_PATH"
 
