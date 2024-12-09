@@ -7,14 +7,14 @@ RED='\033[1;31m'
 YELLOW='\033[33m'
 BLUE='\033[34m'
 
-# Repository URL und Branch-Name
+# Repository URL and Branch-Name
 REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
-BRANCH_NAME="V-1.0"  # Beispiel: Branch "V0.9"
+BRANCH_NAME="V-1.0"
 
-# Zielpfad für das Repository
+# Repository Target Path
 TARGET_DIR="/opt/Debian-Updater"
 
-# Funktion zur Überprüfung, ob Git installiert ist
+# Check if Git is installed
 check_git_installed() {
     if ! command -v git &> /dev/null; then
         echo -e "${RED}Error: Git is not installed. Please install Git and try again.${NORMAL}"
@@ -22,7 +22,7 @@ check_git_installed() {
     fi
 }
 
-# Funktion zur Überprüfung, ob der Zielordner existiert und ggf. das Repository klonen
+# Check Target Dir and clone repo if exists
 clone_or_pull_repo() {
     if [ ! -d "$TARGET_DIR" ]; then
         echo -e "${YELLOW}The target directory does not exist. Cloning the repository...${NORMAL}"
@@ -46,13 +46,13 @@ clone_or_pull_repo() {
     fi
 }
 
-# Überprüfen, ob Git installiert ist
+# Check for Git Installation
 check_git_installed
 
-# Klonen oder Pullen des Repositories
+# Clone or pull repo
 clone_or_pull_repo
 
-# Setzen der Ausführungsberechtigungen für die Skripte
+# make Updater and Updater-Updater executeable
 chmod +x "$TARGET_DIR/Debian-Updater.sh"
 chmod +x "$TARGET_DIR/Updater-Update.sh"
 
