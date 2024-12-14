@@ -11,7 +11,7 @@ source DEB_UPD_config.sh
 # Language File
 source Files/Language/Lang.$UV_LNG.sh
 
-# Check for Logfile
+# Check for Logfile : if it does not exist it will be created
 source Files/LogFileCheck.sh
 
 # get Start Time
