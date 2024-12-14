@@ -4,7 +4,6 @@
 
 FILES=(
     "DEB_UPD_config.sh"
-    "$LOGFILE"
 )
 
 check_them_files() {
