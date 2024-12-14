@@ -103,7 +103,7 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
 + ✔️ All non-translated Stuff set to english - so less german babble :)
 + ✔️ Set default-language to english
-+ ✔️ Reworked Sanity Check (FAILURE : WORKING ON IT)
++ ✔️ Reworked Sanity Check
 
 ## Addins (Optional) ⬇️
 + RK-Hunter Property Updates & Checks
