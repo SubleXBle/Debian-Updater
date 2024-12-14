@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 1.0
++ Version: 1.0.1
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
