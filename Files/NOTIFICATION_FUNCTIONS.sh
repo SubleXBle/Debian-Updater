@@ -31,7 +31,7 @@ F_PUSHOVER() {
                 fi
             done
             log_message -e "$NORMAL[$RED✗$NORMAL] $TG_MAX_RETRY Versuche"
-            echo "======== PUSHOVER NICHT GESENDET ===========">>$LOGFILE
+            echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
         fi
 }
 
@@ -57,11 +57,10 @@ F_TELEGRAM() {
             fi
         done
         log_message -e "$NORMAL[$RED✗$NORMAL] $TG_MAX_RETRY Versuche"
-        echo "======== TELEGRAM NICHT GESENDET ===========">>$LOGFILE
+        echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
     fi
 }
 
-# Falls gewollt Gotify Nachricht versenden - Anpassungen im File PO_config.sh vornehmen
 send_gotify_message() {
     if [ "$UV_GOTIFY" = true ]; then
         curl -s -X POST "$GOTIFY_URL" \
@@ -77,7 +76,7 @@ send_gotify_message() {
             else
                 log_message -n -e "$NORMAL[$RED✗$NORMAL]"
                 log_message "Fehler"
-                echo "======== GOTIFY NICHT GESENDET ===========">>$LOGFILE
+                echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
             fi
     fi
 }
@@ -111,7 +110,7 @@ F_EMAIL() {
             fi
         done
         log_message -e "$NORMAL[$RED✗$NORMAL] $EM_MAX_RETRY Versuche"
-        echo "======== E-MAIL NICHT GESENDET ===========">>$LOGFILE
+        echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
     fi
 }
 
@@ -142,7 +141,7 @@ F_DISCORD() {
             fi
         done
         log_message -e "$NORMAL[$RED✗$NORMAL] $DC_MAX_RETRY Versuche"
-        echo "======== DISCORD NICHT GESENDET ===========">>$LOGFILE
+        echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
     fi
 }
 
@@ -173,6 +172,6 @@ F_TEAMS() {
             fi
         done
         log_message -e "$NORMAL[$RED✗$NORMAL] $TEAMS_MAX_RETRY Versuche"
-        echo "======== TEAMS NICHT GESENDET ===========">>$LOGFILE
+        echo "======== $LV_NotificationNotSent ===========">>$LOGFILE
     fi
 }
