@@ -5,13 +5,13 @@
 # LV = Variable de Lenguaje
 # LFA = Salida del LogFile
 
-LV_Update_start="$NORMAL Ejecutando la actualización del repositorio \t \t \t "
+LV_Update_start="$NORMAL Ejecutando la actualización del repositorio \t \t "
 LV_Update_done="Actualización completada con éxito"
 LV_Update_error="Error durante apt-get update -q"
 LV_RootCheck="Comprobando privilegios de root"
 LV_Show_upgradeable="Mostrando paquetes:"
-LV_Install="Actualizando paquetes instalados"
-LV_Autoremove="Eliminando paquetes innecesarios"
+LV_Install="Actualizando paquetes instalados \t "
+LV_Autoremove="Eliminando paquetes innecesarios \t "
 LV_LogKiller="Borrando archivo(s) de log"
 LV_NotificationNotSent="ERROR: No se pudo enviar la notificación!"
 LV_NotificationSent="La notificación se envió con éxito"
