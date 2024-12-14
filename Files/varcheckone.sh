@@ -14,8 +14,6 @@ check_them_files() {
             #echo "✅ Die Datei '$file' ist vorhanden."
         else
             echo "❌ Could NOT find '$file' !"
-            echo stopping script!
-            exit;
         fi
     done
 }
