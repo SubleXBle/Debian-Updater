@@ -12,7 +12,39 @@ REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
 BRANCH_NAME="main"
 
 # Repository Target Path
+# Set default path
 TARGET_DIR="/opt/Debian-Updater"
+
+# Ask the user if they want to use a custom path
+echo "Do you want to use a custom path? (Y/N): "
+read -r USE_CUSTOM_PATH
+
+# Convert input to lowercase to handle Y/y and N/n
+USE_CUSTOM_PATH=${USE_CUSTOM_PATH,,}
+
+if [[ "$USE_CUSTOM_PATH" == "y" ]]; then
+    # Prompt the user to enter a path
+    echo "Please enter the desired path (or press Enter to use the default path): "
+    read -r USER_PATH
+
+    # Check if the user entered a path
+    if [[ -z "$USER_PATH" ]]; then
+        echo "No path entered. Default path will be used: $TARGET_DIR"
+    else
+        # Check if the path exists or can be created
+        if mkdir -p "$USER_PATH" 2>/dev/null; then
+            TARGET_DIR="$USER_PATH"
+            echo "Path successfully set to: $TARGET_DIR"
+        else
+            echo "Invalid path. Default path will be used: $TARGET_DIR"
+        fi
+    fi
+else
+    echo "Default path will be used: $TARGET_DIR"
+fi
+
+# Display the final path
+echo "Using path: $TARGET_DIR"
 
 # Check if Git is installed
 check_git_installed() {
