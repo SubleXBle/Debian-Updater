@@ -15,7 +15,7 @@ LV_Install="Installierte Pakete aktualisieren"
 LV_Autoremove="Nicht mehr benötigte Pakete entfernen"
 LV_LogKiller="Logfile(s) löschen"
 LV_NotificationNotSent="FEHLER: Konnte Benachrichtigung nicht senden!"
-LV_NotificationSent="Benachrichtigung wurde versendet"
+LV_NotificationSent="Benachrichtigung wurde erfolgreich versendet"
 
 LF_ISROOT_Pos() {
   log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
