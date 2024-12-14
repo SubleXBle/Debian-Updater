@@ -85,4 +85,3 @@ check_path_variable "UV_NC_OCC_PATH" "$UV_NC_OCC_PATH" "$DEFAULT_UV_NC_OCC_PATH"
 check_bool_variable "UV_MW_Update" "$UV_MW_Update"
 check_path_variable "UV_MW_PATH" "$UV_MW_PATH" "$DEFAULT_UV_MW_PATH"
 
-echo "Überprüfung abgeschlossen."
