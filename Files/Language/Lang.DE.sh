@@ -14,9 +14,7 @@ LV_Show_upgradeable="Pakete anzeigen:"
 LV_Install="Installierte Pakete aktualisieren"
 LV_Autoremove="Nicht mehr benötigte Pakete entfernen"
 LV_LogKiller="Logfile(s) löschen"
-
-
-
+LV_NotificationNotSent="FAILURE: Could not send Notification!"
 
 LF_ISROOT_Pos() {
   log_message -n -e "$NORMAL[$GREEN✓$NORMAL] \t \t "
