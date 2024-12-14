@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Standards from Files
-DEFAULT_LOGFILE=$(dirname "$LOGFILE")
 DEFAULT_UV_NC_OCC_PATH="/path/to/your/Nextcloud"
 DEFAULT_UV_MW_PATH="/path/to/Mediawiki"
 
@@ -55,8 +54,9 @@ if [[ "$UV_LOG" != "quiet" && "$UV_LOG" != "medium" && "$UV_LOG" != "all" ]]; th
     echo "Fehler: Die Variable UV_LOG muss auf 'quiet', 'medium' oder 'all' gesetzt sein (aktuell: $UV_LOG)."
 fi
 
-# Logfile-Handling
-check_path_variable "LOGFILE" "$LOGFILE" "$DEFAULT_LOGFILE"
+# Skipping Logfile Handling
+# Wenn du die Logfile-Überprüfung überspringen möchtest, wurde sie hier entfernt.
+
 check_bool_variable "UV_KEEP_LOG" "$UV_KEEP_LOG"
 check_bool_variable "KILL_OLD_LOGS" "$KILL_OLD_LOGS"
 check_number_variable "LOGFILE_MAX_AGE" "$LOGFILE_MAX_AGE"
@@ -84,4 +84,3 @@ check_path_variable "UV_NC_OCC_PATH" "$UV_NC_OCC_PATH" "$DEFAULT_UV_NC_OCC_PATH"
 # MediaWiki-Options
 check_bool_variable "UV_MW_Update" "$UV_MW_Update"
 check_path_variable "UV_MW_PATH" "$UV_MW_PATH" "$DEFAULT_UV_MW_PATH"
-
