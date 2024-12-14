@@ -31,8 +31,6 @@ then run the Updater.
 ```
 Or you set it up as a cronjob to run in silentmode and inform you when it has updated the system or when something went wrong doing updates.
 
-## Hot-Fixes 🔥
-+ 
 
 ## Features 🗒️
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
@@ -97,6 +95,9 @@ Each method of sending notifications has its own config file in the Notification
 + ✔️ All non-translated Stuff set to english - so less german babble :)
 + ✔️ Set default-language to english
 + ✔️ Reworked Sanity Check
+
+## Hot-Fixes 🔥
++ 
 
 ## Addins (Optional) ⬇️
 + RK-Hunter Property Updates & Checks
