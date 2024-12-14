@@ -35,4 +35,3 @@ else
     :
     # not sure if i should set a message here
 fi
-log_message $NORMAL "Logfile exists $GREEN $NORMAL[$GREEN✓$NORMAL]"
