@@ -12,7 +12,7 @@
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
 ⚙️The variety of logging options allows for nearly any log setting (log rotation, keep only in case of errors, keep for X days, no logging, send logs, etc.).
 
-## Installer and Update-Script ⚠️
+## Installer and Update-Script ⚙️
 Use the "Installer" for Initial Clone
 ```bash
 wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/V-1.0/Installer.sh && chmod +x Installer.sh && ./Installer.sh && rm Installer.sh
@@ -31,17 +31,9 @@ then run the Updater.
 ```
 Or you set it up as a cronjob to run in silentmode and inform you when it has updated the system or when something went wrong doing updates.
 
-## Important Files in this Repository ℹ️
-+ Debian-Updater.sh (Main Script)
-+ DEB_UPD_config.sh (Updater-Settings)
-    + Default = English
-    + Other Versions (German & Spain) are in the Repo (just rename them to DEB_UPD_config.sh)
-+ Folder Files (scriptparts)
-+ Folder NotificationConfiguration (read the name)
-+ Updater-Update.sh (yes, finally the updater for the updater)
+## Hot-Fixes 🔥
 
-
-## Features 🚀
+## Features 🗒️
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
     + You can set different modes for upgrade or autoremove in the config file (DEB_UPD_config.sh)
     + The config file is available in different languages for your convenience.
@@ -97,7 +89,7 @@ Each method of sending notifications has its own config file in the Notification
     + If RKHunter is installed, a --check can also be executed immediately after the update.
 + For notifications, "curl" (https://curl.se/) must be installed.
 
-## Version Description 🚀
+## Version Description 📓
 + ✔️ Generel Bugfixes
 + ✔️ Language Bugs fixed
 + ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
@@ -109,6 +101,15 @@ Each method of sending notifications has its own config file in the Notification
 + RK-Hunter Property Updates & Checks
 + Updates for Nextcloud Apps
 + Updates for MediaWiki Installation
+
+## Files in this Repository ℹ️
++ Debian-Updater.sh (Main Script)
++ DEB_UPD_config.sh (Updater-Settings)
+    + Default = English
+    + Other Versions (German & Spain) are in the Repo (just rename them to DEB_UPD_config.sh)
++ Folder Files (scriptparts)
++ Folder NotificationConfiguration (read the name)
++ Updater-Update.sh (yes, finally the updater for the updater)
 
 ## License 📄
 + GNU General Public License v3.0
