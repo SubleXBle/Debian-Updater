@@ -1,6 +1,6 @@
 #!/bin/bash
-# Nach Rootkit Hunter suchen um false-positives nach einem erfogreichen "apt upgrade" zu verhindern
-# Hierfür wird, wenn RKHunter installiert ist, ein "rkhunter --update" sowie ein "rkhunter --propupd" ausgeführt
+# Check for RK-Hunter to avoid false-positives after running apt upgrade
+# When installed "rkhunter --update" and "rkhunter --propupd" will be executed
 F_ROOTKIT() {
    log_message -n "$NORMAL $LV_CheckIfRKHunter: \t \t \t \t "
    if dpkg -l | grep rkhunter >>$LOGFILE; then
