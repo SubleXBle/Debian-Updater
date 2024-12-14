@@ -2,7 +2,7 @@
 
 F_PUSHOVER() {
     if [ "$UV_PUSHOVER" = true ]; then
-        log_message -n $NORMAL "Sende PushOver Nachricht \t \t \t "
+        log_message -n $NORMAL "PushOver $LV_SendMessage \t \t \t "
         RETRY_COUNT=0
         while [ "$RETRY_COUNT" -lt "$PO_MAX_RETRY" ]; do
         CURL_OUTPUT=$(curl \
@@ -37,7 +37,7 @@ F_PUSHOVER() {
 
 F_TELEGRAM() {
     if [ "$UV_TELEGRAM" = true ]; then
-        log_message -n "$NORMAL" "Sende Telegram Nachricht \t \t \t "
+        log_message -n "$NORMAL" "Telegram $LV_SendMessage \t \t \t "
         RETRY_COUNT=0
         while [ "$RETRY_COUNT" -lt "$TG_MAX_RETRY" ]; do
             CURL_OUTPUT=$(curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" -d "chat_id=$CHAT_ID&text=$BENACHRICHTIGUNG")
@@ -83,7 +83,7 @@ send_gotify_message() {
 
 F_EMAIL() {
     if [ "$UV_EMAIL" = true ]; then
-        log_message -n "$NORMAL Sende E-Mail \t \t \t \t \t "
+        log_message -n "$NORMAL E-Mail $LV_SendMessage \t \t \t \t "
         RETRY_COUNT=0
         while [ "$RETRY_COUNT" -lt "$EM_MAX_RETRY" ]; do
             CURL_OUTPUT=$(curl \
@@ -116,7 +116,7 @@ F_EMAIL() {
 
 F_DISCORD() {
     if [ "$UV_DISCORD" = true ]; then
-        log_message -n "$NORMAL Sende Discord Nachricht \t \t \t "
+        log_message -n "$NORMAL Discord $LV_SendMessage \t \t \t "
         RETRY_COUNT=0
         while [ "$RETRY_COUNT" -lt "$DC_MAX_RETRY" ]; do
             CURL_OUTPUT=$(curl \
@@ -147,7 +147,7 @@ F_DISCORD() {
 
 F_TEAMS() {
     if [ "$UV_TEAMS" = true ]; then
-        log_message -n "$NORMAL Sende Teams Nachricht \t \t \t "
+        log_message -n "$NORMAL MS-Teams $LV_SendMessage \t \t \t "
         RETRY_COUNT=0
         while [ "$RETRY_COUNT" -lt "$TEAMS_MAX_RETRY" ]; do
             CURL_OUTPUT=$(curl \
