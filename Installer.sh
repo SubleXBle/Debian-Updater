@@ -9,7 +9,7 @@ BLUE='\033[34m'
 
 # Repository URL and Branch-Name
 REPO_URL="https://github.com/SubleXBle/Debian-Updater.git"
-BRANCH_NAME="V-1.0"
+BRANCH_NAME="main"
 
 # Repository Target Path
 TARGET_DIR="/opt/Debian-Updater"
