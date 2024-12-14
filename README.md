@@ -35,7 +35,7 @@ Or you set it up as a cronjob to run in silentmode and inform you when it has up
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
     + Default = English
-    + Other Versions (German & Spain) are in the Repo (just rename them)
+    + Other Versions (German & Spain) are in the Repo (just rename them to DEB_UPD_config.sh)
 + Folder Files (scriptparts)
 + Folder NotificationConfiguration (read the name)
 + Updater-Update.sh (yes, finally the updater for the updater)
