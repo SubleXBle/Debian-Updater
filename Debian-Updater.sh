@@ -11,6 +11,9 @@ source DEB_UPD_config.sh
 # Language File
 source Files/Language/Lang.$UV_LNG.sh
 
+# Check for Logfile
+source Files/LogFileCheck.sh
+
 # get Start Time
 start=$(date +%s)
 
@@ -19,11 +22,8 @@ F_Startzeit() {
     echo "$(date +"%d.%m.%Y %H:%M:%S")">>$LOGFILE
 }
 
-# Check for Logfile - else you get some Errors
-source Files/LogFileCheck.sh
-
 ### SCRIPT VARS ###                              
-V_ScriptVersion="0.8"
+V_ScriptVersion="1.0.1"
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
 RED='\033[1;31m'
