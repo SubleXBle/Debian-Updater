@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Standards from Files
-DEFAULT_LOGFILE="/var/log/Updater.log"
+DEFAULT_LOGFILE=$(dirname "$LOGFILE")
 DEFAULT_UV_NC_OCC_PATH="/path/to/your/Nextcloud"
 DEFAULT_UV_MW_PATH="/path/to/Mediawiki"
 
