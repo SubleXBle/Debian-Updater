@@ -4,7 +4,7 @@
 UV_LNG=ES                                       # Establecer idioma en inglés (EN), alemán (DE) o español (ES)
 #
 ## Modos del actualizador
-UV_UpgradeMode=false                            # false ejecuta apt-get upgrade -y -a / true ejecuta apt-get dist-upgrade -y
+UV_UpgradeMode=false                            # false ejecuta apt-get upgrade -y / true ejecuta apt-get dist-upgrade -y
 UV_AutoremoveMode=false                         # false realiza un --purge / true realiza un "remove"
 #
 ## Nivel de registro
