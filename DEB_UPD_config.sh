@@ -4,7 +4,7 @@
 UV_LNG=EN                                       # Set language to English (EN), German (DE), or Spanish (SP)
 #
 ## Updater Modes
-UV_UpgradeMode=false                            # false runs apt-get upgrade -y -a / true runs apt-get dist-upgrade -y
+UV_UpgradeMode=false                            # false runs apt-get upgrade -y / true runs apt-get dist-upgrade -y
 UV_AutoremoveMode=false                         # false performs a --purge / true performs a "remove"
 #
 ## Logging Level
