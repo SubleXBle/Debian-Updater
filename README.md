@@ -102,6 +102,9 @@ Each method of sending notifications has its own config file in the Notification
 + Updates for Nextcloud Apps
 + Updates for MediaWiki Installation
 
+## Files to Update from previous Version ⬆️
++ Debian-Updater.sh
+
 ## Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
 + DEB_UPD_config.sh (Updater-Settings)
