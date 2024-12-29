@@ -15,6 +15,7 @@ F_HELP() {
     echo "  -o, --onlyupdate            Actualiza solo los repositorios y muestra las actualizaciones disponibles sin actualizar los paquetes."
     echo "  -n, --no-autoremove         Evita la eliminación automática de paquetes innecesarios después de la actualización."
     echo "  -d, --dist-upgrade          Realiza una actualización de distribución una sola vez."
+    echo "  -tn, --test-notifications   para probar la configuración de notificaciones"
     echo
     echo -e $BLUE "========================================"
     echo -e $YELLOW $TXTBOLD "Variables del usuario (en DEB_UPD_config.sh):" $NORMAL
