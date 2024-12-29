@@ -15,6 +15,7 @@ F_HELP() {
     echo "  -o, --onlyupdate            Updates only the repositories and shows available updates without upgrading the packages."
     echo "  -n, --no-autoremove         Prevents the automatic removal of unnecessary packages after upgrade."
     echo "  -d, --dist-upgrade          Performs a one-time dist-upgrade."
+    echo "  -tn, --test-notifications   for testing the notification settings"
     echo
     echo -e $BLUE "========================================"
     echo -e $YELLOW $TXTBOLD "User Variables (in DEB_UPD_config.sh):" $NORMAL
