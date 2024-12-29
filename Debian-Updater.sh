@@ -184,13 +184,14 @@ check_scripts
 
 # Check Notifications
 if [ "$CheckNotifications" = true ]; then
+    source Files/NOTIFICATION_FUNCTIONS.sh
     F_PUSHOVER
     F_TELEGRAM
     send_gotify_message
     F_DISCORD
     F_EMAIL
     F_TEAMS
-    exit;
+    exit 0;
 fi
 
 # Check for Root
