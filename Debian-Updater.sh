@@ -34,6 +34,7 @@ FEHLER=0
 SILENT=false
 ONLYUPDATE=false
 NOAUTOREMOVE=false
+CheckNotifications=false
 
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
