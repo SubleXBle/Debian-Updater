@@ -185,6 +185,7 @@ check_scripts
 # Check Notifications
 if [ "$CheckNotifications" = true ]; then
     source Files/NOTIFICATION_FUNCTIONS.sh
+    UV_NotifyOnlyOnError=false
     V_NOTIFY=true
     F_PUSHOVER
     F_TELEGRAM
