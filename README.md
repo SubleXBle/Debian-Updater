@@ -105,8 +105,8 @@ Each method of sending notifications has its own config file in the Notification
 ## Files to Update from previous Version ⬆️
 + Debian-Updater.sh
 + DEB_UPD_help.sh
-+ DEB_UPD_help_EN.sh
-+ DEB_UPD_help_SP.sh
++ DEB_UPD_help_en.sh
++ DEB_UPD_help_sp.sh
 
 ## Files in this Repository ℹ️
 + Debian-Updater.sh (Main Script)
