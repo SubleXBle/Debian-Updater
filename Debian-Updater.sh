@@ -34,6 +34,7 @@ FEHLER=0
 SILENT=false
 ONLYUPDATE=false
 NOAUTOREMOVE=false
+CheckNotifications=false
 
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
@@ -104,6 +105,11 @@ if [[ $1 == "-d" || $1 == "--dist-upgrade" ]]; then
     DistUpgradeOnce=true
 fi
 
+# Test Notification Switch
+if [[ $1 == "-tn" || $1 == "--test-notifications" ]]; then
+    CheckNotifications=true
+fi
+
 ### CHECKS ###
 
 # Loglevel check
@@ -171,11 +177,24 @@ check_scripts() {
 [[ -f "$check1" ]] && source "$check1" & pid_varcheckone=$!
 [[ -f "$check2" ]] && source "$check2" & pid_varchecktwo=$!
 
-# Call Function
+# Call Sanity Check Function
 check_scripts
 
-
 ### FUNCTIONS ###
+
+# Check Notifications
+if [ "$CheckNotifications" = true ]; then
+    source Files/NOTIFICATION_FUNCTIONS.sh
+    UV_NotifyOnlyOnError=false
+    V_NOTIFY=true
+    F_PUSHOVER
+    F_TELEGRAM
+    send_gotify_message
+    F_DISCORD
+    F_EMAIL
+    F_TEAMS
+    exit 0;
+fi
 
 # Check for Root
 F_ISROOT() {
