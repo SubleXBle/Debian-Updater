@@ -1,5 +1,5 @@
 # Debian-Updater ⚙️
-+ Version: 1.0.1
++ Version: 1.0.2
 + Author: SubleXBle
 + Repository: [GitHub: SubleXBle](https://github.com/SubleXBle/Debian-Updater)
 + Available in English / German / Spain
@@ -91,10 +91,7 @@ Each method of sending notifications has its own config file in the Notification
 ## Version Description 📓
 + ✔️ Generel Bugfixes
 + ✔️ Language Bugs fixed
-+ ✔️ Reworked Updater-Update.sh in order to take more consideration into settings already set by the user
-+ ✔️ All non-translated Stuff set to english - so less german babble :)
-+ ✔️ Set default-language to english
-+ ✔️ Reworked Sanity Check
++ ✔️ added -tn / --test-notifications -switch
 
 ## Hot-Fixes 🔥
 + 
