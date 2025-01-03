@@ -180,8 +180,6 @@ check_scripts() {
 # Call Sanity Check Function
 check_scripts
 
-### FUNCTIONS ###
-
 # Check Notifications
 if [ "$CheckNotifications" = true ]; then
     source Files/NOTIFICATION_FUNCTIONS.sh
@@ -195,6 +193,8 @@ if [ "$CheckNotifications" = true ]; then
     F_TEAMS
     exit 0;
 fi
+
+### FUNCTIONS ###
 
 # Check for Root
 F_ISROOT() {
