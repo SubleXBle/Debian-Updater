@@ -35,6 +35,7 @@ SILENT=false
 ONLYUPDATE=false
 NOAUTOREMOVE=false
 CheckNotifications=false
+fixmissing=false
 
 ### User-Config (DEB_UPD_config.sh) ###
 source DEB_UPD_config.sh
@@ -130,6 +131,10 @@ case "$UV_LOG" in
         ;;
 esac
 
+# Fix-Missing Switch
+if [[ $1 == "-f" || $1 == "--fix-missing" ]]; then
+    fixmissingrun=true
+fi
 
 ### Sanity Checks ##
 
@@ -286,6 +291,13 @@ F_UPGRADE() {
     fi
 }
 
+# Fix-Missing-Run
+F_FIXMISSING() {
+    if [ "$fixmissing" == true ]; then
+        apt-get upgrade --fix-missing
+    fi
+}
+
 # Autoremove
 F_AUTOREMOVE() {
     if [ "$UV_AutoremoveMode" == true ]; then
@@ -437,7 +449,11 @@ T_LEERZEILE
 F_ISROOT
 F_UPDATE
 F_ANZEIGE
-F_UPGRADE
+if [ "$fixmissing" == true ]; then
+    F_FIXMISSING
+else
+    F_UPGRADE  
+fi
 F_AUTOREMOVE
 if [ $UV_NC_APP_Update = true ]; then
     source Files/Nextcloud.sh
