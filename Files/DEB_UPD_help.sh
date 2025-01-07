@@ -16,6 +16,7 @@ F_HELP() {
     echo "  -n, --no-autoremove         Verhindert die automatische Entfernung nicht mehr benötigter Pakete nach dem Upgrade."
     echo "  -d, --dist-upgrade          führt das Upgrade einmalig als Dist-Upgrade aus."
     echo "  -tn, --test-notifications   zum testen der Notification Einstellungen."
+    echo "  -f, --fix-missing           apt upgrade mit --fix-missing option"
     echo
     echo -e $BLUE "========================================"
     echo -e $YELLOW $TXTBOLD "Benutzer-Variablen (in DEB_UPD_config.sh):" $NORMAL
