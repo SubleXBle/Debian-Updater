@@ -293,9 +293,7 @@ F_UPGRADE() {
 
 # Fix-Missing-Run
 F_FIXMISSING() {
-    if [ "$fixmissing" == true ]; then
-        apt-get upgrade --fix-missing
-    fi
+    apt-get upgrade --fix-missing
 }
 
 # Autoremove
