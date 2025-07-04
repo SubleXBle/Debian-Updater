@@ -23,7 +23,7 @@ then use the Updater for Updates of the Script
 ```bash
 ./Updater-Update.sh
 ```
-set The Variables in DEB_UPD_config.sh
+set The Variables in ```DEB_UPD_config.sh```
 
 then run the Updater.
 ```bash
