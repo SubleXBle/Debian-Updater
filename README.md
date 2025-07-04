@@ -59,13 +59,13 @@ Or you set it up as a cronjob to run in silentmode and inform you when it has up
 ./Debian-Updater.sh [-OPTION1 -OPTION2 etc.]
 
 ### Options 🛠️
-+ -h, --help : Displays a help page with the available options.
-+ -s, --silent : Suppresses console output; the log file is still created.
-+ -o, --onlyupdate : Only updates the package sources (apt-get update) without updating the packages.
-+ -n, --no-autoremove : No autoremove will be performed.
-+ -l, --license : Displays the license.
-+ -d, --dist-upgrade : Runs apt-get dist-upgrade only on this run (even if set to no in config)
-+ -tn, --test-notifications -switch
++ ```-h```, ```--help``` : Displays a help page with the available options.
++ ```-s```, ```--silent``` : Suppresses console output; the log file is still created.
++ ```-o```, ```--onlyupdate``` : Only updates the package sources (apt-get update) without updating the packages.
++ ```-n```, ```--no-autoremove``` : No autoremove will be performed.
++ ```-l```, ```--license``` : Displays the license.
++ ```-d```, ```--dist-upgrade``` : Runs apt-get dist-upgrade only on this run (even if set to no in config)
++ ```-tn```, ```--test-notifications``` -switch
 
 ## Clear Output 📋
 The output of the script (when not in --silent mode as a cron job) is clearly designed. The log file is easy to read; for multiple runs that end up in one log, a separator line as well as the date and time are inserted. Additionally, there is a daily log rotation. An English output is currently being worked on; it can already be set via the config file (DEB_UPD_config.sh) and the variable $UV_LNG.
