@@ -19,10 +19,6 @@ wget https://raw.githubusercontent.com/SubleXBle/Debian-Updater/main/Installer.s
 ```
 Will Download the Repo to /opt/Debian-Updater (leave it there or move it to a place of your choice)
 
-then use the Updater for Updates of the Script
-```bash
-./Updater-Update.sh
-```
 set The Variables in ```DEB_UPD_config.sh```
 
 then run the Updater.
@@ -31,6 +27,10 @@ then run the Updater.
 ```
 Or you set it up as a cronjob to run in silentmode and inform you when it has updated the system or when something went wrong doing updates.
 
+later, on new Releases you can use the Updater for Updates of the Script
+```bash
+./Updater-Update.sh
+```
 
 ## Features 🗒️
 + System update: Updates package sources (apt-get update), installs available updates (apt-get upgrade), and removes unnecessary packages (apt-get autoremove).
