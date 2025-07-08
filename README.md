@@ -64,7 +64,7 @@ Or you set it up as a cronjob to run in silentmode and inform you when it has up
 + ```-o```, ```--onlyupdate``` : Only updates the package sources (apt-get update) without updating the packages.
 + ```-n```, ```--no-autoremove``` : No autoremove will be performed.
 + ```-l```, ```--license``` : Displays the license.
-+ ```-d```, ```--dist-upgrade``` : Runs apt-get dist-upgrade only on this run (even if set to no in config)
++ ```-d```, ```--dist-upgrade``` : Runs apt-get dist-upgrade only on this run (even if set to false in config)
 + ```-tn```, ```--test-notifications``` -switch
 
 ## Clear Output 📋
