@@ -23,7 +23,7 @@ F_Startzeit() {
 }
 
 ### SCRIPT VARS ###                              
-V_ScriptVersion="1.0.1"
+V_ScriptVersion="1.1.0"
 NORMAL='\033[0;39m'
 GREEN='\033[1;32m'
 RED='\033[1;31m'
