@@ -123,8 +123,10 @@ Each method of sending notifications has its own config file in the Notification
 ---------------------------------------------------------------------------------------
 
 ## Further Development 🛠️
-Ongoing updates and improvements : since I use the script for my own systems, there will certainly be expansions.
-Next "Version" will be more about Errorhandling and Logging ..
+Next Version:
+
+I gonna take the code for other updates to an "addon" Folder, where you can select avtivate addons in the config
+the addon conf itsself will then work like the conf for the updater, so, a usage to integrate it in other tools will be smoother.
 
 ---------------------------------------------------------------------------------------
 
