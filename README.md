@@ -12,6 +12,10 @@
 ⚙️The script is suitable for execution as a cron job due to its --silent mode, error handling, and robustness.<br>
 ⚙️The variety of logging options allows nearly any logging setting (log rotation, keep only in case of errors, keep for X days, no logging, send logs, etc.).
 
+## Screenshot
+![Debian-Updater.png](Debian-Updater.png)
+
+
 ## Installer and Update-Script ⚙️
 Use the "Installer" for Initial Clone
 ```bash
